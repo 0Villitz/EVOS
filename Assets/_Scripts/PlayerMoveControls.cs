@@ -17,9 +17,8 @@ public class PlayerMoveControls : MonoBehaviour
     public LayerMask groundLayer;
     public Transform leftPoint;
     public Transform rightPoint;
-    private bool isGrounded = true;
+    public bool isGrounded = true;
     public bool hasControl = true;
-
     private bool knockBack = false;
     // Start is called before the first frame update
     private void Start()
@@ -103,7 +102,7 @@ public class PlayerMoveControls : MonoBehaviour
 
     private void SetAnimatorValues()
     {
-        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.y));
+        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         anim.SetFloat("vSpeed", rb.velocity.y);
         anim.SetBool("isGrounded", isGrounded);
     }

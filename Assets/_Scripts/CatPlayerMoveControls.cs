@@ -113,7 +113,7 @@ public class CatPlayerMoveControls : MonoBehaviour
 
     private void SetAnimatorValues()
     {
-        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.y));
+        anim.SetFloat("Speed", Mathf.Abs(rb.velocity.x));
         anim.SetFloat("vSpeed", rb.velocity.y);
         anim.SetBool("Grounded", grounded);
     }
