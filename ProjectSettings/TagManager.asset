@@ -5,6 +5,7 @@ TagManager:
   serializedVersion: 2
   tags:
   - CollectibleUI
+  - Stats
   layers:
   - Default
   - TransparentFX
@@ -53,4 +54,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1614892239
+    locked: 0
+  - name: ForeGround
+    uniqueID: 2910050751
     locked: 0

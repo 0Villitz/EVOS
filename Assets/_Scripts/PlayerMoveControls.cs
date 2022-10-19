@@ -2,12 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CatPlayerMoveControls : MonoBehaviour
+public class PlayerMoveControls : MonoBehaviour
 {
     public float speed;
     public float jumpForce;
-    public int additionalJumps = 2;
-    private int resetJumpsNumber;
 
     private GatherInput gI;
     private Rigidbody2D rb;
@@ -19,8 +17,7 @@ public class CatPlayerMoveControls : MonoBehaviour
     public LayerMask groundLayer;
     public Transform leftPoint;
     public Transform rightPoint;
-    private bool grounded = true;
-    private bool doubleJump = true;
+    private bool isGrounded = true;
     public bool hasControl = true;
 
     private bool knockBack = false;
@@ -31,7 +28,6 @@ public class CatPlayerMoveControls : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
 
-        resetJumpsNumber = additionalJumps;
     }
 
     private void Update()
@@ -41,7 +37,7 @@ public class CatPlayerMoveControls : MonoBehaviour
 
     private void FixedUpdate()
     {
-        CheckStatus();
+        CheckGroundStatus();
         if(knockBack || !hasControl)
         {
             return;
@@ -60,34 +56,28 @@ public class CatPlayerMoveControls : MonoBehaviour
     {
         if(gI.jumpInput)
         {
-            if (grounded)
+            if (isGrounded)
             {
                 rb.velocity = new Vector2(gI.valueX * speed, jumpForce);
-                doubleJump = true;
+
             }
-            else if (additionalJumps > 0)
-            {
-                rb.velocity = new Vector2(gI.valueX * speed, jumpForce);
-                doubleJump = false;
-                additionalJumps--;
-            }
+
         }
         gI.jumpInput = false;
     }
 
-    private void CheckStatus()
+    private void CheckGroundStatus()
     {
         RaycastHit2D rightCheckHit = Physics2D.Raycast(rightPoint.position, Vector2.down, rayLength, groundLayer);
         RaycastHit2D leftCheckHit = Physics2D.Raycast(leftPoint.position, Vector2.down, rayLength, groundLayer);
         if (leftCheckHit || rightCheckHit)
         {
-            grounded = true;
-            doubleJump = false;
-            additionalJumps = resetJumpsNumber;
+            isGrounded = true;
+
         }
         else
         {
-            grounded = false;
+            isGrounded = false;
         }
         SeeRays(leftCheckHit, rightCheckHit);
     }
@@ -115,7 +105,7 @@ public class CatPlayerMoveControls : MonoBehaviour
     {
         anim.SetFloat("Speed", Mathf.Abs(rb.velocity.y));
         anim.SetFloat("vSpeed", rb.velocity.y);
-        anim.SetBool("Grounded", grounded);
+        anim.SetBool("isGrounded", isGrounded);
     }
 
     public IEnumerator KnockBack(float forceX, float forceY, float duration, Transform otherObject)
