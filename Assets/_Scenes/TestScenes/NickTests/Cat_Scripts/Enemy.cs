@@ -5,7 +5,16 @@ using UnityEngine;
 public class Enemy : MonoBehaviour
 {
     public float health;
-    // Start is called before the first frame update
+
+    protected Rigidbody2D rb;
+    protected Animator anim;
+
+    private void Awake()
+    {
+        rb = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>();
+    }
+
     void Start()
     {
         
