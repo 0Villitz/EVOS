@@ -3,7 +3,7 @@ guid: 17c7f267e7313874792389932b881285
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
-  serializedVersion: 11
+  serializedVersion: 12
   mipmaps:
     mipMapMode: 0
     enableMipMap: 0
@@ -20,6 +20,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
+    flipGreenChannel: 0
   isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
@@ -63,6 +64,8 @@ TextureImporter:
   textureFormatSet: 0
   ignorePngGamma: 0
   applyGammaDecoding: 0
+  swizzle: 50462976
+  cookieLightType: 1
   platformSettings:
   - serializedVersion: 3
     buildTarget: DefaultTexturePlatform
@@ -852,10 +855,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      PlatformTiles_16x16_11: -1796283138
+      PlatformTiles_16x16_31: 1314362650
       PlatformTiles_16x16_7: -494775222
-      PlatformTiles_16x16_19: -469447376
-      PlatformTiles_16x16_27: -335586013
+      PlatformTiles_16x16_29: -400686112
+      PlatformTiles_16x16_32: -798530410
       PlatformTiles_16x16_23: 1182623241
       PlatformTiles_16x16_25: -1252434498
       PlatformTiles_16x16_2: 1267301065
@@ -880,15 +883,14 @@ TextureImporter:
       PlatformTiles_16x16_3: 611280582
       PlatformTiles_16x16_30: -2018493857
       PlatformTiles_16x16_15: -1644009278
-      PlatformTiles_16x16_31: 1314362650
+      PlatformTiles_16x16_11: -1796283138
       PlatformTiles_16x16_16: 2108106903
-      PlatformTiles_16x16_29: -400686112
-      PlatformTiles_16x16_22: -162851884
       PlatformTiles_16x16_33: -1193794368
-      PlatformTiles_16x16_32: -798530410
+      PlatformTiles_16x16_22: -162851884
+      PlatformTiles_16x16_27: -335586013
+      PlatformTiles_16x16_19: -469447376
   spritePackingTag: 
   pSDRemoveMatte: 0
-  pSDShowRemoveMatteOption: 0
   userData: 
   assetBundleName: 
   assetBundleVariant: 

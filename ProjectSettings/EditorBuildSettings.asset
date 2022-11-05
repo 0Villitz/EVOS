@@ -6,10 +6,13 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/_Scenes/SampleScene.unity
-    guid: 8c9cfa26abfee488c85f1582747f6a02
-  - enabled: 0
-    path: Assets/_Scenes/TestScenes/NickTests/CatTestScene.unity
+    path: Assets/_Scenes/TestScenes/NickTests/Cat_Scenes/MainMenu.unity
+    guid: 869d6e662a5f7b54194fd64f4b2b5c27
+  - enabled: 1
+    path: Assets/_Scenes/TestScenes/NickTests/Cat_Scenes/Level1.unity
     guid: 04dd0edfa46d0094285c1ae22876cb18
+  - enabled: 1
+    path: Assets/_Scenes/TestScenes/NickTests/Cat_Scenes/Level2.unity
+    guid: 1af905ab8e25d084ca690deb0a333114
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1bb0399d4c08e8243a60ddfaca9c0ce3, type: 2}
