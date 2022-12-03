@@ -162,8 +162,30 @@
         {
             "name": "UI",
             "id": "8e7681ea-261c-4bbf-831e-5fe6a7e77441",
-            "actions": [],
-            "bindings": []
+            "actions": [
+                {
+                    "name": "Point",
+                    "type": "PassThrough",
+                    "id": "f0e4f8eb-4b74-469c-a07b-229827d78ae6",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "645ffe57-900e-4f11-bfdc-565a693552c2",
+                    "path": "<Mouse>/position",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KB and mouse",
+                    "action": "Point",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [
