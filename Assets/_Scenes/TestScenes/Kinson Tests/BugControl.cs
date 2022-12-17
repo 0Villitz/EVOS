@@ -5,35 +5,42 @@ using UnityEngine.InputSystem;
 
 public class BugControl : MonoBehaviour
 {
+    Rigidbody2D rb;
+    [SerializeField] float movementSpeed = 200.0f;
     // Start is called before the first frame update
     void Start()
     {
-        
+        rb = gameObject.GetComponent<Rigidbody2D>();
+    
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        Vector2 velocity = new Vector2(0.0f, movementSpeed);
+
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 0f);
-            Move(Vector3.up);
+            velocity = new Vector2(0.0f, movementSpeed);
+            rb.MovePosition(rb.position + velocity * Time.deltaTime);
+
         }
-        else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 180f);
-            Move(Vector3.down);
+            velocity = new Vector2(0.0f, -movementSpeed);
+            rb.MovePosition(rb.position + velocity * Time.deltaTime);
         }
-        else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, 90f);
-            Move(Vector3.left);
+            velocity = new Vector2(-movementSpeed, 0.0f);
+            rb.MovePosition(rb.position + velocity * Time.deltaTime);
         }
-        else if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
-            transform.rotation = Quaternion.Euler(0f, 0f, -90f);
-            Move(Vector3.right);
+            velocity = new Vector2(movementSpeed, 0.0f);
+            rb.MovePosition(rb.position + velocity * Time.deltaTime);
         }
+
     }
 
     private void Move(Vector3 direction)
