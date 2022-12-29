@@ -21,7 +21,8 @@ public class Door : MonoBehaviour
     {
        
     }
-
+    // New door code test
+    
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
