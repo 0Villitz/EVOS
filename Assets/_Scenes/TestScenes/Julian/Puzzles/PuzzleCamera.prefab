@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1122918384842333605}
   - component: {fileID: 8182125329777015555}
-  - component: {fileID: 3962286139189880319}
   - component: {fileID: 6566928450931253974}
   m_Layer: 0
   m_Name: PuzzleCamera
@@ -62,10 +61,10 @@ Camera:
   field of view: 60
   orthographic: 1
   orthographic size: 5
-  m_Depth: 0
+  m_Depth: 1.54
   m_CullingMask:
     serializedVersion: 2
-    m_Bits: 4096
+    m_Bits: 12288
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 8400000, guid: b3c8687e05f166d48982197fad8dd192, type: 2}
   m_TargetDisplay: 0
@@ -77,14 +76,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &3962286139189880319
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1583979987453702352}
-  m_Enabled: 1
 --- !u!114 &6566928450931253974
 MonoBehaviour:
   m_ObjectHideFlags: 0

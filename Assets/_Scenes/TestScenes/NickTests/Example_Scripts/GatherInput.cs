@@ -39,8 +39,9 @@ public class GatherInput : MonoBehaviour
     private Controls    myControls;
     private ControlType currentControlType;
     
-    public  float       valueX;
-    public  bool        jumpInput;
+    public float               valueX;
+    public bool                jumpInput;
+    public GameEventDispatcher _GameEventDispatcher;
 
     private void Awake()
     {
@@ -61,6 +62,24 @@ public class GatherInput : MonoBehaviour
 
         myControls.Player.Jump.performed -= JumpStart;
         myControls.Player.Jump.canceled  -= JumpStop;
+    }
+
+    private void Update()
+    {
+        if (Keyboard.current.uKey.wasPressedThisFrame)
+        {
+            CurrentControlType = ControlType.UI;
+        }
+        if (Keyboard.current.pKey.wasPressedThisFrame)
+        {
+            CurrentControlType = ControlType.Player;
+        }
+
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            CurrentControlType = ControlType.UI;
+            _GameEventDispatcher.DispatchEvent(PuzzleEventType.ShowPuzzleWindow, false, PuzzleType.Path);
+        }
     }
     
     private void OnEnable()
