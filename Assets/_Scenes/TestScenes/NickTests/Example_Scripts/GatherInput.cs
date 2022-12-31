@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,52 +7,95 @@ using UnityEngine.InputSystem;
 
 public class GatherInput : MonoBehaviour
 {
+    public enum ControlType
+    {
+        None,
+        Player,
+        UI,
+    }
 
-    private Controls myControls;
-
-    public float valueX;
-    public bool jumpInput;
+    public ControlType CurrentControlType
+    {
+        get => currentControlType;
+        set
+        {
+            currentControlType = value;
+            switch (value)
+            {
+                case ControlType.None: 
+                    DisableAllControls();
+                    break;
+                case ControlType.Player: 
+                    EnablePlayerControls();
+                    break;
+                case ControlType.UI: 
+                    EnableUIControls();
+                    break;
+            }
+        }
+    }
+    
+    
+    private Controls    myControls;
+    private ControlType currentControlType;
+    
+    public  float       valueX;
+    public  bool        jumpInput;
 
     private void Awake()
     {
         myControls = new Controls();
-    }
-
-    private void OnEnable()
-    {
         myControls.Player.Move.performed += StartMove;
-        myControls.Player.Move.canceled += StopMove;
+        myControls.Player.Move.canceled  += StopMove;
 
         myControls.Player.Jump.performed += JumpStart;
-        myControls.Player.Jump.canceled += JumpStop;
+        myControls.Player.Jump.canceled  += JumpStop;
 
-        myControls.Player.Enable();
+        CurrentControlType = ControlType.Player;
+    }
+
+    private void OnDestroy()
+    {
+        myControls.Player.Move.performed -= StartMove;
+        myControls.Player.Move.canceled  -= StopMove;
+
+        myControls.Player.Jump.performed -= JumpStart;
+        myControls.Player.Jump.canceled  -= JumpStop;
+    }
+    
+    private void OnEnable()
+    {
+        CurrentControlType = ControlType.Player;
     }
 
     private void OnDisable()
     {
-        // Remove functions from actions:
-        myControls.Player.Move.performed -= StartMove;
-        myControls.Player.Move.canceled -= StopMove;
-
-        myControls.Player.Jump.performed -= JumpStart;
-        myControls.Player.Jump.canceled -= JumpStop;
-
-        myControls.Player.Disable();
-        //myControls.Disable();
+        CurrentControlType = ControlType.None;
     }
 
     public void DisableControls()
     {
-        // Remove functions from actions:
-        myControls.Player.Move.performed -= StartMove;
-        myControls.Player.Move.canceled -= StopMove;
+       DisableAllControls();
+    }
 
-        myControls.Player.Jump.performed -= JumpStart;
-        myControls.Player.Jump.canceled -= JumpStop;
-
+    private void EnablePlayerControls()
+    {
+        myControls.Player.Enable();
+        myControls.UI.Disable();
+    }
+    
+    private void EnableUIControls()
+    {
+        myControls.UI.Enable();
         myControls.Player.Disable();
-        //myControls.Disable();
+        // Prevent player from moonwalking without user input!
+        valueX = 0;
+    }
+
+    private void DisableAllControls()
+    {
+        myControls.Player.Disable();
+        myControls.UI.Disable();
         valueX = 0;
     }
 
