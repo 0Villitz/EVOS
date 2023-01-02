@@ -53,6 +53,8 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Jump.canceled  += JumpStop;
 
         CurrentControlType = ControlType.Player;
+        
+        _GameEventDispatcher.AddListener(PuzzleEventType.HidePuzzleWindow, OnHidePuzzleWindow);
     }
 
     private void OnDestroy()
@@ -62,6 +64,8 @@ public class GatherInput : MonoBehaviour
 
         myControls.Player.Jump.performed -= JumpStart;
         myControls.Player.Jump.canceled  -= JumpStop;
+        
+        _GameEventDispatcher.RemoveListener(PuzzleEventType.HidePuzzleWindow, OnHidePuzzleWindow);
     }
 
     private void Update()
@@ -92,6 +96,11 @@ public class GatherInput : MonoBehaviour
         CurrentControlType = ControlType.None;
     }
 
+    private void OnHidePuzzleWindow(GeneralEvent obj)
+    {
+        CurrentControlType = ControlType.Player;
+    }
+    
     public void DisableControls()
     {
        DisableAllControls();

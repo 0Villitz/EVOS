@@ -102,10 +102,7 @@ using UnityEngine.Assertions;
                 int length = callbackList.Count;
                 for (int i = 0; i < length; ++i)
                 {
-                    if (callbackList[i] != null)
-                    {
-                        callbackList[i].Invoke(e);
-                    }
+                    callbackList[i]?.Invoke(e);
                 }
 
                 result = true;

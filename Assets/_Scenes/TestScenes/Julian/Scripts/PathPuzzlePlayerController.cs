@@ -11,19 +11,16 @@ public class PathPuzzlePlayerController : MonoBehaviour
     public event Action<Collider2D> onObstacleHit;
 
     private Vector3 _startPos;
-    private Vector2 _offsetPos;
     private bool    _isAlive;
 
     void Awake()
     {
         _startPos = transform.position;
-        _offsetPos  = _startPos;
     }
 
     public void Init()
     {
-        _offsetPos         = _startPos;
-        transform.position = _offsetPos;
+        transform.position = _startPos;
         _isAlive           = true;
     }
     

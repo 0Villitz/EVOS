@@ -8,34 +8,33 @@ public class PuzzleWindow : MonoBehaviour
     public GameEventDispatcher _GameEventDispatcher;
     public PuzzleDictionary    _PuzzleDictionary;
     
-    public Button        _StartButton;
-    public Button        _ExitButton;
     public GameObject    _BaseView;
-    public Transform     _ButtonGroup;
 
     private GameObject _activePuzzle;
 
     private void Awake()
     {
-        _StartButton.onClick.AddListener(OnStartButton);
-        _ExitButton.onClick.AddListener(OnExitButton);
         
         _GameEventDispatcher.AddListener(PuzzleEventType.ShowPuzzleWindow, OnShowPuzzleWindow);
         _GameEventDispatcher.AddListener(PuzzleEventType.HidePuzzleWindow, OnHidePuzzleWindow);
+        _GameEventDispatcher.AddListener(PuzzleEventType.ObstacleHit, OnObstacleHit);
 
         OnHidePuzzleWindow(null);
     }
 
-    private void OnStartButton()
+    // private void OnStartButton()
+    // {
+    //     _GameEventDispatcher.DispatchEvent(PuzzleEventType.Start);
+    // }
+    //
+    // private void OnExitButton()
+    // {
+    //     _GameEventDispatcher.DispatchEvent(PuzzleEventType.End);
+    //     _GameEventDispatcher.DispatchEvent(PuzzleEventType.HidePuzzleWindow);
+    // }
+
+    private void OnObstacleHit(GeneralEvent obj)
     {
-        _GameEventDispatcher.DispatchEvent(PuzzleEventType.Start);
-        _ButtonGroup.gameObject.SetActive(false);
-    }
-    
-    private void OnExitButton()
-    {
-        _GameEventDispatcher.DispatchEvent(PuzzleEventType.End);
-        OnHidePuzzleWindow(null);
     }
     
     private void OnHidePuzzleWindow(GeneralEvent obj)

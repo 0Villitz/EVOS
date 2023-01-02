@@ -1,11 +1,17 @@
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
-public class PathPuzzle : MonoBehaviour
+public class PathPuzzle : MonoBehaviour, IPuzzle
 {
     public GameEventDispatcher        _GameEventDispatcher;
     public Camera                     _Camera; 
     public PathPuzzlePlayerController _Player;
+    
+    public Button        _StartButton;
+    public Button        _ExitButton;
+    public Transform     _ButtonGroup;
 
 
     private Controls _playerControls;
@@ -20,6 +26,7 @@ public class PathPuzzle : MonoBehaviour
         
         Vector2 screenPoint = _Camera.WorldToScreenPoint(playerPos);
         Mouse.current.WarpCursorPosition(screenPoint);
+        Cursor.visible = false;
     }
 #endregion
 
@@ -28,11 +35,21 @@ public class PathPuzzle : MonoBehaviour
     {
         _playerControls = new Controls();
         _Player.onObstacleHit += OnObstacleHit;
+
+        _StartButton.onClick.AddListener(OnStartButton);
+        _ExitButton.onClick.AddListener(OnExitButton);
+        
+        _GameEventDispatcher.AddListener(PuzzleEventType.Start, OnPuzzleStart);
     }
-    
+
+    private void OnDestroy()
+    {
+        _GameEventDispatcher.RemoveListener(PuzzleEventType.Start, OnPuzzleStart);
+    }
+
     private void Update()
     {
-        if (Keyboard.current.rKey.isPressed)
+        if (Keyboard.current.rKey.wasPressedThisFrame)
         {
             StartPuzzle();
         }
@@ -52,9 +69,29 @@ public class PathPuzzle : MonoBehaviour
     }
 #endregion
 
+    private void OnStartButton()
+    {
+        _ButtonGroup.gameObject.SetActive(false);
+        _GameEventDispatcher.DispatchEvent(PuzzleEventType.Start);
+    }
+    
+    private void OnExitButton()
+    {
+        _GameEventDispatcher.DispatchEvent(PuzzleEventType.End);
+        _GameEventDispatcher.DispatchEvent(PuzzleEventType.HidePuzzleWindow);
+    }
+    
     private void OnObstacleHit(Collider2D collider)
     {
         Debug.Log($"Obstacle Hit:{collider.name}");
+        _ButtonGroup.gameObject.SetActive(true);
+        
         _GameEventDispatcher.DispatchEvent(PuzzleEventType.ObstacleHit);
+        Cursor.visible = true;
+    }
+    
+    private void OnPuzzleStart(GeneralEvent obj)
+    {
+        StartPuzzle();
     }
 }
