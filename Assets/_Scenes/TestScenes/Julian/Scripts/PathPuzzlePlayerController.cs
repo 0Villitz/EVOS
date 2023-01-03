@@ -6,12 +6,15 @@ public class PathPuzzlePlayerController : MonoBehaviour
 {
     public LayerMask  _obstacleLayer;
     public CircleCollider2D _collider;
-    
+
+    public float _RotationSpeed;
+    public float _ActiveDelay;
         
     public event Action<Collider2D> onObstacleHit;
 
     private Vector3 _startPos;
     private bool    _isAlive;
+    private float   _activeTimestamp;
 
     void Awake()
     {
@@ -22,6 +25,7 @@ public class PathPuzzlePlayerController : MonoBehaviour
     {
         transform.position = _startPos;
         _isAlive           = true;
+        _activeTimestamp   = Time.time + _ActiveDelay;
     }
     
     public void Move(Vector2 newPosition)
@@ -47,10 +51,12 @@ public class PathPuzzlePlayerController : MonoBehaviour
             _obstacleLayer);
 
         
-        if (hit.collider != null)
+        if (hit.collider != null && Time.time > _activeTimestamp)
         {
             _isAlive = false;
             
+            // Move the player to the position where it made contact with an obstical/wall 
+            // and offset it by it's radius 
             adjustedNewPosition = hit.point + (hit.normal * scaledRadius);
             onObstacleHit?.Invoke(hit.collider);
         }
@@ -63,7 +69,7 @@ public class PathPuzzlePlayerController : MonoBehaviour
         float faceAngle = Mathf.Atan2(delta.y, delta.x);
         if (delta.magnitude > 0.01f)
         {
-            float      speedDeltaTime   = Time.deltaTime * 10.0f;
+            float      speedDeltaTime   = Time.deltaTime * _RotationSpeed;
             Quaternion originalRotation = transform.rotation;
             Quaternion targetRotation   = Quaternion.Euler(originalRotation.eulerAngles.x, originalRotation.eulerAngles.y, faceAngle * Mathf.Rad2Deg);
             transform.rotation = Quaternion.Slerp(originalRotation, targetRotation, speedDeltaTime);

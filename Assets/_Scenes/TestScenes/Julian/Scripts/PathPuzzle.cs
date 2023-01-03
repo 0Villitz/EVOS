@@ -1,9 +1,10 @@
-using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
 
-public class PathPuzzle : MonoBehaviour, IPuzzle
+public class PathPuzzle : PuzzleBase
 {
     public GameEventDispatcher        _GameEventDispatcher;
     public Camera                     _Camera; 
@@ -13,38 +14,36 @@ public class PathPuzzle : MonoBehaviour, IPuzzle
     public Button        _ExitButton;
     public Transform     _ButtonGroup;
 
-
-    private Controls _playerControls;
-
+    private Vector2  _startOffset;
+    
+    private List<MovablePuzzleObstacle> _movableObsticalList;
+        
 #region Public API
-    public void StartPuzzle()
+    public override void StartPuzzle()
     {
+        _movableObsticalList.ForEach(x => x.Reset(false));
+        
         _Player.Init();
         
         Vector3 playerPos = _Player.transform.position;
         playerPos.z = _Camera.transform.position.z;
-        
-        Vector2 screenPoint = _Camera.WorldToScreenPoint(playerPos);
-        Mouse.current.WarpCursorPosition(screenPoint);
-        Cursor.visible = false;
+
+        Vector2 worldMousePos = GetMouseWorldPoint();
+
+        _startOffset = worldMousePos - (Vector2)playerPos;
+        Cursor.visible = false; 
     }
 #endregion
 
 #region Unity Methods
     private void Awake()
     {
-        _playerControls = new Controls();
         _Player.onObstacleHit += OnObstacleHit;
 
         _StartButton.onClick.AddListener(OnStartButton);
         _ExitButton.onClick.AddListener(OnExitButton);
-        
-        _GameEventDispatcher.AddListener(PuzzleEventType.Start, OnPuzzleStart);
-    }
 
-    private void OnDestroy()
-    {
-        _GameEventDispatcher.RemoveListener(PuzzleEventType.Start, OnPuzzleStart);
+        _movableObsticalList = GetComponentsInChildren<MovablePuzzleObstacle>().ToList();
     }
 
     private void Update()
@@ -53,45 +52,63 @@ public class PathPuzzle : MonoBehaviour, IPuzzle
         {
             StartPuzzle();
         }
-    
-        Vector2 rawPointDelta = _playerControls.UI.PuzzlePoint.ReadValue<Vector2>();
-        Vector2 rawMousePointPosition = Mouse.current.position.ReadValue();
 
-        Vector3 screenMousePos = rawMousePointPosition;
-        Vector3 cameraPosition = _Camera.transform.position;
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            OnExitButton();
+        }
+    
+        Vector2 worldMousePos = (Vector2)GetMouseWorldPoint() - _startOffset;
+        _Player.Move(worldMousePos);
         
-        screenMousePos.z = Mathf.Abs(cameraPosition.z);
-        Vector2 worldPos = _Camera.ScreenToWorldPoint(screenMousePos);
-        
-        Debug.DrawLine(cameraPosition, worldPos, Color.blue);
-        
-        _Player.Move(worldPos);
+        // For Debugging
+        Debug.DrawLine( _Camera.transform.position, worldMousePos, Color.blue);
     }
 #endregion
 
+    private Vector3 GetMouseWorldPoint()
+    {
+        Vector2 rawMousePointPosition = Mouse.current.position.ReadValue();
+        Vector3 screenMousePos = rawMousePointPosition / GetScaleFactor();
+        Vector3 cameraPosition = _Camera.transform.position;
+        
+        // Set the z value so when we use 'ScreenToWorldPoint',
+        // that position is projected out into 3d space away from the camera
+        screenMousePos.z = Mathf.Abs(cameraPosition.z);
+        
+        Vector2 worldMousePos = (Vector2)_Camera.ScreenToWorldPoint(screenMousePos);
+        return worldMousePos;
+    }
+
+    private float GetScaleFactor()
+    {
+        return WindowCanvas != null ? WindowCanvas.scaleFactor : 1.0f;
+    }
+    
     private void OnStartButton()
     {
         _ButtonGroup.gameObject.SetActive(false);
-        _GameEventDispatcher.DispatchEvent(PuzzleEventType.Start);
+        
+        StartPuzzle();
     }
     
     private void OnExitButton()
     {
-        _GameEventDispatcher.DispatchEvent(PuzzleEventType.End);
         _GameEventDispatcher.DispatchEvent(PuzzleEventType.HidePuzzleWindow);
     }
     
     private void OnObstacleHit(Collider2D collider)
     {
-        Debug.Log($"Obstacle Hit:{collider.name}");
-        _ButtonGroup.gameObject.SetActive(true);
+        Debug.Log($"Obstacle Hit:{collider?.name}");
         
-        _GameEventDispatcher.DispatchEvent(PuzzleEventType.ObstacleHit);
+        _movableObsticalList.ForEach(x => x.IsPaused = true);
+        
+        _ButtonGroup.gameObject.SetActive(true);
         Cursor.visible = true;
-    }
-    
-    private void OnPuzzleStart(GeneralEvent obj)
-    {
-        StartPuzzle();
+        
+        IPuzzleObstacle obstacleHit = collider.GetComponent<IPuzzleObstacle>();
+        bool wasPuzzleSuccess = obstacleHit is PathPuzzleGoal;
+        
+        TriggerPuzzleComplete(wasPuzzleSuccess);
     }
 }

@@ -15,4 +15,5 @@ MonoBehaviour:
   _PuzzleList:
   - Type: 1
     PuzzleList:
-    - {fileID: 2778712483548712427, guid: 64204a479b99f76468ab0a11d01b238b, type: 3}
+    - {fileID: 852967454531116800, guid: 64204a479b99f76468ab0a11d01b238b, type: 3}
+    - {fileID: 9098741739451369215, guid: 0d69db41e3222ee479b07cc858e79430, type: 3}

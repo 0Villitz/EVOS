@@ -79,10 +79,19 @@ public class GatherInput : MonoBehaviour
             CurrentControlType = ControlType.Player;
         }
 
+        // Test
         if (Keyboard.current.mKey.wasPressedThisFrame)
         {
             CurrentControlType = ControlType.UI;
-            _GameEventDispatcher.DispatchEvent(PuzzleEventType.ShowPuzzleWindow, false, PuzzleType.Path);
+
+            var showPuzzleArgs = new ShowPuzzleArgs
+            {
+                PuzzleType  = PuzzleType.Path,
+                TerminalKey = "test",
+            };
+
+            _GameEventDispatcher.DispatchEvent(PuzzleEventType.ShowPuzzleWindow, false, showPuzzleArgs);
+
         }
     }
     

@@ -2,7 +2,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public interface IPuzzle
+public class PathPuzzleGoal : MonoBehaviour, IPuzzleObstacle
 {
-    void StartPuzzle();
 }

@@ -10,7 +10,13 @@ public class PuzzleEventType : MonoBehaviour
     public const string Restart          = "puzzle_restart";
     public const string End              = "puzzle_end";
     
-    public const string ObstacleHit   = "puzzle_obstacle_hit";
+    // public const string ObstacleHit   = "puzzle_obstacle_hit";
     // public const string 
+}
+
+public class ShowPuzzleArgs
+{
+    public PuzzleType PuzzleType  { get; set; }
+    public string     TerminalKey { get; set; }
 }
 

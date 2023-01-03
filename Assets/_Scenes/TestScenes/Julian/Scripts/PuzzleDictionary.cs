@@ -9,7 +9,7 @@ public class PuzzleDictionary : ScriptableObject
     public List<PuzzleKeyValuePair> _PuzzleList;
 
 
-    public GameObject CreateRandomPuzzleOfType(PuzzleType type, Transform parent)
+    public PuzzleBase CreateRandomPuzzleOfType(PuzzleType type, Transform parent)
     {
         PuzzleKeyValuePair pair = _PuzzleList.Find((x) => x.Type == type);
         // Get random puzzle in list
@@ -18,16 +18,15 @@ public class PuzzleDictionary : ScriptableObject
 
         int puzzleCount = pair.PuzzleList.Count;
 
-        GameObject puzzlePrefab = pair.PuzzleList[UnityEngine.Random.Range(0, puzzleCount)];
-        GameObject puzzleInstance = GameObject.Instantiate(puzzlePrefab, parent);
-        return puzzleInstance;
+        PuzzleBase puzzlePrefab = pair.PuzzleList[UnityEngine.Random.Range(0, puzzleCount)];
+        return GameObject.Instantiate<PuzzleBase>(puzzlePrefab, parent);
     }
 
     [Serializable]
     public class PuzzleKeyValuePair
     {
        public PuzzleType Type;
-       public List<GameObject>     PuzzleList;
+       public List<PuzzleBase>     PuzzleList;
     }
 }
     
