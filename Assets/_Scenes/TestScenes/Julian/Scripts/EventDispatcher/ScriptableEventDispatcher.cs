@@ -1,8 +1,8 @@
 using System;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "GameEventManager", menuName = "EVOS/GameEventManager")]
-public class GameEventDispatcher : ScriptableObject, IEventDispatcher
+[CreateAssetMenu(fileName = "GameEventManager", menuName = "EVOS/ScriptableObjectEventDispatcher")]
+public class ScriptableEventDispatcher : ScriptableObject, IEventDispatcher
 {
     private NotificationDispatcher _dispatcher;
 

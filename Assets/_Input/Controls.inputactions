@@ -171,15 +171,6 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": false
-                },
-                {
-                    "name": "PuzzlePoint",
-                    "type": "Value",
-                    "id": "57275738-54eb-4ce4-8173-e05054883ff6",
-                    "expectedControlType": "Delta",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": true
                 }
             ],
             "bindings": [
@@ -191,17 +182,6 @@
                     "processors": "",
                     "groups": "KB and mouse",
                     "action": "Point",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "d4c7a376-e292-4fbb-a815-e46478cb5b06",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "KB and mouse",
-                    "action": "PuzzlePoint",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -49,9 +49,11 @@ MonoBehaviour:
   _obstacleLayer:
     serializedVersion: 2
     m_Bits: 4096
-  _collider: {fileID: 6842131239747209481}
+  _ObstacleLayer:
+    serializedVersion: 2
+    m_Bits: 4096
+  _Collider: {fileID: 6842131239747209481}
   _RotationSpeed: 10
-  _ActiveDelay: 0.2
 --- !u!58 &6842131239747209481
 CircleCollider2D:
   m_ObjectHideFlags: 0

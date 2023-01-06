@@ -5,7 +5,7 @@ using UnityEngine;
 
 public abstract class PuzzleBase : MonoBehaviour
 {
-    public abstract void StartPuzzle();
+    public abstract void Init();
     
     public Canvas WindowCanvas { get; set; }
     

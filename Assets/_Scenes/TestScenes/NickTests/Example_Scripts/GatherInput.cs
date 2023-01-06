@@ -41,7 +41,7 @@ public class GatherInput : MonoBehaviour
     
     public float               valueX;
     public bool                jumpInput;
-    public GameEventDispatcher _GameEventDispatcher;
+    public ScriptableEventDispatcher _GameEventDispatcher;
 
     private void Awake()
     {
@@ -54,7 +54,7 @@ public class GatherInput : MonoBehaviour
 
         CurrentControlType = ControlType.Player;
         
-        _GameEventDispatcher.AddListener(PuzzleEventType.HidePuzzleWindow, OnHidePuzzleWindow);
+        _GameEventDispatcher.AddListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
     }
 
     private void OnDestroy()
@@ -65,7 +65,7 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Jump.performed -= JumpStart;
         myControls.Player.Jump.canceled  -= JumpStop;
         
-        _GameEventDispatcher.RemoveListener(PuzzleEventType.HidePuzzleWindow, OnHidePuzzleWindow);
+        _GameEventDispatcher.RemoveListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
     }
 
     private void Update()
@@ -87,10 +87,11 @@ public class GatherInput : MonoBehaviour
             var showPuzzleArgs = new ShowPuzzleArgs
             {
                 PuzzleType  = PuzzleType.Path,
-                TerminalKey = "test",
+                TriggerKey = "terminal-a",
+                RandomLevelCount = 1,
             };
 
-            _GameEventDispatcher.DispatchEvent(PuzzleEventType.ShowPuzzleWindow, false, showPuzzleArgs);
+            _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, false, showPuzzleArgs);
 
         }
     }

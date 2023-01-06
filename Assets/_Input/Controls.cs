@@ -193,15 +193,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""PuzzlePoint"",
-                    ""type"": ""Value"",
-                    ""id"": ""57275738-54eb-4ce4-8173-e05054883ff6"",
-                    ""expectedControlType"": ""Delta"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -213,17 +204,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": ""KB and mouse"",
                     ""action"": ""Point"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""d4c7a376-e292-4fbb-a815-e46478cb5b06"",
-                    ""path"": ""<Mouse>/delta"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""KB and mouse"",
-                    ""action"": ""PuzzlePoint"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -267,7 +247,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
-        m_UI_PuzzlePoint = m_UI.FindAction("PuzzlePoint", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -369,13 +348,11 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Point;
-    private readonly InputAction m_UI_PuzzlePoint;
     public struct UIActions
     {
         private @Controls m_Wrapper;
         public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Point => m_Wrapper.m_UI_Point;
-        public InputAction @PuzzlePoint => m_Wrapper.m_UI_PuzzlePoint;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,9 +365,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
-                @PuzzlePoint.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPuzzlePoint;
-                @PuzzlePoint.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPuzzlePoint;
-                @PuzzlePoint.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPuzzlePoint;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -398,9 +372,6 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Point.started += instance.OnPoint;
                 @Point.performed += instance.OnPoint;
                 @Point.canceled += instance.OnPoint;
-                @PuzzlePoint.started += instance.OnPuzzlePoint;
-                @PuzzlePoint.performed += instance.OnPuzzlePoint;
-                @PuzzlePoint.canceled += instance.OnPuzzlePoint;
             }
         }
     }
@@ -431,6 +402,5 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnPoint(InputAction.CallbackContext context);
-        void OnPuzzlePoint(InputAction.CallbackContext context);
     }
 }
