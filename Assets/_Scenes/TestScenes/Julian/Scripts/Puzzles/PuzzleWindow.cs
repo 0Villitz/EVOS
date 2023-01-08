@@ -1,15 +1,20 @@
-using System;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PuzzleWindow : MonoBehaviour
 {
 #region Editor Properties
+    [Header("Scriptable Objects")]
     public ScriptableEventDispatcher _GameEventDispatcher;
     public PuzzleDictionary    _PuzzleDictionary;
 
-    public GameObject _BaseView;
-
+    [Header("Asset References")]
+    public GameObject      _BaseView;
+    public TextMeshProUGUI _AttemptsLeftText;
+    public TextMeshProUGUI _LevelsText;
+    
+    [Header("Tuning Parameters")]
     public int _MaxSolveAttempts;
 #endregion
 
@@ -19,6 +24,7 @@ public class PuzzleWindow : MonoBehaviour
     private string     _activeTriggerKey;
     private Stack<int> _levelIndexStack;
     private int        _solveAttemptCount;
+    private int        _startingLevelCount;
     private Canvas     _canvas;
 #endregion
 
@@ -68,9 +74,12 @@ public class PuzzleWindow : MonoBehaviour
         _activeTriggerKey = args.TriggerKey;
         _activePuzzleType = args.PuzzleType;
         
-        _levelIndexStack  = CreateLevelIndexStack(args);
-
+        _levelIndexStack    = CreateLevelIndexStack(args);
+        _startingLevelCount = _levelIndexStack.Count;
+        
         GotoNextLevel();
+        
+        UpdateText();
     }
 
     private Stack<int> CreateLevelIndexStack(ShowPuzzleArgs args)
@@ -118,21 +127,26 @@ public class PuzzleWindow : MonoBehaviour
         
         _solveAttemptCount++;
         
+        UpdateText();
+        
         if(_solveAttemptCount >= _MaxSolveAttempts)
         {
-            _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger, false, CreateTriggerArgs(TriggerType.TerminalLockout));
+            _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger, CreateTriggerArgs(TriggerType.TerminalLockout));
             _GameEventDispatcher.DispatchEvent(GameEventType.HidePuzzleWindow);
         }
 
 
         void HandleSuccess()
         {
+        
              bool canGotoNextLevel = GotoNextLevel();
+            
+            UpdateText();
             
             // We have completed all required puzzle levels
             if (!canGotoNextLevel)
             {
-                _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger, false, CreateTriggerArgs(TriggerType.PuzzleSolved));
+                _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger, CreateTriggerArgs(TriggerType.PuzzleSolved));
                 _GameEventDispatcher.DispatchEvent(GameEventType.HidePuzzleWindow);
             }
         }
@@ -158,6 +172,12 @@ public class PuzzleWindow : MonoBehaviour
         _activePuzzle = CreatePuzzle(_activePuzzleType, nextLevelIndex);
         
         return true;
+    }
+
+    private void UpdateText()
+    {
+        _AttemptsLeftText.text = $"Attempts Left: {_MaxSolveAttempts - _solveAttemptCount}";
+        _LevelsText.text       = $"Levels: {_startingLevelCount - _levelIndexStack.Count}/{_startingLevelCount}";
     }
 #endregion
 }

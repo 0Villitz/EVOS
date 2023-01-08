@@ -27,10 +27,17 @@ public class ScriptableEventDispatcher : ScriptableObject, IEventDispatcher
     {
         dispatcher.RemoveAllListeners();
     }
+    
     public bool DispatchEvent(string eventKey, bool bubbles = false, object eventData = null)
     {
         return dispatcher.DispatchEvent(eventKey, bubbles, eventData);
     }
+    
+    public bool DispatchEvent(string eventKey, object eventData)
+    {
+        return dispatcher.DispatchEvent(eventKey, false, eventData);
+    }
+
     public bool DispatchEvent(GeneralEvent e)
     {
        return dispatcher.DispatchEvent(e);

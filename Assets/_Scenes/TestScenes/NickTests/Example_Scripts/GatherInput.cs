@@ -79,7 +79,9 @@ public class GatherInput : MonoBehaviour
             CurrentControlType = ControlType.Player;
         }
 
-        // Test
+        // jwilliams - Example of how to start a puzzle sequence
+        // We create a `ShowPuzzleArgs` and set parameters for the 
+        // type of puzzle we would like to initiate
         if (Keyboard.current.mKey.wasPressedThisFrame)
         {
             CurrentControlType = ControlType.UI;
@@ -88,10 +90,10 @@ public class GatherInput : MonoBehaviour
             {
                 PuzzleType  = PuzzleType.Path,
                 TriggerKey = "terminal-a",
-                RandomLevelCount = 1,
+                RandomLevelCount = 3,
             };
 
-            _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, false, showPuzzleArgs);
+            _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
 
         }
     }

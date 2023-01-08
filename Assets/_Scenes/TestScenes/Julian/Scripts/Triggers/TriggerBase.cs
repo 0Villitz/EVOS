@@ -1,6 +1,4 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Scripting;
+﻿using UnityEngine;
 
 public abstract class TriggerBase : MonoBehaviour
 {

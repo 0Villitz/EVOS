@@ -5,17 +5,17 @@ using UnityEngine;
 public class GameObjectActiveTrigger : TriggerBase
 {
     public List<GameObject> _TargetList;
-    public Action           _TriggerActiveState;   
+    public Action           _ActiveState;   
     
     protected override void OnGameTrigger()
     {
         foreach (var target in _TargetList)
         {
-            if (_TriggerActiveState == Action.Toggle)
+            if (_ActiveState == Action.Toggle)
             {
                 target.SetActive(!target.activeSelf);
             }
-            else if(_TriggerActiveState == Action.TurnOff)
+            else if(_ActiveState == Action.TurnOff)
             {
                 target.SetActive(false);
             }
