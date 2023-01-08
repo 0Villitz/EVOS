@@ -70,15 +70,6 @@ public class GatherInput : MonoBehaviour
 
     private void Update()
     {
-        if (Keyboard.current.uKey.wasPressedThisFrame)
-        {
-            CurrentControlType = ControlType.UI;
-        }
-        if (Keyboard.current.pKey.wasPressedThisFrame)
-        {
-            CurrentControlType = ControlType.Player;
-        }
-
         // jwilliams - Example of how to start a puzzle sequence
         // We create a `ShowPuzzleArgs` and set parameters for the 
         // type of puzzle we would like to initiate
@@ -94,7 +85,6 @@ public class GatherInput : MonoBehaviour
             };
 
             _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
-
         }
     }
     
