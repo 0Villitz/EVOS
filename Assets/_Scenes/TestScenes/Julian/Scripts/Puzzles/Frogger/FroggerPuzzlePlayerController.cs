@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 public class FroggerPuzzlePlayerController : MonoBehaviour
 {
@@ -6,7 +7,6 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
     public CircleCollider2D  _Collider;
 
     public float _MoveDurationInSec;
-    public float _MoveAmount;
     
     private bool  _isMoving;
     
@@ -14,11 +14,29 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
     private Vector2 _oldPosition;
     private float   _moveLerpValue;
     private float   _startMoveTime;
-    
-    
-    public void Tick(FroggerInputFrame inputFrame)
+
+
+    private void Update()
     {
-        HandlePlayerMovement(inputFrame);
+        if (_isMoving)
+        {
+            LerpPlayerPosition();
+        }
+    }
+    
+    public void MoveTo(Vector3 targetPosition)
+    {
+        if (_isMoving)
+        {
+            return;
+        }
+    
+        _isMoving      = true;
+        
+        _oldPosition   = transform.position;
+        _startMoveTime = Time.time;
+
+        _targetPosition = targetPosition;
     }
 
     private void LerpPlayerPosition()
@@ -37,50 +55,32 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
         }
         else
         {
-            transform.position = Vector2.Lerp(_oldPosition, _targetPosition, lerpValue);
-        } 
-    }
-    
-    private void HandlePlayerMovement(FroggerInputFrame inputFrame)
-    {
-        bool hasMovementInput = !(inputFrame.horizontal == 0 && inputFrame.vertical == 0);
+            float easeLerpValue = Ease(lerpValue, 1.5f);
+            transform.position = Vector2.Lerp(_oldPosition, _targetPosition, easeLerpValue);
+        }
 
-        if (_isMoving)
-        {
-            LerpPlayerPosition();
-        }
-        else if (hasMovementInput)
-        {
-            StartPlayerLerp(inputFrame);
-        }
+        Vector2 moveDelta = _targetPosition - _oldPosition;
+        HandlePlayerRotation(moveDelta);
     }
 
-    private void StartPlayerLerp(FroggerInputFrame inputFrame)
+    void HandlePlayerRotation(Vector2 delta)
     {
-        _isMoving      = true;
-        _oldPosition   = transform.position;
-        _startMoveTime = Time.time;
+        const float kRotationSpeed = 18.0f;
         
-        if (inputFrame.horizontal < 0)
+        float       faceAngle      = Mathf.Atan2(delta.y, delta.x);
+        if (delta.magnitude > 0.01f)
         {
-            // move left
-            _targetPosition = _oldPosition - new Vector2(_MoveAmount, 0);
+            float      speedDeltaTime   = Time.deltaTime * kRotationSpeed;
+            Quaternion originalRotation = transform.rotation;
+            Quaternion targetRotation   = Quaternion.Euler(originalRotation.eulerAngles.x, originalRotation.eulerAngles.y, faceAngle * Mathf.Rad2Deg);
+            transform.rotation = Quaternion.Slerp(originalRotation, targetRotation, speedDeltaTime);
         }
-        else if (inputFrame.horizontal > 0)
-        {
-            // move right
-             _targetPosition = _oldPosition + new Vector2(_MoveAmount, 0);
-        }
-        else if (inputFrame.vertical < 0)
-        {
-            // move down
-             _targetPosition = _oldPosition - new Vector2(0, _MoveAmount);
-        }
-        else if (inputFrame.vertical > 0)
-        {
-            // move up
-             _targetPosition = _oldPosition + new Vector2(0, _MoveAmount);
-        }
+    }
+
+    private float Ease(float x, float ease)
+    {
+        float a = ease + 1;
+        return Mathf.Pow(x, a) / (Mathf.Pow(x, a) + Mathf.Pow(1 - x, a));
     }
 }
 

@@ -51,15 +51,19 @@ public class FroggerPuzzle : PuzzleBase
             horizontal = _playerControls.UI.FroggerMoveHorizontal.ReadValue<float>(),
             vertical = _playerControls.UI.FroggerMoveVertical.ReadValue<float>(),
         };
-        
-        _Player.Tick(inputFrame);
+
+        if (inputFrame.HasMovementInput())
+        {
+            Vector3 targetPosition = GetTargetPlayerPosition(inputFrame);
+            _Player.MoveTo(targetPosition);
+        }
     }
 #endregion
 
 #region Private Methods
     private void StartPuzzle()
     {
-        _Player.transform.position = _Grid.CellToWorld(_startingGridPosition);
+        _Player.transform.position = _Grid.GetCellCenterWorld(_startingGridPosition);
     }
     
     private float GetScaleFactor()
@@ -77,6 +81,35 @@ public class FroggerPuzzle : PuzzleBase
     private void OnExitButton()
     {
         _GameEventDispatcher.DispatchEvent(GameEventType.HidePuzzleWindow);
+    }
+    
+    private Vector3 GetTargetPlayerPosition(FroggerInputFrame inputFrame)
+    {
+        Vector3Int currentGridPos = _Grid.WorldToCell(_Player.transform.position);
+        Vector3Int targetCellPos   = currentGridPos;
+        
+        if (inputFrame.horizontal < 0)
+        {
+            // move left
+            targetCellPos -= new Vector3Int(1, 0, 0);
+        }
+        else if (inputFrame.horizontal > 0)
+        {
+            // move right
+             targetCellPos += new Vector3Int(1, 0, 0);
+        }
+        else if (inputFrame.vertical < 0)
+        {
+            // move down
+             targetCellPos -= new Vector3Int(0, 1, 0);
+        }
+        else if (inputFrame.vertical > 0)
+        {
+            // move up
+             targetCellPos += new Vector3Int(0, 1, 0);
+        }
+
+        return _Grid.GetCellCenterWorld(targetCellPos);
     }
 #endregion
 }
