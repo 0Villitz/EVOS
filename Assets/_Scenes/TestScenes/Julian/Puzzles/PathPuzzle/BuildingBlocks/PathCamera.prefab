@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8182125329777015555}
   - component: {fileID: 6566928450931253974}
   m_Layer: 0
-  m_Name: PuzzleCamera
+  m_Name: PathCamera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
