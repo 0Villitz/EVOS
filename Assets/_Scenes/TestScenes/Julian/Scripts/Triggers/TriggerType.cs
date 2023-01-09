@@ -1,0 +1,11 @@
+using System;
+
+[Serializable]
+public enum TriggerType
+{
+    None,
+    PuzzleSolved,
+    TerminalLockout,
+}
+
+
