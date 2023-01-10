@@ -98,6 +98,8 @@ public class FroggerPuzzle : PuzzleBase
         _Player.IsAlive = false;
         
         _ButtonGroup.SetActive(true);
+
+        TriggerPuzzleComplete(false);
     }
 #endregion
 }

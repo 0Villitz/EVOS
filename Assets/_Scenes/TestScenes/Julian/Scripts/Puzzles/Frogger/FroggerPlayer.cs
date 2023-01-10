@@ -34,11 +34,12 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
     public void Reset()
     {
         transform.position = _startingPosition;
+        transform.rotation = Quaternion.identity;
         
-        _isMoving       = false;
-        _oldPosition    = _startingPosition;
-        _targetPosition = _startingPosition;
-        _moveLerpValue  = 0;
+        _isMoving          = false;
+        _oldPosition       = _startingPosition;
+        _targetPosition    = _startingPosition;
+        _moveLerpValue     = 0;
 
         IsAlive = true;
     }
