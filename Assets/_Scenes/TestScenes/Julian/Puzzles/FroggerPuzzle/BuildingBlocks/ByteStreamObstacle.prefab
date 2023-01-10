@@ -12,8 +12,8 @@ GameObject:
   - component: {fileID: 2854635397422262187}
   - component: {fileID: 7805011728143187768}
   - component: {fileID: 6909330894814257293}
-  m_Layer: 12
-  m_Name: ByteStreamObstacle
+  m_Layer: 14
+  m_Name: BytestreamObstacle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2854635397422262187
 MonoBehaviour:
@@ -47,11 +47,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _Collider: {fileID: 7805011728143187768}
-  _PlayerLayer:
+  _SpriteRenderer: {fileID: 6909330894814257293}
+  _ObstacleLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 12288
   _MoveSpeed: 3
   _MoveDirection: 2
+  _Height: 0
 --- !u!70 &7805011728143187768
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -114,7 +116,7 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 4.34}
+  m_Size: {x: 1, y: 4.29}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1

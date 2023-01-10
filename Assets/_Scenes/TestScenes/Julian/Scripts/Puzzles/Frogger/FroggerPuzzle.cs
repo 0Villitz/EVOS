@@ -8,7 +8,7 @@ public class FroggerPuzzle : PuzzleBase
 {
 #region Editor Properties
     public ScriptableEventDispatcher     _GameEventDispatcher;
-    public FroggerPuzzlePlayerController _Player;
+    public FroggerPlayer _Player;
     
     public Camera     _Camera;
     public Grid       _Grid;
@@ -19,17 +19,13 @@ public class FroggerPuzzle : PuzzleBase
 
 #region Private vars
     private Controls   _playerControls;
-    private Vector3Int _playerGridPosition;
-    private Vector3Int _startingGridPosition;
-    private bool       _isPaused;
-    
     private List<BytestreamObstacle> _bytestreamList;
 #endregion
         
 #region Public API
     public override void Init()
     {
-        _startingGridPosition = _Grid.WorldToCell(_Player.transform.position);
+        _Player.Init(_Grid);
         
         _bytestreamList = GetComponentsInChildren<BytestreamObstacle>().ToList();
         _bytestreamList.ForEach(x => x.Init(OnPlayerCollision));
@@ -53,7 +49,7 @@ public class FroggerPuzzle : PuzzleBase
             OnExitButton();
         }
 
-        if (_isPaused)
+        if (!_Player.IsAlive)
         {
             return;
         }
@@ -63,14 +59,8 @@ public class FroggerPuzzle : PuzzleBase
             horizontal = _playerControls.UI.FroggerMoveHorizontal.ReadValue<float>(),
             vertical = _playerControls.UI.FroggerMoveVertical.ReadValue<float>(),
         };
-
-        if (inputFrame.HasMovementInput())
-        {
-            Vector3 targetPosition = GetTargetPlayerPosition(inputFrame);
-            _Player.MoveTo(targetPosition);
-        }
         
-        _Player.Tick();
+        _Player.Tick(inputFrame);
 
         foreach (var bytestream in _bytestreamList)
         {
@@ -82,11 +72,8 @@ public class FroggerPuzzle : PuzzleBase
 #region Private Methods
     private void StartPuzzle()
     {
-        _Player.transform.position = _Grid.GetCellCenterWorld(_startingGridPosition);
-        
+        _Player.Reset();
         _bytestreamList.ForEach(x => x.Reset());
-        
-        _isPaused = false;
     }
     
     private float GetScaleFactor()
@@ -96,7 +83,7 @@ public class FroggerPuzzle : PuzzleBase
     
     private void OnStartButton()
     {
-        _ButtonGroup.gameObject.SetActive(false);
+        _ButtonGroup.SetActive(false);
         
         StartPuzzle();
     }
@@ -105,39 +92,12 @@ public class FroggerPuzzle : PuzzleBase
     {
         _GameEventDispatcher.DispatchEvent(GameEventType.HidePuzzleWindow);
     }
-    
-    private Vector3 GetTargetPlayerPosition(FroggerInputFrame inputFrame)
+
+    private void OnPlayerCollision(IPuzzleObstacle bytestream)
     {
-        Vector3Int currentGridPos = _Grid.WorldToCell(_Player.transform.position);
-        Vector3Int targetCellPos   = currentGridPos;
+        _Player.IsAlive = false;
         
-        if (inputFrame.horizontal < 0)
-        {
-            // move left
-            targetCellPos -= new Vector3Int(1, 0, 0);
-        }
-        else if (inputFrame.horizontal > 0)
-        {
-            // move right
-             targetCellPos += new Vector3Int(1, 0, 0);
-        }
-        else if (inputFrame.vertical < 0)
-        {
-            // move down
-             targetCellPos -= new Vector3Int(0, 1, 0);
-        }
-        else if (inputFrame.vertical > 0)
-        {
-            // move up
-             targetCellPos += new Vector3Int(0, 1, 0);
-        }
-
-        return _Grid.GetCellCenterWorld(targetCellPos);
-    }
-
-    private void OnPlayerCollision(BytestreamObstacle bytestream)
-    {
-        _isPaused = true;
+        _ButtonGroup.SetActive(true);
     }
 #endregion
 }

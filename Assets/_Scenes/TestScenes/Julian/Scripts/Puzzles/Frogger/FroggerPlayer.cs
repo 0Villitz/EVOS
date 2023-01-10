@@ -1,40 +1,93 @@
 ﻿using System;
 using UnityEngine;
 
-public class FroggerPuzzlePlayerController : MonoBehaviour
+public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
 {
     public LayerMask _ObstacleLayer;
     public CircleCollider2D  _Collider;
 
     public float _MoveDurationInSec;
     
-    private bool  _isMoving;
+    private bool _isMoving;
     
     private Vector2 _targetPosition;
     private Vector2 _oldPosition;
+    private Vector2 _startingPosition;
     private float   _moveLerpValue;
     private float   _startMoveTime;
 
+    private Grid _grid;
 
-    public void Init()
+
+    public  bool IsAlive { get; set; }
+    
+    public void Init(Grid grid)
     {
+        _grid = grid;
         
+        Vector3Int gridPosition = grid.WorldToCell(transform.position);
+        _startingPosition = grid.GetCellCenterWorld(gridPosition);
+
+        IsAlive = false;
     }
     
     public void Reset()
     {
+        transform.position = _startingPosition;
         
+        _isMoving       = false;
+        _oldPosition    = _startingPosition;
+        _targetPosition = _startingPosition;
+        _moveLerpValue  = 0;
+
+        IsAlive = true;
     }
     
-    public void Tick()
+    public void Tick(FroggerInputFrame inputFrame)
     {
+        if (inputFrame.HasMovementInput())
+        {
+            Vector3 targetPosition = GetTargetPlayerPosition(inputFrame);
+            MoveTo(targetPosition);
+        }
+    
         if (_isMoving)
         {
             LerpPlayerPosition();
         }
     }
     
-    public void MoveTo(Vector3 targetPosition)
+        
+    private Vector3 GetTargetPlayerPosition(FroggerInputFrame inputFrame)
+    {
+        Vector3Int currentGridPos = _grid.WorldToCell(transform.position);
+        Vector3Int targetCellPos   = currentGridPos;
+        
+        if (inputFrame.horizontal < 0)
+        {
+            // move left
+            targetCellPos -= new Vector3Int(1, 0, 0);
+        }
+        else if (inputFrame.horizontal > 0)
+        {
+            // move right
+             targetCellPos += new Vector3Int(1, 0, 0);
+        }
+        else if (inputFrame.vertical < 0)
+        {
+            // move down
+             targetCellPos -= new Vector3Int(0, 1, 0);
+        }
+        else if (inputFrame.vertical > 0)
+        {
+            // move up
+             targetCellPos += new Vector3Int(0, 1, 0);
+        }
+
+        return _grid.GetCellCenterWorld(targetCellPos);
+    }
+    
+    private void MoveTo(Vector3 targetPosition)
     {
         if (_isMoving || CheckImpassableWall(targetPosition))
         {
@@ -42,10 +95,9 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
         }
     
         _isMoving      = true;
+        _startMoveTime = Time.time;
         
         _oldPosition   = transform.position;
-        _startMoveTime = Time.time;
-
         _targetPosition = targetPosition;
     }
 
@@ -54,7 +106,12 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
         Vector2 currentPosition = transform.position;
         Vector2 delta = targetPosition - currentPosition;
 
-        RaycastHit2D hit = Physics2D.CircleCast(currentPosition, _Collider.radius, delta.normalized, delta.magnitude, _ObstacleLayer);
+        RaycastHit2D hit = Physics2D.CircleCast(
+        currentPosition, 
+        _Collider.radius, 
+        delta.normalized, 
+        delta.magnitude, 
+        _ObstacleLayer);
 
         IPuzzleObstacle obstacle = null;
         
@@ -94,7 +151,8 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
     {
         const float kRotationSpeed = 20.0f;
         
-        float       faceAngle      = Mathf.Atan2(delta.y, delta.x);
+        float faceAngle = Mathf.Atan2(delta.y, delta.x);
+        
         if (delta.magnitude > 0.01f)
         {
             float      speedDeltaTime   = Time.deltaTime * kRotationSpeed;
