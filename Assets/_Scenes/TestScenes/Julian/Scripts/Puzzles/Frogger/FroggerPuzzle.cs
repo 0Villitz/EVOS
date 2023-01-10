@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -19,13 +21,18 @@ public class FroggerPuzzle : PuzzleBase
     private Controls   _playerControls;
     private Vector3Int _playerGridPosition;
     private Vector3Int _startingGridPosition;
+    private bool       _isPaused;
     
+    private List<BytestreamObstacle> _bytestreamList;
 #endregion
         
 #region Public API
     public override void Init()
     {
         _startingGridPosition = _Grid.WorldToCell(_Player.transform.position);
+        
+        _bytestreamList = GetComponentsInChildren<BytestreamObstacle>().ToList();
+        _bytestreamList.ForEach(x => x.Init(OnPlayerCollision));
     }
 #endregion
 
@@ -45,6 +52,11 @@ public class FroggerPuzzle : PuzzleBase
         {
             OnExitButton();
         }
+
+        if (_isPaused)
+        {
+            return;
+        }
         
         var inputFrame = new FroggerInputFrame
         {
@@ -57,6 +69,13 @@ public class FroggerPuzzle : PuzzleBase
             Vector3 targetPosition = GetTargetPlayerPosition(inputFrame);
             _Player.MoveTo(targetPosition);
         }
+        
+        _Player.Tick();
+
+        foreach (var bytestream in _bytestreamList)
+        {
+            bytestream.Tick();
+        }
     }
 #endregion
 
@@ -64,6 +83,10 @@ public class FroggerPuzzle : PuzzleBase
     private void StartPuzzle()
     {
         _Player.transform.position = _Grid.GetCellCenterWorld(_startingGridPosition);
+        
+        _bytestreamList.ForEach(x => x.Reset());
+        
+        _isPaused = false;
     }
     
     private float GetScaleFactor()
@@ -110,6 +133,11 @@ public class FroggerPuzzle : PuzzleBase
         }
 
         return _Grid.GetCellCenterWorld(targetCellPos);
+    }
+
+    private void OnPlayerCollision(BytestreamObstacle bytestream)
+    {
+        _isPaused = true;
     }
 #endregion
 }

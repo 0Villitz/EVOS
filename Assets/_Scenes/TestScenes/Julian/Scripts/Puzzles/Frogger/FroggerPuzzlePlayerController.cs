@@ -16,7 +16,17 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
     private float   _startMoveTime;
 
 
-    private void Update()
+    public void Init()
+    {
+        
+    }
+    
+    public void Reset()
+    {
+        
+    }
+    
+    public void Tick()
     {
         if (_isMoving)
         {
@@ -26,7 +36,7 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
     
     public void MoveTo(Vector3 targetPosition)
     {
-        if (_isMoving)
+        if (_isMoving || CheckImpassableWall(targetPosition))
         {
             return;
         }
@@ -37,6 +47,23 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
         _startMoveTime = Time.time;
 
         _targetPosition = targetPosition;
+    }
+
+    private bool CheckImpassableWall(Vector2 targetPosition)
+    {
+        Vector2 currentPosition = transform.position;
+        Vector2 delta = targetPosition - currentPosition;
+
+        RaycastHit2D hit = Physics2D.CircleCast(currentPosition, _Collider.radius, delta.normalized, delta.magnitude, _ObstacleLayer);
+
+        IPuzzleObstacle obstacle = null;
+        
+        if (hit.collider != null)
+        {
+            obstacle = hit.collider.GetComponent<IPuzzleObstacle>();
+        }
+        
+        return obstacle is ImpassableObstacle;
     }
 
     private void LerpPlayerPosition()
@@ -65,7 +92,7 @@ public class FroggerPuzzlePlayerController : MonoBehaviour
 
     void HandlePlayerRotation(Vector2 delta)
     {
-        const float kRotationSpeed = 18.0f;
+        const float kRotationSpeed = 20.0f;
         
         float       faceAngle      = Mathf.Atan2(delta.y, delta.x);
         if (delta.magnitude > 0.01f)
