@@ -25,7 +25,7 @@ public class FroggerPuzzle : PuzzleBase
 #region Public API
     public override void Init()
     {
-        _Player.Init(_Grid);
+        _Player.Init(_Grid, OnPlayerCollision);
         
         _bytestreamList = GetComponentsInChildren<BytestreamObstacle>().ToList();
         _bytestreamList.ForEach(x => x.Init(OnPlayerCollision));
@@ -93,13 +93,14 @@ public class FroggerPuzzle : PuzzleBase
         _GameEventDispatcher.DispatchEvent(GameEventType.HidePuzzleWindow);
     }
 
-    private void OnPlayerCollision(IPuzzleObstacle bytestream)
+    private void OnPlayerCollision(IPuzzleObstacle obstacle)
     {
         _Player.IsAlive = false;
-        
+    
         _ButtonGroup.SetActive(true);
 
-        TriggerPuzzleComplete(false);
+        bool wasSuccessful = obstacle is FroggerGoal;
+        TriggerPuzzleComplete(wasSuccessful);
     }
 #endregion
 }

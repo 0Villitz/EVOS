@@ -13,17 +13,17 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
     private Vector2 _targetPosition;
     private Vector2 _oldPosition;
     private Vector2 _startingPosition;
-    private float   _moveLerpValue;
     private float   _startMoveTime;
-
-    private Grid _grid;
-
+    private Grid    _grid;
+    
+    private Action<IPuzzleObstacle> _onPlayerCollision;
 
     public  bool IsAlive { get; set; }
     
-    public void Init(Grid grid)
+    public void Init(Grid grid, Action<IPuzzleObstacle> onPlayerCollision)
     {
-        _grid = grid;
+        _grid              = grid;
+        _onPlayerCollision = onPlayerCollision;
         
         Vector3Int gridPosition = grid.WorldToCell(transform.position);
         _startingPosition = grid.GetCellCenterWorld(gridPosition);
@@ -39,7 +39,6 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
         _isMoving          = false;
         _oldPosition       = _startingPosition;
         _targetPosition    = _startingPosition;
-        _moveLerpValue     = 0;
 
         IsAlive = true;
     }
@@ -90,7 +89,7 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
     
     private void MoveTo(Vector3 targetPosition)
     {
-        if (_isMoving || CheckImpassableWall(targetPosition))
+        if (_isMoving || CheckForImpassableWall(targetPosition))
         {
             return;
         }
@@ -100,10 +99,19 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
         
         _oldPosition   = transform.position;
         _targetPosition = targetPosition;
+
+
+        bool CheckForImpassableWall(Vector2 targetPos)
+        {
+            bool hasCollision = CheckCollision(targetPos, out var obstacle);
+            return  hasCollision && obstacle is ImpassableObstacle;
+        }
     }
 
-    private bool CheckImpassableWall(Vector2 targetPosition)
+    private bool CheckCollision(Vector2 targetPosition, out IPuzzleObstacle obstacle)
     {
+        obstacle = null;
+        
         Vector2 currentPosition = transform.position;
         Vector2 delta = targetPosition - currentPosition;
 
@@ -114,14 +122,12 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
         delta.magnitude, 
         _ObstacleLayer);
 
-        IPuzzleObstacle obstacle = null;
-        
         if (hit.collider != null)
         {
             obstacle = hit.collider.GetComponent<IPuzzleObstacle>();
         }
-        
-        return obstacle is ImpassableObstacle;
+
+        return obstacle != null;
     }
 
     private void LerpPlayerPosition()
@@ -146,6 +152,8 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
 
         Vector2 moveDelta = _targetPosition - _oldPosition;
         HandlePlayerRotation(moveDelta);
+        
+        HandlePlayerGoalCollision(transform.position);
     }
 
     void HandlePlayerRotation(Vector2 delta)
@@ -160,6 +168,15 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
             Quaternion originalRotation = transform.rotation;
             Quaternion targetRotation   = Quaternion.Euler(originalRotation.eulerAngles.x, originalRotation.eulerAngles.y, faceAngle * Mathf.Rad2Deg);
             transform.rotation = Quaternion.Slerp(originalRotation, targetRotation, speedDeltaTime);
+        }
+    }
+
+    private void HandlePlayerGoalCollision(Vector2 testPosition)
+    {
+        bool hasCollision = CheckCollision(testPosition, out var obstacle);
+        if (hasCollision)
+        {
+            _onPlayerCollision?.Invoke(obstacle);
         }
     }
 
