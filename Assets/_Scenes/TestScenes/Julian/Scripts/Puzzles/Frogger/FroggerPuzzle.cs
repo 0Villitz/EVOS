@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using Puzzles;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -18,8 +19,9 @@ public class FroggerPuzzle : PuzzleBase
 #endregion
 
 #region Private vars
-    private Controls   _playerControls;
+    private Controls                 _playerControls;
     private List<BytestreamObstacle> _bytestreamList;
+    private IPuzzleObstacle          _lastCheckpoint;
 #endregion
         
 #region Public API
@@ -95,12 +97,37 @@ public class FroggerPuzzle : PuzzleBase
 
     private void OnPlayerCollision(IPuzzleObstacle obstacle)
     {
-        _Player.IsAlive = false;
-    
-        _ButtonGroup.SetActive(true);
-
-        bool wasSuccessful = obstacle is FroggerGoal;
-        TriggerPuzzleComplete(wasSuccessful);
+        switch (obstacle)
+        {
+            case CheckpointObstacle:
+                SaveCheckpoint(obstacle);
+                break;
+            case FroggerGoal:
+                PuzzleCompleted(true);
+                break;
+            default:
+                PuzzleCompleted(false);
+                break;
+        }
     }
+
+    private void PuzzleCompleted(bool wasSuccess)
+    {
+        _Player.IsAlive = false;
+        _ButtonGroup.SetActive(true);
+        
+        TriggerPuzzleComplete(wasSuccess);
+    }
+
+    private void SaveCheckpoint(IPuzzleObstacle checkpoint)
+    {
+        if (checkpoint != _lastCheckpoint)
+        {
+            _Player.SaveCheckpoint();
+            _lastCheckpoint = checkpoint;
+        }
+    }
+    
+    
 #endregion
 }

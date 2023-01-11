@@ -25,7 +25,7 @@ public class BytestreamObstacle : MonoBehaviour, IPuzzleObstacle
 #if UNITY_EDITOR
     private void Update()
     {
-        _SpriteRenderer.size = _Collider.size = _Size;
+        _SpriteRenderer.size = _Collider.size = Vector2.Max(Vector2.one * 0.01f, _Size);
     }
 #endif
 

@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
@@ -17,6 +19,7 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
     private Grid    _grid;
     
     private Action<IPuzzleObstacle> _onPlayerCollision;
+    private List<IPuzzleObstacle>   _collideCacheList = new List<IPuzzleObstacle>(5);
 
     public  bool IsAlive { get; set; }
     
@@ -29,6 +32,11 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
         _startingPosition = grid.GetCellCenterWorld(gridPosition);
 
         IsAlive = false;
+    }
+
+    public void SaveCheckpoint()
+    {
+        _startingPosition = _targetPosition;
     }
     
     public void Reset()
@@ -103,31 +111,39 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
 
         bool CheckForImpassableWall(Vector2 targetPos)
         {
-            bool hasCollision = CheckCollision(targetPos, out var obstacle);
-            return  hasCollision && obstacle is ImpassableObstacle;
+            bool hasCollision = CheckCollision(targetPos, out var obstacleList);
+            return  hasCollision && obstacleList.Any(x => x is ImpassableObstacle);
         }
     }
 
-    private bool CheckCollision(Vector2 targetPosition, out IPuzzleObstacle obstacle)
+    private bool CheckCollision(Vector2 targetPosition, out List<IPuzzleObstacle> obstacleList)
     {
-        obstacle = null;
+        obstacleList = _collideCacheList;
+        obstacleList.Clear();
         
         Vector2 currentPosition = transform.position;
         Vector2 delta = targetPosition - currentPosition;
 
-        RaycastHit2D hit = Physics2D.CircleCast(
+        RaycastHit2D[] hitList = Physics2D.CircleCastAll(
         currentPosition, 
         _Collider.radius, 
         delta.normalized, 
         delta.magnitude, 
         _ObstacleLayer);
 
-        if (hit.collider != null)
+        foreach (var hit in hitList)
         {
-            obstacle = hit.collider.GetComponent<IPuzzleObstacle>();
+            if (hit.collider == null)
+                continue;
+                
+            var interactable = hit.collider.GetComponent<IPuzzleObstacle>();
+            if (interactable != null)
+            {
+                obstacleList.Add(interactable);
+            }
         }
 
-        return obstacle != null;
+        return obstacleList.Count > 0;
     }
 
     private void LerpPlayerPosition()
@@ -153,7 +169,7 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
         Vector2 moveDelta = _targetPosition - _oldPosition;
         HandlePlayerRotation(moveDelta);
         
-        HandlePlayerGoalCollision(transform.position);
+        HandlePlayerCollision(transform.position);
     }
 
     void HandlePlayerRotation(Vector2 delta)
@@ -171,12 +187,13 @@ public class FroggerPlayer : MonoBehaviour, IPuzzleObstacle
         }
     }
 
-    private void HandlePlayerGoalCollision(Vector2 testPosition)
+    private void HandlePlayerCollision(Vector2 testPosition)
     {
-        bool hasCollision = CheckCollision(testPosition, out var obstacle);
+        bool hasCollision = CheckCollision(testPosition, out var obstacleList);
+        
         if (hasCollision)
         {
-            _onPlayerCollision?.Invoke(obstacle);
+            obstacleList.ForEach(x => _onPlayerCollision?.Invoke(x));
         }
     }
 
