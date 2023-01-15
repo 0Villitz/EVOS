@@ -79,7 +79,7 @@ public class GatherInput : MonoBehaviour
 
             var showPuzzleArgs = new ShowPuzzleArgs
             {
-                PuzzleType  = PuzzleType.Path,
+                PuzzleType  = Puzzles.PuzzleType.Path,
                 TriggerKey = "terminal-a",
                 RandomLevelCount = 3,
             };
@@ -94,7 +94,7 @@ public class GatherInput : MonoBehaviour
 
             var showPuzzleArgs = new ShowPuzzleArgs
             {
-                PuzzleType  = PuzzleType.Frogger,
+                PuzzleType  = Puzzles.PuzzleType.Frogger,
                 TriggerKey = "terminal-a",
                 RandomLevelCount = 1,
             };

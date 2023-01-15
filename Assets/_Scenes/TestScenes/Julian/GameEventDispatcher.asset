@@ -10,5 +10,5 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df5f264eef44d6e4b97fb0f1a47d4e73, type: 3}
-  m_Name: GameEventManager
+  m_Name: GameEventDispatcher
   m_EditorClassIdentifier: 

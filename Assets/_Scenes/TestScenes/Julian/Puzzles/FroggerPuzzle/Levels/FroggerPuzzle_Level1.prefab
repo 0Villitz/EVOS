@@ -271,7 +271,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
   _Player: {fileID: 8750095495933198833}
-  _Camera: {fileID: 846847401669722338}
   _Grid: {fileID: 2137476595270335555}
   _ButtonGroup: {fileID: 7349635654917498113}
   _StartButton: {fileID: 4945495447637948198}
@@ -787,7 +786,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle (5)
+      value: ImpassableWall (5)
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder
@@ -963,7 +962,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle (8)
+      value: ImpassableWall (8)
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder
@@ -1055,7 +1054,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle (6)
+      value: ImpassableWall (6)
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder
@@ -1204,11 +1203,6 @@ PrefabInstance:
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: af53675763a3c214b9eb90680dd5731f, type: 3}
---- !u!20 &846847401669722338 stripped
-Camera:
-  m_CorrespondingSourceObject: {fileID: 2728868743516367826, guid: af53675763a3c214b9eb90680dd5731f, type: 3}
-  m_PrefabInstance: {fileID: 3323226136603339568}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &846847401669722339 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 2728868743516367827, guid: af53675763a3c214b9eb90680dd5731f, type: 3}
@@ -1863,7 +1857,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle
+      value: ImpassableWall
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder
@@ -1947,7 +1941,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle (7)
+      value: ImpassableWall (7)
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder
@@ -2035,7 +2029,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle (4)
+      value: ImpassableWall (4)
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder
@@ -3013,7 +3007,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle (1)
+      value: ImpassableWall (1)
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder
@@ -3185,7 +3179,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1097557255770768461, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_Name
-      value: ImpassableObstacle (2)
+      value: ImpassableWall (2)
       objectReference: {fileID: 0}
     - target: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
       propertyPath: m_RootOrder

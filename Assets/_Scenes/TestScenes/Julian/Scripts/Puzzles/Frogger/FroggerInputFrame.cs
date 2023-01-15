@@ -1,12 +1,14 @@
 ﻿
-public struct FroggerInputFrame
+namespace Puzzles
 {
-    public float horizontal;
-    public float vertical;
-
-    public bool HasMovementInput()
+    public struct FroggerInputFrame
     {
-        return !(horizontal == 0 && vertical == 0);
+        public float horizontal;
+        public float vertical;
+
+        public bool HasMovementInput()
+        {
+            return !(horizontal == 0 && vertical == 0);
+        }
     }
 }
-
