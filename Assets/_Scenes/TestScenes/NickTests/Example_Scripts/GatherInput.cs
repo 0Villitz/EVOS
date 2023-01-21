@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,52 +7,125 @@ using UnityEngine.InputSystem;
 
 public class GatherInput : MonoBehaviour
 {
+    public enum ControlType
+    {
+        None,
+        Player,
+        UI,
+    }
 
-    private Controls myControls;
-
-    public float valueX;
-    public bool jumpInput;
+    public ControlType CurrentControlType
+    {
+        get => currentControlType;
+        set
+        {
+            currentControlType = value;
+            switch (value)
+            {
+                case ControlType.None: 
+                    DisableAllControls();
+                    break;
+                case ControlType.Player: 
+                    EnablePlayerControls();
+                    break;
+                case ControlType.UI: 
+                    EnableUIControls();
+                    break;
+            }
+        }
+    }
+    
+    
+    private Controls    myControls;
+    private ControlType currentControlType;
+    
+    public float               valueX;
+    public bool                jumpInput;
+    public ScriptableEventDispatcher _GameEventDispatcher;
 
     private void Awake()
     {
         myControls = new Controls();
-    }
-
-    private void OnEnable()
-    {
         myControls.Player.Move.performed += StartMove;
-        myControls.Player.Move.canceled += StopMove;
+        myControls.Player.Move.canceled  += StopMove;
 
         myControls.Player.Jump.performed += JumpStart;
-        myControls.Player.Jump.canceled += JumpStop;
+        myControls.Player.Jump.canceled  += JumpStop;
 
-        myControls.Player.Enable();
+        CurrentControlType = ControlType.Player;
+        
+        _GameEventDispatcher.AddListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
+    }
+
+    private void OnDestroy()
+    {
+        myControls.Player.Move.performed -= StartMove;
+        myControls.Player.Move.canceled  -= StopMove;
+
+        myControls.Player.Jump.performed -= JumpStart;
+        myControls.Player.Jump.canceled  -= JumpStop;
+        
+        _GameEventDispatcher.RemoveListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
+    }
+
+    private void Update()
+    {
+        // jwilliams - Example of how to start a puzzle sequence
+        // We create a `ShowPuzzleArgs` and set parameters for the 
+        // type of puzzle we would like to initiate
+        if (Keyboard.current.mKey.wasPressedThisFrame)
+        {
+            CurrentControlType = ControlType.UI;
+
+            var showPuzzleArgs = new ShowPuzzleArgs
+            {
+                PuzzleType  = PuzzleType.Path,
+                TriggerKey = "terminal-a",
+                RandomLevelCount = 3,
+            };
+
+            _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
+        }
+    }
+    
+    private void OnEnable()
+    {
+        CurrentControlType = ControlType.Player;
     }
 
     private void OnDisable()
     {
-        // Remove functions from actions:
-        myControls.Player.Move.performed -= StartMove;
-        myControls.Player.Move.canceled -= StopMove;
-
-        myControls.Player.Jump.performed -= JumpStart;
-        myControls.Player.Jump.canceled -= JumpStop;
-
-        myControls.Player.Disable();
-        //myControls.Disable();
+        CurrentControlType = ControlType.None;
     }
 
+    private void OnHidePuzzleWindow(GeneralEvent obj)
+    {
+        CurrentControlType = ControlType.Player;
+    }
+    
     public void DisableControls()
     {
-        // Remove functions from actions:
-        myControls.Player.Move.performed -= StartMove;
-        myControls.Player.Move.canceled -= StopMove;
+       DisableAllControls();
+    }
 
-        myControls.Player.Jump.performed -= JumpStart;
-        myControls.Player.Jump.canceled -= JumpStop;
-
+    private void EnablePlayerControls()
+    {
+        myControls.Player.Enable();
+        myControls.UI.Disable();
+    }
+    
+    private void EnableUIControls()
+    {
+        myControls.UI.Enable();
         myControls.Player.Disable();
-        //myControls.Disable();
+        // Prevent player from moonwalking without user input!
+        valueX = 0;
+    }
+
+    private void DisableAllControls()
+    {
+        myControls.Player.Disable();
+        myControls.UI.Disable();
         valueX = 0;
     }
 

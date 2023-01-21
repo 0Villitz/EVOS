@@ -1,0 +1,25 @@
+﻿
+using System.Collections.Generic;
+public static class GameEventType
+{
+    // Puzzles
+    public const string ShowPuzzleWindow = "puzzle_show_window";
+    public const string HidePuzzleWindow = "puzzle_hide_window";
+    
+    // Triggers
+    public const string GameTrigger = "game_trigger";
+}
+
+public struct ShowPuzzleArgs
+{
+    public PuzzleType PuzzleType       { get; set; }
+    public string     TriggerKey       { get; set; }
+    public int        RandomLevelCount { get; set; }
+    public List<int>  SpecificLevelList { get; set; }   
+}
+
+public struct GameTriggerArgs
+{
+    public string      TriggerKey { get; set; }
+    public TriggerType TriggerType       { get; set; }
+}
