@@ -12,7 +12,7 @@ public static class GameEventType
 
 public struct ShowPuzzleArgs
 {
-    public PuzzleType PuzzleType       { get; set; }
+    public Puzzles.PuzzleType PuzzleType       { get; set; }
     public string     TriggerKey       { get; set; }
     public int        RandomLevelCount { get; set; }
     public List<int>  SpecificLevelList { get; set; }   

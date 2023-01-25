@@ -193,6 +193,24 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""FroggerMoveHorizontal"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""a325fa99-0bb3-49bd-8de6-833e6558d515"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""FroggerMoveVertical"",
+                    ""type"": ""PassThrough"",
+                    ""id"": ""fa55f713-6e31-4a1e-b417-487f70476b31"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -206,6 +224,204 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""action"": ""Point"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Keyboard-LeftRight"",
+                    ""id"": ""18150e67-8984-4954-9995-572e68eef11c"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""601faa07-bf99-4f83-9007-3b1e6bf5a5cf"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB and mouse"",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""e8cf5b0f-8719-4944-9e7b-d2db69a875cc"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB and mouse"",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DPad-LeftRight"",
+                    ""id"": ""48acbddb-1f2e-4ac6-a68d-cab6a6ec7e9b"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""12fb7cb5-5b98-4bbc-830e-8d3d06b6124c"",
+                    ""path"": ""<Gamepad>/dpad/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""feb73e12-d000-4a5d-96b9-b1157ecce8d4"",
+                    ""path"": ""<Gamepad>/dpad/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""StickAxis-LeftRight"",
+                    ""id"": ""2dab9857-4a9f-448e-8dcd-e3dd1a1ef393"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""c3e2e86c-31b8-406d-9981-efa3014add84"",
+                    ""path"": ""<Gamepad>/leftStick/left"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""7780e0f9-d569-4a7a-8999-c6c0b896eb46"",
+                    ""path"": ""<Gamepad>/leftStick/right"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveHorizontal"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Keyboard-UpDown"",
+                    ""id"": ""0305b20e-e3b6-4f0b-9040-5dfa31aa5c90"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""positive"",
+                    ""id"": ""310528e9-4d1d-4987-a0eb-4df5932a7bd5"",
+                    ""path"": ""<Keyboard>/w"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB and mouse"",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""negative"",
+                    ""id"": ""e2fc0830-bd38-4848-b347-c50d9fdeb5da"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB and mouse"",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""DPad-UpDown"",
+                    ""id"": ""b081611e-c350-417c-8f85-99bdd09fd3ec"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""fd2e5ad6-6135-4824-86ce-3838c7df9a4a"",
+                    ""path"": ""<Gamepad>/dpad/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""80ad19e3-5945-4003-90cc-40da73a01a1f"",
+                    ""path"": ""<Gamepad>/dpad/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""StickAxis-UpDown"",
+                    ""id"": ""62ef0eed-6203-4099-876a-b7f45228d176"",
+                    ""path"": ""1DAxis"",
+                    ""interactions"": """",
+                    ""processors"": ""AxisDeadzone"",
+                    ""groups"": """",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": true,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": ""Positive"",
+                    ""id"": ""62680881-8e57-441f-8b9a-a2cf148ca604"",
+                    ""path"": ""<Gamepad>/leftStick/up"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": ""Negative"",
+                    ""id"": ""700002a6-c1fc-402c-8c4b-dc3f418930c4"",
+                    ""path"": ""<Gamepad>/leftStick/down"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Controller"",
+                    ""action"": ""FroggerMoveVertical"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": true
                 }
             ]
         }
@@ -247,6 +463,8 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
+        m_UI_FroggerMoveHorizontal = m_UI.FindAction("FroggerMoveHorizontal", throwIfNotFound: true);
+        m_UI_FroggerMoveVertical = m_UI.FindAction("FroggerMoveVertical", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -348,11 +566,15 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_UI;
     private IUIActions m_UIActionsCallbackInterface;
     private readonly InputAction m_UI_Point;
+    private readonly InputAction m_UI_FroggerMoveHorizontal;
+    private readonly InputAction m_UI_FroggerMoveVertical;
     public struct UIActions
     {
         private @Controls m_Wrapper;
         public UIActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Point => m_Wrapper.m_UI_Point;
+        public InputAction @FroggerMoveHorizontal => m_Wrapper.m_UI_FroggerMoveHorizontal;
+        public InputAction @FroggerMoveVertical => m_Wrapper.m_UI_FroggerMoveVertical;
         public InputActionMap Get() { return m_Wrapper.m_UI; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -365,6 +587,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Point.started -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
                 @Point.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnPoint;
+                @FroggerMoveHorizontal.started -= m_Wrapper.m_UIActionsCallbackInterface.OnFroggerMoveHorizontal;
+                @FroggerMoveHorizontal.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnFroggerMoveHorizontal;
+                @FroggerMoveHorizontal.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnFroggerMoveHorizontal;
+                @FroggerMoveVertical.started -= m_Wrapper.m_UIActionsCallbackInterface.OnFroggerMoveVertical;
+                @FroggerMoveVertical.performed -= m_Wrapper.m_UIActionsCallbackInterface.OnFroggerMoveVertical;
+                @FroggerMoveVertical.canceled -= m_Wrapper.m_UIActionsCallbackInterface.OnFroggerMoveVertical;
             }
             m_Wrapper.m_UIActionsCallbackInterface = instance;
             if (instance != null)
@@ -372,6 +600,12 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                 @Point.started += instance.OnPoint;
                 @Point.performed += instance.OnPoint;
                 @Point.canceled += instance.OnPoint;
+                @FroggerMoveHorizontal.started += instance.OnFroggerMoveHorizontal;
+                @FroggerMoveHorizontal.performed += instance.OnFroggerMoveHorizontal;
+                @FroggerMoveHorizontal.canceled += instance.OnFroggerMoveHorizontal;
+                @FroggerMoveVertical.started += instance.OnFroggerMoveVertical;
+                @FroggerMoveVertical.performed += instance.OnFroggerMoveVertical;
+                @FroggerMoveVertical.canceled += instance.OnFroggerMoveVertical;
             }
         }
     }
@@ -402,5 +636,7 @@ public partial class @Controls : IInputActionCollection2, IDisposable
     public interface IUIActions
     {
         void OnPoint(InputAction.CallbackContext context);
+        void OnFroggerMoveHorizontal(InputAction.CallbackContext context);
+        void OnFroggerMoveVertical(InputAction.CallbackContext context);
     }
 }

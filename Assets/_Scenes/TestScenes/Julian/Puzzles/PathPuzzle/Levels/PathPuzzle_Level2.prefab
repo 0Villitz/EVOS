@@ -1827,7 +1827,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 3891192999908362250, guid: 80598ca34460e7f49baa0555db5120a3, type: 3}
       propertyPath: m_Name
-      value: PathPuzzlePlayer
+      value: PathPlayer
       objectReference: {fileID: 0}
     - target: {fileID: 5772329892003060288, guid: 80598ca34460e7f49baa0555db5120a3, type: 3}
       propertyPath: m_RootOrder

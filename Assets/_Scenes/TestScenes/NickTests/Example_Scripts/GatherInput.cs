@@ -79,9 +79,24 @@ public class GatherInput : MonoBehaviour
 
             var showPuzzleArgs = new ShowPuzzleArgs
             {
-                PuzzleType  = PuzzleType.Path,
+                PuzzleType  = Puzzles.PuzzleType.Path,
                 TriggerKey = "terminal-a",
                 RandomLevelCount = 3,
+            };
+
+            _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
+        }
+        
+        // Test frogger puzzle
+        if (Keyboard.current.nKey.wasPressedThisFrame)
+        {
+            CurrentControlType = ControlType.UI;
+
+            var showPuzzleArgs = new ShowPuzzleArgs
+            {
+                PuzzleType  = Puzzles.PuzzleType.Frogger,
+                TriggerKey = "terminal-a",
+                RandomLevelCount = 1,
             };
 
             _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
