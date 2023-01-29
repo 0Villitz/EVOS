@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 244917975624513248}
+  - component: {fileID: 1748194727868884607}
   - component: {fileID: 244917975624513254}
-  - component: {fileID: 244917975624513249}
   - component: {fileID: 6345147044696497009}
   m_Layer: 12
   m_Name: PathGoal
@@ -34,6 +34,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &1748194727868884607
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 244917975624513251}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43c7e214aa714984dae26e8182c9ccc0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!61 &244917975624513254
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -60,18 +72,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &244917975624513249
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 244917975624513251}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d47ac77e5efa5844f808582a58c6717c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &6345147044696497009
 SpriteRenderer:
   m_ObjectHideFlags: 0
