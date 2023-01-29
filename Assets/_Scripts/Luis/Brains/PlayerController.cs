@@ -22,7 +22,7 @@ namespace Game2D
         
         private Dictionary<int, IInteractableObject> _interactableObjects = new Dictionary<int, IInteractableObject>();
         
-        InputData _inputData = new InputData();
+        private InputData _inputData = new InputData();
         
         #region Monobehavior
         void Awake()
