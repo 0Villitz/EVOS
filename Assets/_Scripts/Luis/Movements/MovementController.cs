@@ -137,7 +137,7 @@ namespace Game2D
 
         public bool CanJump()
         {
-            
+            return false;
         }
 
         #endregion
