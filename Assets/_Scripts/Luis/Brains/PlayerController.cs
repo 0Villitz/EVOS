@@ -5,6 +5,7 @@ using UnityEngine;
 namespace Game2D
 {
     [RequireComponent(typeof(MovementController))]
+    [RequireComponent(typeof(CharacterController))]
     public class PlayerController : MonoBehaviour
     {
         private enum State
@@ -22,14 +23,16 @@ namespace Game2D
         private Dictionary<int, IInteractableObject> _interactableObjects = new Dictionary<int, IInteractableObject>();
         
         private InputData _inputData = new InputData();
+        private CharacterController _characterController;
         
         #region Monobehavior
         void Awake()
         {
+            _characterController = GetComponent<CharacterController>();
+            
             _stateToControllerMap = new Dictionary<State, IUnitState>()
             {
                 [State.FreeMovement] = GetComponent<MovementController>() 
-                
             };
 
             foreach (IUnitState unitState in _stateToControllerMap.Values)
@@ -47,12 +50,18 @@ namespace Game2D
             ProcessHorizontalInput();
             ProcessVerticalInput();
             ProcessObjectInteraction();
+
+            UnitAnimations frameUnitAnimation = UnitAnimations.Idle;
             
-            UnitAnimations frameUnitAnimation = _activeController.ProcessInput(_inputData);
-            
-            if ((frameUnitAnimation & UnitAnimations.Jump) == UnitAnimations.Jump)
+            switch (_currentState)
             {
-                frameUnitAnimation &= ~UnitAnimations.Falling;
+                case State.FreeMovement:
+                    frameUnitAnimation = _activeController.ProcessInput(_inputData, _characterController);
+                    if ((frameUnitAnimation & UnitAnimations.Jump) == UnitAnimations.Jump)
+                    {
+                        frameUnitAnimation &= ~UnitAnimations.Falling;
+                    }
+                    break;
             }
             
             if (frameUnitAnimation != _lastUnitAnimation)

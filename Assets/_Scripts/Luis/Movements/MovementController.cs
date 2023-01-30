@@ -4,8 +4,7 @@ using UnityEngine;
 
 namespace Game2D
 {
-    [RequireComponent(typeof(CharacterController))]
-    public class MovementController : MonoBehaviour, IGameUnit, IUnitState, IFallMovementUnit, IJumpMovementUnit
+    public class MovementController : MonoBehaviour, IUnitState, IFallMovementUnit, IJumpMovementUnit
     {
         private CharacterController _characterController;
 
@@ -33,8 +32,6 @@ namespace Game2D
 
         public void Initialize()
         {
-            _characterController = GetComponent<CharacterController>();
-
             _gravitySpeed = _gravity * _gravityMultiplier;
 
             _movementActions = new List<IMovement2DAction>()
@@ -45,43 +42,40 @@ namespace Game2D
             };
         }
 
-        public UnitAnimations ProcessInput(InputData inputData)
+        public UnitAnimations ProcessInput(InputData inputData, Component component)
         {
+            _characterController = component as CharacterController;
             _inputData = inputData;
-
-            _movementDirection.Set(
-                _inputData.horizontal,
-                _inputData.vertical
-            );
-
             UnitAnimations frameUnitAnimation = UnitAnimations.Idle;
-
-            foreach (IMovement2DAction movement2DAction in _movementActions)
+            
+            if (_characterController != null)
             {
-                frameUnitAnimation |= movement2DAction.Execute(
-                    ref _movementDirection,
-                    ref _movementSpeed2D,
-                    _inputData.InteractableEntities
+                _movementDirection.Set(
+                    _inputData.horizontal,
+                    _inputData.vertical
                 );
+
+                foreach (IMovement2DAction movement2DAction in _movementActions)
+                {
+                    frameUnitAnimation |= movement2DAction.Execute(
+                        ref _movementDirection,
+                        ref _movementSpeed2D,
+                        _inputData.InteractableEntities
+                    );
+                }
+
+                Vector3 movement = (
+                    _characterController.transform.forward * _movementSpeed2D.x
+                    + _characterController.transform.up * _movementSpeed2D.y
+                ) * Time.deltaTime;
+
+                _characterController.Move(movement);
             }
-
-            Vector3 movement = (
-                transform.forward * _movementSpeed2D.x
-                + transform.up * _movementSpeed2D.y
-            ) * Time.deltaTime;
-
-            _characterController.Move(movement);
 
             _inputData = null;
             
             return frameUnitAnimation;
         }
-
-        #endregion
-
-        #region IGameUnit
-
-        public bool IsGrounded => _characterController.isGrounded;
 
         #endregion
 
@@ -117,7 +111,7 @@ namespace Game2D
 
         public bool CanFall()
         {
-            bool isGrounded = _characterController.isGrounded;
+            bool isGrounded = _characterController?.isGrounded ?? false;
 
             if (!isGrounded && _inputData != null && _inputData.interactWithEntities)
             {
