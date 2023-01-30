@@ -10,8 +10,7 @@ namespace Game2D
         private enum State
         {
             FreeMovement,
-            Climbing,
-            PuzzleSolving
+            Climbing
         }
 
         private State _currentState = State.FreeMovement;
@@ -45,9 +44,9 @@ namespace Game2D
         {
             _inputData.ResetInputs();
             
-            ProcessHorizontalInput(ref _inputData);
-            ProcessVerticalInput(ref _inputData);
-            ProcessObjectInteraction(ref _inputData);
+            ProcessHorizontalInput();
+            ProcessVerticalInput();
+            ProcessObjectInteraction();
             
             UnitAnimations frameUnitAnimation = _activeController.ProcessInput(_inputData);
             
@@ -88,57 +87,38 @@ namespace Game2D
         }
         #endregion
         
-        private void ProcessHorizontalInput(ref InputData inputData)
+        private void ProcessHorizontalInput()
         {
-            if (Input.GetKeyDown(KeyCode.D))
+            if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
             {
-                inputData.horizontal += 1;
-            }
-
-            if (Input.GetKeyUp(KeyCode.D))
+                _inputData.SetHorizontal(0);
+            } else if (Input.GetKey(KeyCode.D))
             {
-                inputData.horizontal -= 1;
-            }
-
-            if (Input.GetKeyDown(KeyCode.A))
+                _inputData.SetHorizontal(1);
+            } else if (Input.GetKey(KeyCode.A))
             {
-                inputData.horizontal += -1;
-            }
-
-            if (Input.GetKeyUp(KeyCode.A))
-            {
-                inputData.horizontal -= -1;
-            }
+                _inputData.SetHorizontal(-1);
+            } 
         }
 
-        private void ProcessVerticalInput(ref InputData inputData)
+        private void ProcessVerticalInput()
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
-                inputData.vertical += 1;
-            }
-            
-            if (Input.GetKeyUp(KeyCode.W))
-            {
-                inputData.vertical -= 1;
+                _inputData.SetVertical(1);
             }
             
             if (Input.GetKeyDown(KeyCode.S))
             {
-                inputData.vertical += -1;
-            }
-            
-            if (Input.GetKeyUp(KeyCode.S))
-            {
-                inputData.vertical -= -1;
+                _inputData.SetVertical(-1);
             }
         }
 
-        private void ProcessObjectInteraction(ref InputData inputData)
+        private void ProcessObjectInteraction()
         {
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                inputData.EnableInteractionWithEntities();
+                _inputData.EnableInteractionWithEntities();
             }
         }
     }

@@ -1,6 +1,5 @@
 
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 
 namespace Game2D
@@ -24,9 +23,9 @@ namespace Game2D
         )
         {
             bool canUnitFall = _gameUnit.CanFall();
-            bool canApplyGravity = canUnitFall && movement.y < 0;
+            bool canApplyGravity = (canUnitFall || movement.y > 0);
 
-            float speed = canUnitFall && canApplyGravity
+            float speed = canApplyGravity
                 ? movement.y + _gravitySpeed
                 : -1;
 

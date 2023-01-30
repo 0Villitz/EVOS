@@ -1,16 +1,27 @@
 
 using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace Game2D
 {
     [Serializable]
     public class InputData
     {
-        public int vertical = 0;
-        public int horizontal = 0;
+        public int vertical { get; private set; } = 0;
+        public int horizontal { get; private set; }= 0;
         public bool interactWithEntities { get; private set; } = false;
 
+        public void SetHorizontal(int h)
+        {
+            horizontal = Mathf.Clamp( h, -1, 1);
+        }
+        
+        public void SetVertical(int v)
+        {
+            vertical = Mathf.Clamp(v, -1, 1);
+        }
+        
         public void EnableInteractionWithEntities()
         {
             interactWithEntities = true;

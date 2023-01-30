@@ -28,7 +28,6 @@ namespace Game2D
         private InputData _inputData = null;
 
         private float _gravitySpeed;
-        private bool _characterControllerGroundedOnLastImputProcess = false;
 
         #region IUnitState
 
@@ -42,8 +41,7 @@ namespace Game2D
             {
                 new HorizontalMovement(_movementSpeed),
                 new JumpMovement(this, _jumpSpeed),
-                new FallMovement(this, _gravitySpeed),
-                new ClimbMovement(this, _movementSpeed)
+                new FallMovement(this, _gravitySpeed)
             };
         }
 
@@ -52,8 +50,8 @@ namespace Game2D
             _inputData = inputData;
 
             _movementDirection.Set(
-                _movementDirection.x + _inputData.horizontal,
-                _movementDirection.y + _inputData.vertical
+                _inputData.horizontal,
+                _inputData.vertical
             );
 
             UnitAnimations frameUnitAnimation = UnitAnimations.Idle;
@@ -74,8 +72,8 @@ namespace Game2D
 
             _characterController.Move(movement);
 
-            _characterControllerGroundedOnLastImputProcess = _characterController.isGrounded;
-
+            _inputData = null;
+            
             return frameUnitAnimation;
         }
 
@@ -137,7 +135,19 @@ namespace Game2D
 
         public bool CanJump()
         {
-            return false;
+            bool canJump = !CanFall() || IsGoingDownSlop();
+            if (canJump)
+            {
+                canJump = (
+                    _inputData == null
+                    || !_inputData.interactWithEntities
+                    || (_inputData.InteractableEntities?.Exists(
+                        x => x.BlockJump()
+                    ) ?? false)
+                );
+            }
+
+            return canJump;
         }
 
         #endregion
