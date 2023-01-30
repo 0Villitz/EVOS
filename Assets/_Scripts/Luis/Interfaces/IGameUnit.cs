@@ -6,7 +6,17 @@ namespace Game2D
     public interface IGameUnit
     {
         bool IsGrounded { get; }
-        // List<IInteractableObject> GetInteractableObjects();
+    }
+
+    public interface IFallMovementUnit
+    {
+        bool CanFall();
+        bool IsMovingDownSlop();
+    }
+
+    public interface IJumpMovementUnit
+    {
+        bool CanJump();
     }
 
     public interface IUnitState

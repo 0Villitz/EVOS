@@ -7,16 +7,14 @@ namespace Game2D
 {
     public class FallMovement : IMovement2DAction
     {
-        private readonly IGameUnit _gameUnit;
+        private readonly IFallMovementUnit _gameUnit;
         private float _speed;
-        private readonly float _gravity;
-        private readonly float _gravityMultiplier;
+        private readonly float _gravitySpeed;
 
-        public FallMovement(IGameUnit gameUnit, float gravity, float gravityMultiplier)
+        public FallMovement(IFallMovementUnit gameUnit, float gravitySpeed)
         {
             _gameUnit = gameUnit;
-            _gravity = gravity;
-            _gravityMultiplier = gravityMultiplier;
+            _gravitySpeed = gravitySpeed;
         }
 
         public UnitAnimations Execute(
@@ -25,31 +23,27 @@ namespace Game2D
             List<IInteractableObject> interactableObjects
         )
         {
-            bool isGrounded = IsGrounded(movement.y, interactableObjects);
+            bool canUnitFall = _gameUnit.CanFall();
+            bool canApplyGravity = canUnitFall && movement.y < 0;
 
-            float speed = isGrounded
-                ? -1
-                : movement.y + _gravity * _gravityMultiplier;
+            float speed = canUnitFall && canApplyGravity
+                ? movement.y + _gravitySpeed
+                : -1;
 
             movement.Set(
                 movement.x,
                 speed
             );
 
-            return isGrounded
+            return _gameUnit.IsMovingDownSlop()
                 ? UnitAnimations.Idle
                 : UnitAnimations.Falling;
         }
 
-        private bool IsGrounded(float yVelocity, List<IInteractableObject> interactableObjects)
+        private bool CanFall(float yVelocity)
         {
-            return _gameUnit.IsGrounded
-                   && yVelocity <= 0f
-                   && (interactableObjects == null
-                       || !interactableObjects.Exists(
-                           x => { return x.BlockGravity(); }
-                       )
-                   );
+            return _gameUnit.CanFall()
+                   && yVelocity <= 0f;
         }
     }
 }
