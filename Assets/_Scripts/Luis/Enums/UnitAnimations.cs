@@ -13,6 +13,7 @@ namespace Game2D
         Falling = 8,
         Crawl = 16,
         Climb = 32,
+        MoveHorizontal = MoveRight | MoveLeft,
         JumpRight = Jump | MoveRight,
         JumpLeft = Jump | MoveLeft,
         FallRight = Falling | MoveRight,

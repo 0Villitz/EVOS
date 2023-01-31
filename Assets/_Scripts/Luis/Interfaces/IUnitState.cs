@@ -5,6 +5,6 @@ namespace Game2D
     public interface IUnitState
     {
         void Initialize();
-        UnitAnimations ProcessInput(InputData inputData, Component component);
+        UnitAnimations ProcessInput(UnitAnimations [] actionTypes, InputData inputData, Component component);
     }
 }

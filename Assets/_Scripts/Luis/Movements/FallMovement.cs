@@ -38,11 +38,5 @@ namespace Game2D
                 ? UnitAnimations.Idle
                 : UnitAnimations.Falling;
         }
-
-        private bool CanFall(float yVelocity)
-        {
-            return _gameUnit.CanFall()
-                   && yVelocity <= 0f;
-        }
     }
 }

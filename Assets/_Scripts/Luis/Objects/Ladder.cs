@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class Ladder : MonoBehaviour, IInteractableObject
+    public class Ladder : MonoBehaviour, IClimbObject
     {
         #region IInteractableObject
 

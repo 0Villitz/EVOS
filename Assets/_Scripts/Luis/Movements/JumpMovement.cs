@@ -42,13 +42,5 @@ namespace Game2D
 
             return UnitAnimations.Idle;
         }
-
-        private bool CanJump(List<IInteractableObject> interactableObjects)
-        {
-            return interactableObjects == null
-                   || !interactableObjects.Exists(
-                       x => { return x.BlockJump(); }
-                   );
-        }
     }
 }

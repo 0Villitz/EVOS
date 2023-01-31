@@ -11,7 +11,6 @@ namespace Game2D
         [SerializeField] private float _jumpSpeed = 5f;
         [SerializeField] private float _gravityMultiplier = 0.03f;
         private float _gravity = -9.81f;
-        private float _verticalSpeed = 0f;
 
         [SerializeField] private float _movementSpeed = 5;
         private int _groundDirection = 0;
@@ -21,6 +20,7 @@ namespace Game2D
         private Vector2 _movementDirection = Vector2.zero;
 
         private List<IMovement2DAction> _movementActions;
+        private Dictionary<UnitAnimations, IMovement2DAction> _actionsMap;
 
         private PlayerController _playerController;
 
@@ -40,9 +40,17 @@ namespace Game2D
                 new JumpMovement(this, _jumpSpeed),
                 new FallMovement(this, _gravitySpeed)
             };
+
+            _actionsMap = new Dictionary<UnitAnimations, IMovement2DAction>()
+            {
+                [UnitAnimations.MoveHorizontal] = new HorizontalMovement(_movementSpeed),
+                [UnitAnimations.Jump] = new JumpMovement(this, _jumpSpeed),
+                [UnitAnimations.Falling] = new FallMovement(this, _gravitySpeed),
+                [UnitAnimations.Climb] = new ClimbMovement(_movementSpeed),
+            };
         }
 
-        public UnitAnimations ProcessInput(InputData inputData, Component component)
+        public UnitAnimations ProcessInput(UnitAnimations [] actionTypes, InputData inputData, Component component)
         {
             _characterController = component as CharacterController;
             _inputData = inputData;
@@ -55,13 +63,23 @@ namespace Game2D
                     _inputData.vertical
                 );
 
-                foreach (IMovement2DAction movement2DAction in _movementActions)
+                for (int i = 0; i < actionTypes.Length; i++)
                 {
-                    frameUnitAnimation |= movement2DAction.Execute(
-                        ref _movementDirection,
-                        ref _movementSpeed2D,
-                        _inputData.InteractableEntities
-                    );
+                    UnitAnimations animationType = actionTypes[i];
+                    if (_actionsMap.TryGetValue(animationType, out IMovement2DAction action)
+                        && action != null
+                        )
+                    {
+                        frameUnitAnimation |= action.Execute(
+                            ref _movementDirection,
+                            ref _movementSpeed2D,
+                            _inputData.InteractableEntities
+                        );
+                    }
+                    else
+                    {
+                        Debug.LogError("Missing action type: " + animationType);
+                    }
                 }
 
                 Vector3 movement = (
