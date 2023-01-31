@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CollectibleUI
   - Stats
+  - Border
+  - Ground
+  - Platform
   layers:
   - Default
   - TransparentFX
@@ -22,7 +25,7 @@ TagManager:
   - Puzzle
   - PuzzlePlayer
   - PuzzleEnemy
-  - 
+  - Platform
   - 
   - 
   - 

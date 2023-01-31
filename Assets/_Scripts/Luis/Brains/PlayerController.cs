@@ -69,6 +69,8 @@ namespace Game2D
 
                         if (interactingWithClimObject)
                         {
+                            
+                            Physics.IgnoreLayerCollision(6, 15, true);
                             _currentState = State.Climbing;
                         }
                     }
@@ -78,6 +80,7 @@ namespace Game2D
                 case State.Climbing:
                     if (!_inputData.interactWithEntities)
                     {
+                        Physics.IgnoreLayerCollision(6, 15, false);
                         _currentState = State.FreeMovement;
                     }
 

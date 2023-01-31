@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 491024427826882461}
   - component: {fileID: 1712406382819190342}
   m_Layer: 7
-  m_Name: Floor
+  m_Name: WorldBorder
   m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

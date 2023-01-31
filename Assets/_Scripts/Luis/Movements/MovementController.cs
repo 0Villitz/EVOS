@@ -19,7 +19,6 @@ namespace Game2D
         private Vector2 _movementSpeed2D = Vector2.zero;
         private Vector2 _movementDirection = Vector2.zero;
 
-        private List<IMovement2DAction> _movementActions;
         private Dictionary<UnitAnimations, IMovement2DAction> _actionsMap;
 
         private PlayerController _playerController;
@@ -33,13 +32,6 @@ namespace Game2D
         public void Initialize()
         {
             _gravitySpeed = _gravity * _gravityMultiplier;
-
-            _movementActions = new List<IMovement2DAction>()
-            {
-                new HorizontalMovement(_movementSpeed),
-                new JumpMovement(this, _jumpSpeed),
-                new FallMovement(this, _gravitySpeed)
-            };
 
             _actionsMap = new Dictionary<UnitAnimations, IMovement2DAction>()
             {
