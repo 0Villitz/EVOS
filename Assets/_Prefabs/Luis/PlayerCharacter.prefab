@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 8456154869492762424}
   m_Layer: 6
   m_Name: PlayerCharacter
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -30,13 +30,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8456154869492762403}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -8.4, y: 6.2, z: 0.029287338}
+  m_LocalPosition: {x: -8.41, y: 6.41, z: 0.03}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8456154871072649712}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &8456154869492762431
 MeshFilter:
@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpSpeed: 40
   _gravityMultiplier: 0.05
-  _movementSpeed: 5
+  _movementSpeed: 10
 --- !u!114 &8456154869492762424
 MonoBehaviour:
   m_ObjectHideFlags: 0

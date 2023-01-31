@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Game2D.GamePhysics;
 using UnityEngine;
 
 namespace Game2D
@@ -91,17 +92,17 @@ namespace Game2D
 
         private bool IsGoingDownSlop()
         {
-            // Ground Layer = 7
-            int layerMask = 1 << 7;
-
-            RaycastHit hit;
             if (
-                Physics.Raycast(
+                GamePhysicsHelper.RayCast(
                     transform.position,
                     transform.TransformDirection(Vector3.down),
-                    out hit,
                     Mathf.Infinity,
-                    layerMask
+                    new GamePhysicsHelper.Layers[]
+                    {
+                        GamePhysicsHelper.Layers.Ground, 
+                        GamePhysicsHelper.Layers.Platform
+                    },
+                    out RaycastHit hit
                 )
             )
             {

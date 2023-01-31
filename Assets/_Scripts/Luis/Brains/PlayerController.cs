@@ -1,5 +1,6 @@
 
 using System.Collections.Generic;
+using Game2D.GamePhysics;
 using UnityEngine;
 
 namespace Game2D
@@ -69,8 +70,11 @@ namespace Game2D
 
                         if (interactingWithClimObject)
                         {
-                            
-                            Physics.IgnoreLayerCollision(6, 15, true);
+                            GamePhysicsHelper.IgnoreLayerCollision(
+                                GamePhysicsHelper.Layers.Player,
+                                GamePhysicsHelper.Layers.Platform,
+                                true
+                            );
                             _currentState = State.Climbing;
                         }
                     }
@@ -80,7 +84,11 @@ namespace Game2D
                 case State.Climbing:
                     if (!_inputData.interactWithEntities)
                     {
-                        Physics.IgnoreLayerCollision(6, 15, false);
+                        GamePhysicsHelper.IgnoreLayerCollision(
+                            GamePhysicsHelper.Layers.Player,
+                            GamePhysicsHelper.Layers.Platform,
+                            false
+                        );
                         _currentState = State.FreeMovement;
                     }
 

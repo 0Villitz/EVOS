@@ -28,7 +28,7 @@ namespace Game2D
                 ? UnitAnimations.ClimbUp
                 : direction2d.y < -float.Epsilon
                     ? UnitAnimations.ClimbDown
-                    : UnitAnimations.Idle;
+                    : UnitAnimations.Climb;
         }
     }
 }
