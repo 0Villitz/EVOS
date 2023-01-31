@@ -122,16 +122,7 @@ namespace Game2D
 
         public bool CanFall()
         {
-            bool isGrounded = _characterController?.isGrounded ?? false;
-
-            if (!isGrounded && _inputData != null && _inputData.interactWithEntities)
-            {
-                isGrounded = _inputData.InteractableEntities?.Exists(
-                    x => x.BlockGravity()
-                ) ?? false;
-            }
-
-            return !isGrounded;
+            return !(_characterController?.isGrounded ?? false);
         }
 
         #endregion
@@ -140,19 +131,7 @@ namespace Game2D
 
         public bool CanJump()
         {
-            bool canJump = !CanFall() || IsGoingDownSlop();
-            if (canJump)
-            {
-                canJump = (
-                    _inputData == null
-                    || !_inputData.interactWithEntities
-                    || (_inputData.InteractableEntities?.Exists(
-                        x => x.BlockJump()
-                    ) ?? false)
-                );
-            }
-
-            return canJump;
+            return !CanFall() || IsGoingDownSlop();
         }
 
         #endregion

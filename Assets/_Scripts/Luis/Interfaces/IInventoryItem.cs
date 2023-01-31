@@ -1,7 +1,7 @@
 
-namespace GameManagers.Inventory
+namespace Game2D.Inventory
 {
-    public interface IInventoryItem
+    public interface IInventoryItem : IInteractableObject
     {
         string Id { get; }
         int Amount { get; }

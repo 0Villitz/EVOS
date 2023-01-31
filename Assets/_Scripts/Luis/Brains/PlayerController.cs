@@ -1,6 +1,7 @@
 
 using System.Collections.Generic;
 using Game2D.GamePhysics;
+using Game2D.Inventory;
 using UnityEngine;
 
 namespace Game2D
@@ -221,10 +222,29 @@ namespace Game2D
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         _inputData.EnableInteractionWithEntities();
+                        List<IInteractableObject> interactableEntities = _inputData.InteractableEntities;
+                        if (interactableEntities != null)
+                        {
+                            foreach (IInteractableObject interactableEntity in interactableEntities)
+                            {
+                                interactableEntity.Interact(this);
+                            }
+                        }
                     }
 
                     break;
             }
+        }
+
+        public void AddToInventory(IInventoryItem inventoryItem)
+        {
+            
+        }
+
+        public void GrabClimbObject(IClimbObject climbObject)
+        {
+            float xDistance = climbObject.WorldPosition.x - transform.position.x;
+            _characterController.Move(new Vector3(xDistance, 0, 0));
         }
     }
 }

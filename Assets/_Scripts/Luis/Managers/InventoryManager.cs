@@ -1,7 +1,7 @@
 
 using System.Collections.Generic;
 using System.Linq;
-using GameManagers.Inventory;
+using Game2D.Inventory;
 using UnityEngine;
 
 namespace GameManagers

@@ -7,14 +7,11 @@ namespace Game2D
     {
         #region IInteractableObject
 
-        public bool BlockGravity()
-        {
-            return true;
-        }
+        public Vector3 WorldPosition => transform.position;
 
-        public bool BlockJump()
+        public void Interact(PlayerController playerController)
         {
-            return true;
+            playerController.GrabClimbObject(this);
         }
 
         #endregion
