@@ -1,7 +1,7 @@
 
 namespace Game2D
 {
-    public interface IFallMovementUnit
+    public interface IFallUnit
     {
         bool CanFall();
         bool IsMovingDownSlop();

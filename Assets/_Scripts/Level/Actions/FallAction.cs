@@ -4,19 +4,19 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class FallMovement : IMovement2DAction
+    public class FallAction : IUnitAction
     {
-        private readonly IFallMovementUnit _gameUnit;
+        private readonly IFallUnit _gameUnit;
         private float _speed;
         private readonly float _gravitySpeed;
 
-        public FallMovement(IFallMovementUnit gameUnit, float gravitySpeed)
+        public FallAction(IFallUnit gameUnit, float gravitySpeed)
         {
             _gameUnit = gameUnit;
             _gravitySpeed = gravitySpeed;
         }
 
-        public UnitAnimations Execute(
+        public UnitMovement Execute(
             ref Vector2 direction2d,
             ref Vector2 movement,
             List<IInteractableObject> interactableObjects
@@ -35,8 +35,8 @@ namespace Game2D
             );
 
             return _gameUnit.IsMovingDownSlop()
-                ? UnitAnimations.Idle
-                : UnitAnimations.Falling;
+                ? UnitMovement.Idle
+                : UnitMovement.Falling;
         }
     }
 }

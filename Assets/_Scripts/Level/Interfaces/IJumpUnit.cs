@@ -1,7 +1,7 @@
 
 namespace Game2D
 {
-    public interface IJumpMovementUnit
+    public interface IJumpUnit
     {
         bool CanJump();
     }

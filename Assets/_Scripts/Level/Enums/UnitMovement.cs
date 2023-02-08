@@ -4,7 +4,7 @@ using System;
 namespace Game2D
 {
     [Flags]
-    public enum UnitAnimations : uint
+    public enum UnitMovement : uint
     {
         Idle = 0,
         MoveRight = 1,

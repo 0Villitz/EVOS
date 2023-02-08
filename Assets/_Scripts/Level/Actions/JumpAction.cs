@@ -4,18 +4,18 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class JumpMovement : IMovement2DAction
+    public class JumpAction : IUnitAction
     {
-        private readonly IJumpMovementUnit _gameUnit;
+        private readonly IJumpUnit _gameUnit;
         private readonly float _jumpSpeed;
 
-        public JumpMovement(IJumpMovementUnit gameUnit, float jumpSpeed)
+        public JumpAction(IJumpUnit gameUnit, float jumpSpeed)
         {
             _gameUnit = gameUnit;
             _jumpSpeed = jumpSpeed;
         }
 
-        public UnitAnimations Execute(
+        public UnitMovement Execute(
             ref Vector2 direction2d, 
             ref Vector2 movement,
             List<IInteractableObject> interactableObjects
@@ -24,8 +24,8 @@ namespace Game2D
             if (!_gameUnit.CanJump() || direction2d.y < 1)
             {
                 return movement.y > 0
-                    ? UnitAnimations.Jump
-                    : UnitAnimations.Idle;
+                    ? UnitMovement.Jump
+                    : UnitMovement.Idle;
             }
             
             if (movement.y <= 0f && direction2d.y > 0)
@@ -37,10 +37,10 @@ namespace Game2D
                 
                 direction2d.Set(direction2d.x, 0);
                 
-                return UnitAnimations.Jump;
+                return UnitMovement.Jump;
             }
 
-            return UnitAnimations.Idle;
+            return UnitMovement.Idle;
         }
     }
 }

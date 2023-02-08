@@ -17,10 +17,10 @@ namespace Game2D
 
         [SerializeField] private State _currentState = State.FreeMovement;
 
-        private UnitAnimations _lastUnitAnimation = UnitAnimations.Idle;
+        private UnitMovement _lastUnitMovement = UnitMovement.Idle;
 
-        private Dictionary<State, UnitAnimations[]> _actionsToStateMap;
-        private IUnitState _activeController;
+        private Dictionary<State, UnitMovement[]> _actionsToStateMap;
+        private IUnitState _activeState;
 
         private Dictionary<int, IInteractableObject> _interactableObjects = new Dictionary<int, IInteractableObject>();
 
@@ -33,23 +33,23 @@ namespace Game2D
         {
             _characterController = GetComponent<CharacterController>();
 
-            _actionsToStateMap = new Dictionary<State, UnitAnimations[]>()
+            _actionsToStateMap = new Dictionary<State, UnitMovement[]>()
             {
                 [State.FreeMovement] = new[]
                 {
-                    UnitAnimations.MoveHorizontal,
-                    UnitAnimations.Jump,
-                    UnitAnimations.Falling
+                    UnitMovement.MoveHorizontal,
+                    UnitMovement.Jump,
+                    UnitMovement.Falling
                 },
                 [State.Climbing] = new[]
                 {
-                    UnitAnimations.MoveHorizontal,
-                    UnitAnimations.Climb,
+                    UnitMovement.MoveHorizontal,
+                    UnitMovement.Climb,
                 }
             };
 
-            _activeController = GetComponent<MovementController>();
-            _activeController.Initialize();
+            _activeState = GetComponent<ActionController>();
+            _activeState.Initialize();
         }
 
         void Update()
@@ -96,24 +96,24 @@ namespace Game2D
                     break;
             }
 
-            if (!_actionsToStateMap.TryGetValue(_currentState, out UnitAnimations[] actionTypes)
+            if (!_actionsToStateMap.TryGetValue(_currentState, out UnitMovement[] actionTypes)
                 || actionTypes == null
                )
             {
-                Debug.LogError("Missing list of " + nameof(UnitAnimations) + " for state " + _currentState);
+                Debug.LogError("Missing list of " + nameof(UnitMovement) + " for state " + _currentState);
             }
             else
             {
-                UnitAnimations frameUnitAnimation = UnitAnimations.Idle;
+                UnitMovement frameUnitMovement = UnitMovement.Idle;
                 switch (_currentState)
                 {
                     case State.FreeMovement:
                     case State.Climbing:
-                        frameUnitAnimation =
-                            _activeController.ProcessInput(actionTypes, _inputData, _characterController);
-                        if ((frameUnitAnimation & UnitAnimations.Jump) == UnitAnimations.Jump)
+                        frameUnitMovement =
+                            _activeState.ProcessInput(actionTypes, _inputData, _characterController);
+                        if ((frameUnitMovement & UnitMovement.Jump) == UnitMovement.Jump)
                         {
-                            frameUnitAnimation &= ~UnitAnimations.Falling;
+                            frameUnitMovement &= ~UnitMovement.Falling;
                         }
 
                         break;
@@ -123,13 +123,13 @@ namespace Game2D
                         break;
                 }
 
-                if (frameUnitAnimation != _lastUnitAnimation)
+                if (frameUnitMovement != _lastUnitMovement)
                 {
                     // TODO: Trigger animation here.  We can make animation triggers
-                    // names the same as the values in UnitAnimations
+                    // names the same as the values in UnitMovement
                 }
 
-                _lastUnitAnimation = frameUnitAnimation;
+                _lastUnitMovement = frameUnitMovement;
             }
         }
 

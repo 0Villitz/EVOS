@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class MovementController : MonoBehaviour, IUnitState, IFallMovementUnit, IJumpMovementUnit
+    public class ActionController : MonoBehaviour, IUnitState, IFallUnit, IJumpUnit
     {
         private CharacterController _characterController;
 
@@ -20,7 +20,7 @@ namespace Game2D
         private Vector2 _movementSpeed2D = Vector2.zero;
         private Vector2 _movementDirection = Vector2.zero;
 
-        private Dictionary<UnitAnimations, IMovement2DAction> _actionsMap;
+        private Dictionary<UnitMovement, IUnitAction> _actionsMap;
 
         private PlayerController _playerController;
 
@@ -34,20 +34,20 @@ namespace Game2D
         {
             _gravitySpeed = _gravity * _gravityMultiplier;
 
-            _actionsMap = new Dictionary<UnitAnimations, IMovement2DAction>()
+            _actionsMap = new Dictionary<UnitMovement, IUnitAction>()
             {
-                [UnitAnimations.MoveHorizontal] = new HorizontalMovement(_movementSpeed),
-                [UnitAnimations.Jump] = new JumpMovement(this, _jumpSpeed),
-                [UnitAnimations.Falling] = new FallMovement(this, _gravitySpeed),
-                [UnitAnimations.Climb] = new ClimbMovement(_movementSpeed),
+                [UnitMovement.MoveHorizontal] = new HorizontalAction(_movementSpeed),
+                [UnitMovement.Jump] = new JumpAction(this, _jumpSpeed),
+                [UnitMovement.Falling] = new FallAction(this, _gravitySpeed),
+                [UnitMovement.Climb] = new ClimbAction(_movementSpeed),
             };
         }
 
-        public UnitAnimations ProcessInput(UnitAnimations [] actionTypes, InputData inputData, Component component)
+        public UnitMovement ProcessInput(UnitMovement [] actionTypes, InputData inputData, Component component)
         {
             _characterController = component as CharacterController;
             _inputData = inputData;
-            UnitAnimations frameUnitAnimation = UnitAnimations.Idle;
+            UnitMovement frameUnitMovement = UnitMovement.Idle;
             
             if (_characterController != null)
             {
@@ -58,12 +58,12 @@ namespace Game2D
 
                 for (int i = 0; i < actionTypes.Length; i++)
                 {
-                    UnitAnimations animationType = actionTypes[i];
-                    if (_actionsMap.TryGetValue(animationType, out IMovement2DAction action)
+                    UnitMovement movementType = actionTypes[i];
+                    if (_actionsMap.TryGetValue(movementType, out IUnitAction action)
                         && action != null
                         )
                     {
-                        frameUnitAnimation |= action.Execute(
+                        frameUnitMovement |= action.Execute(
                             ref _movementDirection,
                             ref _movementSpeed2D,
                             _inputData.InteractableEntities
@@ -71,7 +71,7 @@ namespace Game2D
                     }
                     else
                     {
-                        Debug.LogError("Missing action type: " + animationType);
+                        Debug.LogError("Missing action type: " + movementType);
                     }
                 }
 
@@ -85,7 +85,7 @@ namespace Game2D
 
             _inputData = null;
             
-            return frameUnitAnimation;
+            return frameUnitMovement;
         }
 
         #endregion
@@ -113,7 +113,7 @@ namespace Game2D
             return false;
         }
 
-        #region IFallMovementUnit
+        #region IFallUnit
 
         public bool IsMovingDownSlop()
         {
@@ -127,7 +127,7 @@ namespace Game2D
 
         #endregion
 
-        #region IJumpMovementUnit
+        #region IJumpUnit
 
         public bool CanJump()
         {

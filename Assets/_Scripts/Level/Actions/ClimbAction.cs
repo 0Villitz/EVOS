@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class ClimbMovement : IMovement2DAction
+    public class ClimbAction : IUnitAction
     {
         private readonly float _movementSpeed;
         
-        public ClimbMovement(float movementSpeed)
+        public ClimbAction(float movementSpeed)
         {
             _movementSpeed = movementSpeed;
         }
         
-        public UnitAnimations Execute(
+        public UnitMovement Execute(
             ref Vector2 direction2d, 
             ref Vector2 movement,
             List<IInteractableObject> interactableObjects
@@ -25,10 +25,10 @@ namespace Game2D
             );
 
             return direction2d.y > float.Epsilon
-                ? UnitAnimations.ClimbUp
+                ? UnitMovement.ClimbUp
                 : direction2d.y < -float.Epsilon
-                    ? UnitAnimations.ClimbDown
-                    : UnitAnimations.Climb;
+                    ? UnitMovement.ClimbDown
+                    : UnitMovement.Climb;
         }
     }
 }

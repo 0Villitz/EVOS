@@ -4,16 +4,16 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class HorizontalMovement : IMovement2DAction
+    public class HorizontalAction : IUnitAction
     {
         private readonly float _movementSpeed;
         
-        public HorizontalMovement(float movementSpeed)
+        public HorizontalAction(float movementSpeed)
         {
             _movementSpeed = movementSpeed;
         }
         
-        public UnitAnimations Execute(
+        public UnitMovement Execute(
             ref Vector2 direction2d, 
             ref Vector2 movement,
             List<IInteractableObject> interactableObjects
@@ -25,10 +25,10 @@ namespace Game2D
             );
 
             return direction2d.x > float.Epsilon
-                ? UnitAnimations.MoveRight
+                ? UnitMovement.MoveRight
                 : direction2d.x < -float.Epsilon
-                    ? UnitAnimations.MoveLeft
-                    : UnitAnimations.Idle;
+                    ? UnitMovement.MoveLeft
+                    : UnitMovement.Idle;
         }
     }
 }
