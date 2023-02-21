@@ -61,6 +61,7 @@ MonoBehaviour:
   m_LightCookieSprite: {fileID: 21300000, guid: 7722f5bd2f438004bb58a57fec0b422f, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
+  m_AlphaBlendOnOverlap: 0
   m_OverlapOperation: 0
   m_NormalMapDistance: 3
   m_NormalMapQuality: 2
@@ -264,6 +265,8 @@ GameObject:
   - component: {fileID: 1911251170710288561}
   - component: {fileID: 7896412890603053526}
   - component: {fileID: 762100083}
+  - component: {fileID: 5294908798208991611}
+  - component: {fileID: 9062099686306300875}
   m_Layer: 7
   m_Name: TerminalA
   m_TagString: Untagged
@@ -285,7 +288,7 @@ Transform:
   m_Children:
   - {fileID: 5722818111008765090}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7896412890603053526
 SpriteRenderer:
@@ -367,4 +370,48 @@ MonoBehaviour:
   - {x: 0.17263746, y: -0.36640978, z: 0}
   m_ShapePathHash: 460911013
   m_Mesh: {fileID: 0}
-  m_InstanceId: -302906
+  m_InstanceId: 56694
+--- !u!61 &5294908798208991611
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8843582642170931387}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.3125, y: 1.46875}
+    newSize: {x: 1.3125, y: 1.46875}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.84, y: 2.13}
+  m_EdgeRadius: 0
+--- !u!114 &9062099686306300875
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8843582642170931387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd1411ce708b3b04e84c8bb688d57e40, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
+  _InteractableCutoffDistance: 0.5
+  _TriggerKey: terminal-a
+  _PuzzleType: 2
+  _RandomLevelCount: 1
+  _SpecificLevelList: 
