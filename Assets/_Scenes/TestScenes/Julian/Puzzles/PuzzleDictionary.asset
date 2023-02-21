@@ -18,8 +18,6 @@ MonoBehaviour:
     - {fileID: 852967454531116800, guid: 64204a479b99f76468ab0a11d01b238b, type: 3}
     - {fileID: 9098741739451369215, guid: 0d69db41e3222ee479b07cc858e79430, type: 3}
     - {fileID: 852967454531116800, guid: cd76589389344c64db7db4d5f7e74c7c, type: 3}
-    - {fileID: 852967454531116800, guid: dcc8f4b3e56a9ac4b90015bcb3482f2c, type: 3}
-    - {fileID: 852967454531116800, guid: 03f28028d88163445ad002d1fa356c02, type: 3}
   - Type: 2
     PuzzleList:
     - {fileID: 5828381453625115143, guid: e0174c0dc8307674aa669d38af3fabec, type: 3}
