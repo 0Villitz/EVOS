@@ -21,6 +21,15 @@ namespace Puzzles
             return GameObject.Instantiate<PuzzleBase>(puzzlePrefab, parent);
         }
 
+        public List<int> CreateIndexListFromPuzzleList(PuzzleType type, List<PuzzleBase> puzzleList)
+        {
+            PuzzleKeyValuePair pair = _PuzzleList.Find((x) => x.Type == type);
+            if (pair?.PuzzleList?.Count == 0)
+                return null;
+
+            return  puzzleList.Select(x => pair.PuzzleList.IndexOf(x)).ToList();
+        }
+
         public List<int> CreateRandomIndexListOfType(PuzzleType type, int neededLevelCount)
         {
             PuzzleKeyValuePair pair = _PuzzleList.Find((x) => x.Type == type);
