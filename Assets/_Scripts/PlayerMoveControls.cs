@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMoveControls : MonoBehaviour
 {
@@ -13,6 +14,8 @@ public class PlayerMoveControls : MonoBehaviour
 
     private int direction = 1;
 
+    public PlayerInteractableSystem _PlayerInteractableSystem;
+    
     public float rayLength;
     public LayerMask groundLayer;
     public Transform leftPoint;
@@ -26,12 +29,13 @@ public class PlayerMoveControls : MonoBehaviour
         gI = GetComponent<GatherInput>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
-
     }
 
     private void Update()
     {
         SetAnimatorValues();
+        
+        HandleInteractables();
     }
 
     private void FixedUpdate()
@@ -51,6 +55,22 @@ public class PlayerMoveControls : MonoBehaviour
         rb.velocity = new Vector2(speed * gI.valueX, rb.velocity.y);
     }
 
+    private void HandleInteractables()
+    {
+        if (_PlayerInteractableSystem == null)
+        {
+            return;
+        }
+        
+        if (!gI.ShouldInteract)
+        {
+            return;
+        }
+
+        Vector2 mousePosition = Mouse.current.position.ReadValue();
+        _PlayerInteractableSystem.Interact(transform.position, mousePosition);
+    }
+    
     private void JumpPlayer()
     {
         if(gI.jumpInput)

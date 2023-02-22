@@ -38,10 +38,13 @@ public class GatherInput : MonoBehaviour
     
     private Controls    myControls;
     private ControlType currentControlType;
+
+    public bool ShouldInteract => myControls.Player.Interact.WasPressedThisFrame();
     
-    public float               valueX;
-    public bool                jumpInput;
+    public float                     valueX;
+    public bool                      jumpInput;
     public ScriptableEventDispatcher _GameEventDispatcher;
+
 
     private void Awake()
     {
@@ -54,6 +57,7 @@ public class GatherInput : MonoBehaviour
 
         CurrentControlType = ControlType.Player;
         
+        _GameEventDispatcher.AddListener(GameEventType.ShowPuzzleWindow, OnShowPuzzleWindow);
         _GameEventDispatcher.AddListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
     }
 
@@ -65,6 +69,7 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Jump.performed -= JumpStart;
         myControls.Player.Jump.canceled  -= JumpStop;
         
+        _GameEventDispatcher.RemoveListener(GameEventType.ShowPuzzleWindow, OnShowPuzzleWindow);
         _GameEventDispatcher.RemoveListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
     }
 
@@ -113,6 +118,11 @@ public class GatherInput : MonoBehaviour
         CurrentControlType = ControlType.None;
     }
 
+    private void OnShowPuzzleWindow(GeneralEvent obj)
+    {
+        CurrentControlType = ControlType.UI;
+    }
+    
     private void OnHidePuzzleWindow(GeneralEvent obj)
     {
         CurrentControlType = ControlType.Player;
