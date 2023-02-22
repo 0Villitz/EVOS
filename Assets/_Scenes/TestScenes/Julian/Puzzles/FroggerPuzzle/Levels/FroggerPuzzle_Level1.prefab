@@ -1304,6 +1304,14 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 6637686078566362601}
     m_Modifications:
+    - target: {fileID: 152367577453036812, guid: 17334c0f92264e64fac8b1dc44e98e8f, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 152367577453036812, guid: 17334c0f92264e64fac8b1dc44e98e8f, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 90
+      objectReference: {fileID: 0}
     - target: {fileID: 259218467122704821, guid: 17334c0f92264e64fac8b1dc44e98e8f, type: 3}
       propertyPath: m_Name
       value: FroggerPlayer
@@ -1312,6 +1320,10 @@ PrefabInstance:
       propertyPath: _ObstacleLayer.m_Bits
       value: 20480
       objectReference: {fileID: 0}
+    - target: {fileID: 5745646779354258753, guid: 17334c0f92264e64fac8b1dc44e98e8f, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 00951e027bc500c4c9afc4f6924f4a7e, type: 3}
     - target: {fileID: 7314912099654804479, guid: 17334c0f92264e64fac8b1dc44e98e8f, type: 3}
       propertyPath: m_RootOrder
       value: 0
