@@ -267,6 +267,7 @@ GameObject:
   - component: {fileID: 762100083}
   - component: {fileID: 5294908798208991611}
   - component: {fileID: 9062099686306300875}
+  - component: {fileID: 4855885964007495985}
   m_Layer: 7
   m_Name: TerminalA
   m_TagString: Untagged
@@ -370,7 +371,7 @@ MonoBehaviour:
   - {x: 0.17263746, y: -0.36640978, z: 0}
   m_ShapePathHash: 460911013
   m_Mesh: {fileID: 0}
-  m_InstanceId: 56694
+  m_InstanceId: 55532
 --- !u!61 &5294908798208991611
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -410,8 +411,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
+  _Collider: {fileID: 5294908798208991611}
   _InteractableCutoffDistance: 0.5
   _TriggerKey: terminal-a
   _PuzzleType: 2
   _RandomLevelCount: 1
-  _SpecificLevelList: 
+  _SpecificLevelList: []
+  _LockoutTimeInSec: 0
+--- !u!114 &4855885964007495985
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8843582642170931387}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9047ca0dc747a50498fcc94ccd56643f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
+  type: 2
+  _Key: terminal-a
+  _Terminal: {fileID: 9062099686306300875}
