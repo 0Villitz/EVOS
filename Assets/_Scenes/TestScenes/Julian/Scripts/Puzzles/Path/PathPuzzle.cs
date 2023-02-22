@@ -52,8 +52,10 @@ namespace Puzzles
                 OnExitButton();
             }
 
-            Vector2 worldMousePos = (Vector2)GetMouseWorldPoint() - _startOffset;
-            _Player.Move(worldMousePos);
+            Vector2 worldMousePos =  CameraUtils.GetMouseWorldPoint(_Camera, Mouse.current.position.ReadValue(), GetScaleFactor());
+            Vector2 worldMousePosWithOffset = worldMousePos - _startOffset;
+            
+            _Player.Move(worldMousePosWithOffset);
 
             // For Debugging
             Debug.DrawLine(_Camera.transform.position, worldMousePos, Color.blue);
@@ -70,24 +72,10 @@ namespace Puzzles
             Vector3 playerPos = _Player.transform.position;
             playerPos.z = _Camera.transform.position.z;
 
-            Vector2 worldMousePos = GetMouseWorldPoint();
+            Vector2 worldMousePos =  CameraUtils.GetMouseWorldPoint(_Camera, Mouse.current.position.ReadValue(), GetScaleFactor());
 
             _startOffset   = worldMousePos - (Vector2)playerPos;
             Cursor.visible = false;
-        }
-
-        private Vector3 GetMouseWorldPoint()
-        {
-            Vector2 rawMousePointPosition = Mouse.current.position.ReadValue();
-            Vector3 screenMousePos        = rawMousePointPosition / GetScaleFactor();
-            Vector3 cameraPosition        = _Camera.transform.position;
-
-            // Set the z value so when we use 'ScreenToWorldPoint',
-            // that position is projected out into 3d space away from the camera
-            screenMousePos.z = Mathf.Abs(cameraPosition.z);
-
-            Vector2 worldMousePos = (Vector2)_Camera.ScreenToWorldPoint(screenMousePos);
-            return worldMousePos;
         }
 
         private float GetScaleFactor()
