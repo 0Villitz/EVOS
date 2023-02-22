@@ -1,12 +1,14 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Puzzles;
 using UnityEngine;
 
 public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
 {
     public ScriptableEventDispatcher _GameEventDispatcher;
-
+    public Collider2D _Collider;
+    
     public float      _InteractableCutoffDistance;
     public string     _TriggerKey;
     public PuzzleType _PuzzleType;
@@ -37,7 +39,7 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         }
         else
         {
-            showPuzzleArgs.SpecificLevelList = _SpecificLevelList;
+            showPuzzleArgs.SpecificLevelList = _SpecificLevelList.ToList();
         }
 
         _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
