@@ -96,15 +96,15 @@ namespace Puzzles
             List<int> levelList;
             if (args.SpecificLevelList != null && args.SpecificLevelList.Count > 0)
             {
-                args.SpecificLevelList?.Reverse();
                 levelList = _PuzzleDictionary.CreateIndexListFromPuzzleList(args.PuzzleType, args.SpecificLevelList);
+                levelList.Reverse();
             }
             else
             {
                 levelList = _PuzzleDictionary.CreateRandomIndexListOfType(args.PuzzleType, args.RandomLevelCount);
             }
             
-            return new Stack<int>(levelList);
+            return levelList != null ? new Stack<int>(levelList) : null;
         }
 
         private PuzzleBase CreatePuzzle(PuzzleType type, int levelIndex)
