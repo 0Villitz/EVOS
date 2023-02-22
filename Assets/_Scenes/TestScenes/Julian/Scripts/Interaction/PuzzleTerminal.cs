@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Puzzles;
 using UnityEngine;
@@ -11,7 +12,7 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     public PuzzleType _PuzzleType;
     
     public int       _RandomLevelCount;
-    public List<int> _SpecificLevelList;
+    public List<PuzzleBase> _SpecificLevelList;
 
     
     public float InteractCutoffDistance => _InteractableCutoffDistance;

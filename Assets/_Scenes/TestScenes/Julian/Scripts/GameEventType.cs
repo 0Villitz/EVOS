@@ -1,5 +1,6 @@
 ﻿
 using System.Collections.Generic;
+using Puzzles;
 public static class GameEventType
 {
     // Puzzles
@@ -15,7 +16,7 @@ public struct ShowPuzzleArgs
     public Puzzles.PuzzleType PuzzleType       { get; set; }
     public string     TriggerKey       { get; set; }
     public int        RandomLevelCount { get; set; }
-    public List<int>  SpecificLevelList { get; set; }   
+    public List<PuzzleBase>  SpecificLevelList { get; set; }   
 }
 
 public struct GameTriggerArgs
