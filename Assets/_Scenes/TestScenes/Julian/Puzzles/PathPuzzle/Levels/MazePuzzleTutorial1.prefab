@@ -581,7 +581,7 @@ MonoBehaviour:
   localWaypoints:
   - position: {x: 0, y: 0}
     angle: 0
-  - position: {x: 0, y: 19.7}
+  - position: {x: 0, y: 24}
     angle: 0
 --- !u!4 &2244845940295521381 stripped
 Transform:
