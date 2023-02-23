@@ -14,16 +14,50 @@ namespace Puzzles
         {
             PuzzleKeyValuePair pair = _PuzzleList.Find((x) => x.Type == type);
             // Get random puzzle in list
-            if (pair?.PuzzleList?.Count == 0)
+            if (pair == null)
+                return null;
+                
+            if (pair.PuzzleList?.Count == 0)
                 return null;
 
             PuzzleBase puzzlePrefab = pair.PuzzleList[levelIndex];
             return GameObject.Instantiate<PuzzleBase>(puzzlePrefab, parent);
         }
 
+        public List<int> CreateIndexListFromPuzzleList(PuzzleType type, List<PuzzleBase> puzzleList)
+        {
+            PuzzleKeyValuePair pair = _PuzzleList.Find((x) => x.Type == type);
+            if (pair == null)
+            {
+                Debug.LogError($"Couldn't find Puzzle Pair for type: {type} ");
+                return null;
+            }
+                
+            if (pair.PuzzleList?.Count == 0)
+                return null;
+
+            return  puzzleList.Select(x => pair.PuzzleList.IndexOf(x)).ToList();
+        }
+
+        public PuzzleType GetTypeForPuzzle(PuzzleBase puzzle)
+        {
+            PuzzleType type = PuzzleType.None;
+            _PuzzleList.ForEach(pair =>
+            {
+                if(pair.PuzzleList.Contains(puzzle))
+                {
+                    type = pair.Type;
+                }
+            });
+            return type;
+        }
+        
         public List<int> CreateRandomIndexListOfType(PuzzleType type, int neededLevelCount)
         {
             PuzzleKeyValuePair pair = _PuzzleList.Find((x) => x.Type == type);
+            if (pair == null)
+                return null;
+                
             // Get random puzzle in list
             if (pair?.PuzzleList?.Count == 0)
                 return null;

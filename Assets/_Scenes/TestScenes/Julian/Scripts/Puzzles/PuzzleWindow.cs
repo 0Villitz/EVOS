@@ -93,10 +93,18 @@ namespace Puzzles
 
         private Stack<int> CreateLevelIndexStack(ShowPuzzleArgs args)
         {
-            args.SpecificLevelList?.Reverse();
-            var levelList = args.SpecificLevelList ?? _PuzzleDictionary.CreateRandomIndexListOfType(args.PuzzleType, args.RandomLevelCount);
-
-            return new Stack<int>(levelList);
+            List<int> levelList;
+            if (args.SpecificLevelList != null && args.SpecificLevelList.Count > 0)
+            {
+                levelList = _PuzzleDictionary.CreateIndexListFromPuzzleList(args.PuzzleType, args.SpecificLevelList);
+                levelList.Reverse();
+            }
+            else
+            {
+                levelList = _PuzzleDictionary.CreateRandomIndexListOfType(args.PuzzleType, args.RandomLevelCount);
+            }
+            
+            return levelList != null ? new Stack<int>(levelList) : null;
         }
 
         private PuzzleBase CreatePuzzle(PuzzleType type, int levelIndex)
