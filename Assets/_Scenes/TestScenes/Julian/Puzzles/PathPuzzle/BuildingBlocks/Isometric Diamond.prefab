@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &4771118072960746498
+--- !u!1 &2494131099337055126
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,8 +8,8 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 9150411256033443465}
-  - component: {fileID: 835400425558985515}
+  - component: {fileID: 1047298272491189741}
+  - component: {fileID: 2302353292829766719}
   m_Layer: 0
   m_Name: Isometric Diamond
   m_TagString: Untagged
@@ -17,28 +17,28 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &9150411256033443465
+--- !u!4 &1047298272491189741
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771118072960746498}
-  m_LocalRotation: {x: -0, y: -0, z: 0.5824409, w: 0.812873}
-  m_LocalPosition: {x: -1.57, y: 1.4, z: 0}
-  m_LocalScale: {x: 3.8096, y: 3.8401, z: 1}
+  m_GameObject: {fileID: 2494131099337055126}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.5208514, y: 2.006568, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: -1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 71.245}
---- !u!212 &835400425558985515
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &2302353292829766719
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4771118072960746498}
+  m_GameObject: {fileID: 2494131099337055126}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0

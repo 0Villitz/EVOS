@@ -167,7 +167,7 @@ GameObject:
   - component: {fileID: 4367308247768346668}
   - component: {fileID: 852967454531116800}
   m_Layer: 0
-  m_Name: MazePuzzTutorial1
+  m_Name: 'MazePuzzTutorial1 '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -229,7 +229,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: speed
-      value: 7
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: movementMode
@@ -389,7 +389,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: speed
-      value: 6.5
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: movementMode
@@ -588,8 +588,8 @@ MonoBehaviour:
   collisionCollider: {fileID: 1092639808}
   movementMode: 3
   waitTime: 0
-  easeAmount: 1
-  speed: 0.9
+  easeAmount: 0
+  speed: 0.5
   localWaypoints:
   - position: {x: 0, y: 0}
     angle: 0
@@ -1070,7 +1070,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: speed
-      value: 6
+      value: 4.5
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: movementMode

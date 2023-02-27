@@ -15,12 +15,17 @@ MonoBehaviour:
   _PuzzleList:
   - Type: 1
     PuzzleList:
-    - {fileID: 852967454531116800, guid: 64204a479b99f76468ab0a11d01b238b, type: 3}
+    - {fileID: 852967454531116800, guid: b9b5b7678bed1c043a186191ba59c8be, type: 3}
     - {fileID: 9098741739451369215, guid: 0d69db41e3222ee479b07cc858e79430, type: 3}
     - {fileID: 852967454531116800, guid: cd76589389344c64db7db4d5f7e74c7c, type: 3}
     - {fileID: 852967454531116800, guid: 58f1bf9cd249781498aad41316a07467, type: 3}
-    - {fileID: 852967454531116800, guid: dcc8f4b3e56a9ac4b90015bcb3482f2c, type: 3}
-    - {fileID: 852967454531116800, guid: 10cfabac64b3dab47813229f9aa1f3ff, type: 3}
+    - {fileID: 852967454531116800, guid: 7ecd8accd35b479438c2767dde6bbd2d, type: 3}
+    - {fileID: 852967454531116800, guid: a76f19061f9061147abaf463058bd881, type: 3}
+    - {fileID: 852967454531116800, guid: 64204a479b99f76468ab0a11d01b238b, type: 3}
+    - {fileID: 852967454531116800, guid: 4a8a5479dbd38ce4293ec5774931051f, type: 3}
+    - {fileID: 852967454531116800, guid: b7058cd433ff5f941b7cecb294b01ab6, type: 3}
   - Type: 2
     PuzzleList:
-    - {fileID: 5828381453625115143, guid: e0174c0dc8307674aa669d38af3fabec, type: 3}
+    - {fileID: 5828381453625115143, guid: e604d7c61a8b50b45a22a235e0df3b1b, type: 3}
+    - {fileID: 5828381453625115143, guid: c53dcde7811cf844583d1f5babed4744, type: 3}
+    - {fileID: 5828381453625115143, guid: 96c5198a467dc7f409daf96ed40ebafb, type: 3}
