@@ -1,4 +1,6 @@
 
+using System;
+using System.Collections.Generic;
 using Game2D;
 using UnityEditor;
 using UnityEngine;
@@ -29,7 +31,8 @@ namespace Game.Room.Builder.Editor
                 EditorGUI.EndDisabledGroup();
             }
         }
-        
+
+        private string[] unitMovements = null;
         private void DisplayCreateOptions(RoomNavBuilder builder)
         {   
             EditorGUILayout.LabelField("Current Node Id: " + builder.currentId);
@@ -38,14 +41,50 @@ namespace Game.Room.Builder.Editor
             {
                 builder.SetBuildingFlag(!builder.building);
             }
-            
-        
+
             if (builder.building)
             {
                 EditorGUILayout.HelpBox(
                     "Click on " + builder.gameObject.name + " object to place navigation nodes",
                     MessageType.Info
                 );
+
+                if (unitMovements == null)
+                {
+                    unitMovements = Enum.GetNames(typeof(UnitMovement));
+                }
+
+                List<string> cachedActions = new List<string>();
+                foreach (UnitMovement unitMovement in builder.cachedNodeActions)
+                {
+                    cachedActions.Add(unitMovement.ToString());
+                }
+                cachedActions.Sort(
+                    (x, y) => Enum.Parse<UnitMovement>(x).CompareTo(Enum.Parse<UnitMovement>(y))
+                    );
+                
+                EditorGUILayout.HelpBox(string.Join(", ", cachedActions.ToArray()), MessageType.None);
+
+                int editorIndex = EditorGUILayout.Popup(
+                    nameof(UnitMovement), 
+                    builder.nodeActionIndex, 
+                    unitMovements
+                );
+                if (editorIndex != builder.nodeActionIndex)
+                {
+                    builder.nodeActionIndex = editorIndex;
+                }
+
+                EditorGUILayout.BeginHorizontal();
+                if (GUILayout.Button("Add Action"))
+                {
+                    builder.AddNodeAction(Enum.Parse<UnitMovement>(unitMovements[builder.nodeActionIndex]));
+                }
+                if (GUILayout.Button("Remove Action"))
+                {
+                    builder.RemoveAction(Enum.Parse<UnitMovement>(unitMovements[builder.nodeActionIndex]));
+                }
+                EditorGUILayout.EndHorizontal();
                 
                 if (GUILayout.Button("Discard Map"))
                 {

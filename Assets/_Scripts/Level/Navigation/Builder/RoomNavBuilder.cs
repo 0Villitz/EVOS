@@ -1,7 +1,8 @@
-using System.Collections;
+
 using System.Collections.Generic;
 using Game2D;
 using UnityEngine;
+using Object = UnityEngine.Object;
 
 namespace Game.Room.Builder
 {
@@ -14,18 +15,8 @@ namespace Game.Room.Builder
 
         public NavigationController navigationController;
 
-        public List<UnitMovement> nodeActions { get; private set; } = new List<UnitMovement>()
-        {
-            UnitMovement.Idle,
-            UnitMovement.MoveRight,
-            UnitMovement.MoveLeft,
-            UnitMovement.Jump,
-            UnitMovement.Falling,
-            UnitMovement.Crawl,
-            UnitMovement.Climb
-        };
-
-        public UnitMovement nodeAction { get; private set; } = UnitMovement.Idle;
+        public int nodeActionIndex { get; set; } = 0;
+        public HashSet<UnitMovement> cachedNodeActions { get; private set; } = new HashSet<UnitMovement>();
         
         public bool building { get; private set; } = false;
         public int currentId { get; private set; } = 0;
@@ -38,25 +29,29 @@ namespace Game.Room.Builder
         public void SavePrefab()
         {
             building = false;
-            nodeAction = UnitMovement.Idle;
+            cachedNodeActions = new HashSet<UnitMovement>(); 
+            cachedNodeActions.Add(UnitMovement.Idle);
+            nodeActionIndex = 0;
         }
 
         public void Discard()
         {
-            nodeAction = UnitMovement.Idle;
+            nodeActionIndex = 0;
+            cachedNodeActions = new HashSet<UnitMovement>(); 
+            cachedNodeActions.Add(UnitMovement.Idle);
             currentId = 0;
             navigationController.Discard();
             building = false;
         }
 
-        public void AddNodeAction(UnitMovement action)
+        public void AddNodeAction(UnitMovement nodeAction)
         {
-            nodeAction |= action;
+            cachedNodeActions.Add(nodeAction);
         }
 
-        public void RemoveAction(UnitMovement action)
+        public void RemoveAction(UnitMovement nodeAction)
         {
-            nodeAction &= (~action);
+            cachedNodeActions.Remove(nodeAction);
         }
         
         public void ConnectNodes(List<Object> possibleNodes)
