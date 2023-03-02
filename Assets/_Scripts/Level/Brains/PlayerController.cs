@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class PlayerController : MonoBehaviour
+    public class PlayerController : MonoBehaviour, ICharacterController
     {
         private enum State
         {
