@@ -21,12 +21,12 @@ namespace Game.Room.Builder.Editor
                     EditorGUILayout.HelpBox("Missing camera to ray cast from", MessageType.Error);                    
                 }
                 
-                if (builder.navigationController == null)
+                if (builder.LevelControllerPrefab == null)
                 {
-                    EditorGUILayout.HelpBox("Missing " + typeof(NavigationController), MessageType.Error);                    
+                    EditorGUILayout.HelpBox("Missing " + typeof(LevelController), MessageType.Error);                    
                 }
                 
-                EditorGUI.BeginDisabledGroup(builder.buildCamera == null || builder.navigationController == null);
+                EditorGUI.BeginDisabledGroup(builder.buildCamera == null || builder.LevelControllerPrefab == null);
                 DisplayCreateOptions(builder);
                 EditorGUI.EndDisabledGroup();
             }

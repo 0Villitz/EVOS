@@ -1,7 +1,9 @@
 
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using Game2D;
 using UnityEngine;
+using UnityEngine.Serialization;
 using Object = UnityEngine.Object;
 
 namespace Game.Room.Builder
@@ -13,8 +15,12 @@ namespace Game.Room.Builder
         
         public Camera buildCamera;
 
-        public NavigationController navigationController;
-
+        public LevelController LevelControllerPrefab;
+        
+        // [SerializeField]
+        private LevelController _buildingLevelInstance;
+        public NavigationController NavigationController { get; private set; }
+        
         public int nodeActionIndex { get; set; } = 0;
         public HashSet<UnitMovement> cachedNodeActions { get; private set; } = new HashSet<UnitMovement>();
         
@@ -23,6 +29,15 @@ namespace Game.Room.Builder
         
         public void SetBuildingFlag(bool startBuilding)
         {
+            if (LevelControllerPrefab.NavigationController == null)
+            {
+                Debug.LogError("Cannot build level, missing " + nameof(Game2D.NavigationController));
+                return;
+            }
+            
+            _buildingLevelInstance = GameObject.Instantiate(LevelControllerPrefab, Vector3.zero, Quaternion.identity);
+            NavigationController = _buildingLevelInstance.NavigationController;
+            
             building = startBuilding;
         }
 
@@ -40,7 +55,7 @@ namespace Game.Room.Builder
             cachedNodeActions = new HashSet<UnitMovement>(); 
             cachedNodeActions.Add(UnitMovement.Idle);
             currentId = 0;
-            navigationController.Discard();
+            NavigationController.Discard();
             building = false;
         }
 
@@ -58,6 +73,47 @@ namespace Game.Room.Builder
         {
             
         }
+
+        // public void SavePrefab()
+        // {
+            // if (!Directory.Exists(PUZZLE_RELATIVE_FOLDER_PATH))
+            // {
+            //     Debug.LogError("Create Folder Path:" + PUZZLE_RELATIVE_FOLDER_PATH);
+            //     return;
+            // }
+            //
+            // string localPath = PUZZLE_RELATIVE_FOLDER_PATH 
+            //                    + "/" 
+            //                    + _puzzleInstance.gameObject.name 
+            //                    + ".prefab";
+            //
+            // localPath = AssetDatabase.GenerateUniqueAssetPath(localPath);
+            //
+            // while (_puzzleInstance.GroundPlane.childCount > 0)
+            // {
+            //     GameObject.DestroyImmediate(_puzzleInstance.GroundPlane.GetChild(0).gameObject);
+            // }
+            //
+            // GameObject savedGO = PrefabUtility.SaveAsPrefabAssetAndConnect(
+            //     _puzzleInstance.gameObject,
+            //     localPath,
+            //     InteractionMode.UserAction,
+            //     out bool prefabSuccess
+            // );
+            //
+            // if (prefabSuccess)
+            // {
+            //     Debug.Log("Prefab was saved successfully");
+            //
+            //     DestroyImmediate(_puzzleInstance.gameObject);
+            //
+            //     _puzzleInstance = null;
+            // }
+            // else
+            // {
+            //     Debug.LogError("Prefab failed to save" + prefabSuccess);
+            // }
+        // }
         
         #region Monobehavior
         void Update()
@@ -78,7 +134,7 @@ namespace Game.Room.Builder
                         puzzleMapLayer
                     ))
                 {
-                    navigationController.AddNode(hit.point, currentId);
+                    NavigationController.AddNode(hit.point, currentId);
                     currentId++;
                 }
             }
