@@ -232,7 +232,6 @@ GameObject:
   - component: {fileID: 3190458570309511374}
   - component: {fileID: 5760072129710572353}
   - component: {fileID: 8734605489867062993}
-  - component: {fileID: 7559164004239610963}
   m_Layer: 0
   m_Name: Flicker
   m_TagString: Untagged
@@ -318,21 +317,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!111 &7559164004239610963
-Animation:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6558902894689450365}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Animation: {fileID: 7400000, guid: 6bdd51a9bbdda3e499c2514da8bcb41a, type: 2}
-  m_Animations: []
-  m_WrapMode: 0
-  m_PlayAutomatically: 1
-  m_AnimatePhysics: 0
-  m_CullingType: 0
 --- !u!1001 &244917974341676826
 PrefabInstance:
   m_ObjectHideFlags: 0
