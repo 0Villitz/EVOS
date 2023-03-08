@@ -25,9 +25,9 @@ namespace Game2D
         public string DisplayDescription { get; } = "Does Nothing";
         public string DisplaySpriteName { get; } = "DummyItemSprite";
 
-        public void Interact(PlayerController playerController)
+        public void Interact(ICharacterController characterController)
         {
-            playerController.AddToInventory(this);
+            characterController.AddToInventory(this);
         }
 
         #endregion

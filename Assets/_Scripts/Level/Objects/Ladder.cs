@@ -9,9 +9,9 @@ namespace Game2D
 
         public Vector3 WorldPosition => transform.position;
 
-        public void Interact(PlayerController playerController)
+        public void Interact(ICharacterController characterController)
         {
-            playerController.GrabClimbObject(this);
+            characterController.GrabClimbObject(this);
         }
 
         #endregion
