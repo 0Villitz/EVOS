@@ -24,6 +24,7 @@ MonoBehaviour:
     - {fileID: 852967454531116800, guid: 64204a479b99f76468ab0a11d01b238b, type: 3}
     - {fileID: 852967454531116800, guid: 4a8a5479dbd38ce4293ec5774931051f, type: 3}
     - {fileID: 852967454531116800, guid: b7058cd433ff5f941b7cecb294b01ab6, type: 3}
+    - {fileID: 852967454531116800, guid: b5ac9c86283f89d4d8cb02f5648188b4, type: 3}
   - Type: 2
     PuzzleList:
     - {fileID: 5828381453625115143, guid: e604d7c61a8b50b45a22a235e0df3b1b, type: 3}
