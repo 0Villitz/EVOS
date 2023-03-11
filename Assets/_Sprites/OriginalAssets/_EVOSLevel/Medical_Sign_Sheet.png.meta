@@ -48,7 +48,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 32
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -105,7 +105,427 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_0
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 504
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e9871c8030606a4cb31616451dfd7df
+      internalID: -1464386860
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_1
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 504
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 60a01e923c1da9f43bfcadb40cebf074
+      internalID: -1613540974
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_2
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 504
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 06093b0196f63a74e905929d92ba1963
+      internalID: 465643590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_3
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 504
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f17ddf38f0b085d4fb88a2f8324a0c64
+      internalID: -1226982892
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_4
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 378
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 15bd20745b03c11468220efab64f7914
+      internalID: 671653981
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_5
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 378
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2caf43858b0fba74baa169af477fc798
+      internalID: 829128681
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_6
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 378
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a38239d096e1094499e6f24343fc808f
+      internalID: -1705503942
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_7
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 378
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: d7b59b0d58c58d74e8cff9746172443c
+      internalID: 1965933996
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 252
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 42e447c87e301614587c2d8913145c0f
+      internalID: -228549285
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_9
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 252
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 09e3703020c200945a2802772638cdbd
+      internalID: -860227423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_10
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 252
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0bddb8730d553ff41bf0da1eafcff0a6
+      internalID: -109184857
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_11
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 252
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 573be4f8e6ee9fd41b46836f9179dcf1
+      internalID: 1159144995
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_12
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 126
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 29b0c54f914babe47ab806f7419e9993
+      internalID: 987735332
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_13
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 126
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c7e724bdd0769f4faedeee25bbe4496
+      internalID: 837749656
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_14
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 126
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5eff85e942fb5b34ea9a22e5511648d1
+      internalID: 2127264822
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_15
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 126
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 19cda957c75e3404794f56ee5a887d2e
+      internalID: -1292156073
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_16
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 50f1a40582b985c469a3e0a45a16b001
+      internalID: 1360227266
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_17
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 0
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abee387428d5c744c8ca0c25e9cbfd77
+      internalID: 1383438866
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_18
+      rect:
+        serializedVersion: 2
+        x: 640
+        y: 0
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: abafbaffa113de24195aaccd822d2af1
+      internalID: 1605610413
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Medical_Sign_Sheet_19
+      rect:
+        serializedVersion: 2
+        x: 960
+        y: 0
+        width: 320
+        height: 126
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a1a8a72c67d1b8a4f81021f8a35b5326
+      internalID: 1062469925
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -116,7 +536,27 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      Medical_Sign_Sheet_3: -1226982892
+      Medical_Sign_Sheet_9: -860227423
+      Medical_Sign_Sheet_11: 1159144995
+      Medical_Sign_Sheet_17: 1383438866
+      Medical_Sign_Sheet_0: -1464386860
+      Medical_Sign_Sheet_4: 671653981
+      Medical_Sign_Sheet_18: 1605610413
+      Medical_Sign_Sheet_19: 1062469925
+      Medical_Sign_Sheet_12: 987735332
+      Medical_Sign_Sheet_1: -1613540974
+      Medical_Sign_Sheet_13: 837749656
+      Medical_Sign_Sheet_6: -1705503942
+      Medical_Sign_Sheet_5: 829128681
+      Medical_Sign_Sheet_15: -1292156073
+      Medical_Sign_Sheet_7: 1965933996
+      Medical_Sign_Sheet_8: -228549285
+      Medical_Sign_Sheet_14: 2127264822
+      Medical_Sign_Sheet_16: 1360227266
+      Medical_Sign_Sheet_10: -109184857
+      Medical_Sign_Sheet_2: 465643590
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 

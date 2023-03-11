@@ -1579,6 +1579,90 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: Atlas_Map_69
+      rect:
+        serializedVersion: 2
+        x: 720
+        y: 817
+        width: 128
+        height: 198
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: eaec97406201d1f4d9d8b8098f73ce40
+      internalID: 1443859889
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_Map_70
+      rect:
+        serializedVersion: 2
+        x: 704
+        y: 256
+        width: 307
+        height: 288
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4aa18e5930282284e8b30b59ed9cbca6
+      internalID: 1815175807
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_Map_71
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 64
+        width: 352
+        height: 224
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7c52f87e9d5fd834b802871c73eb6378
+      internalID: 2081344554
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Atlas_Map_72
+      rect:
+        serializedVersion: 2
+        x: 352
+        y: 0
+        width: 448
+        height: 238
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c05eb2ee32279ca40aea1aaf75be7479
+      internalID: -785847904
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1606,6 +1690,7 @@ TextureImporter:
       Atlas_Map_20: -8374146
       Atlas_Map_12: -2040986210
       Atlas_Map_38: 477231831
+      Atlas_Map_72: -785847904
       Atlas_Map_57: 1704455211
       Atlas_Map_6: -2121359125
       Atlas_Map_58: -1263672254
@@ -1614,24 +1699,26 @@ TextureImporter:
       Atlas_Map_52: 1540212987
       Atlas_Map_2: 367436759
       Atlas_Map_13: 808571083
+      Atlas_Map_70: 1815175807
       Atlas_Map_63: -871003132
       Atlas_Map_47: 611606448
       Atlas_Map_66: -637012740
-      Atlas_Map_5: 1190846565
       Atlas_Map_4: -1674196740
       Atlas_Map_60: 523245148
+      Atlas_Map_71: 2081344554
       Atlas_Map_10: -793600174
       Atlas_Map_42: -1121007680
       Atlas_Map_3: 1025536071
       Atlas_Map_64: 726767468
       Atlas_Map_29: 1266486007
-      Atlas_Map_39: 1592105419
       Atlas_Map_36: 819548143
-      Atlas_Map_65: 704707268
+      Atlas_Map_5: 1190846565
+      Atlas_Map_39: 1592105419
       Atlas_Map_0: -2138479821
       Atlas_Map_7: 1469911945
       Atlas_Map_33: -429728793
       Atlas_Map_46: -1952198720
+      Atlas_Map_65: 704707268
       Atlas_Map_68: 1593076774
       Atlas_Map_15: 1504629732
       Atlas_Map_27: 897403690
@@ -1643,6 +1730,7 @@ TextureImporter:
       Atlas_Map_19: -177429038
       Atlas_Map_34: 1868514235
       Atlas_Map_31: -1924330215
+      Atlas_Map_69: 1443859889
       Atlas_Map_37: -788546707
       Atlas_Map_26: -476518851
       Atlas_Map_50: 584336494
