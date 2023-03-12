@@ -20234,6 +20234,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spotlight1 (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 2775442648883443213, guid: 50af04c14185a0c41bd5e76316aaa4dd, type: 3}
+      propertyPath: m_SortingLayer
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775442648883443213, guid: 50af04c14185a0c41bd5e76316aaa4dd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2775442648883443213, guid: 50af04c14185a0c41bd5e76316aaa4dd, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
   m_SourcePrefab: {fileID: 100100000, guid: 50af04c14185a0c41bd5e76316aaa4dd, type: 3}
