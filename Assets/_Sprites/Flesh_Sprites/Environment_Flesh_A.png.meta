@@ -107,7 +107,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Environment_Flesh_A_0
+      name: FleshClump_A
       rect:
         serializedVersion: 2
         x: 0
@@ -128,7 +128,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_2
+      name: FleshBall_A
       rect:
         serializedVersion: 2
         x: 64
@@ -149,7 +149,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_3
+      name: FleshClump_B
       rect:
         serializedVersion: 2
         x: 96
@@ -170,7 +170,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_8
+      name: FleshBall_B
       rect:
         serializedVersion: 2
         x: 0
@@ -191,7 +191,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_9
+      name: FleshGround_A
       rect:
         serializedVersion: 2
         x: 32
@@ -212,7 +212,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_10
+      name: FleshGround_B
       rect:
         serializedVersion: 2
         x: 64
@@ -233,7 +233,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_11
+      name: FleshClump_C
       rect:
         serializedVersion: 2
         x: 96
@@ -254,7 +254,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_14
+      name: FleshMound_A
       rect:
         serializedVersion: 2
         x: 192
@@ -275,7 +275,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_16
+      name: FleshMound_B
       rect:
         serializedVersion: 2
         x: 0
@@ -296,7 +296,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_25
+      name: TendrilSmall_A
       rect:
         serializedVersion: 2
         x: 96
@@ -317,7 +317,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_26
+      name: TendrilSmall_B
       rect:
         serializedVersion: 2
         x: 128
@@ -338,7 +338,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_27
+      name: TendrilSmall_C
       rect:
         serializedVersion: 2
         x: 160
@@ -359,7 +359,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_1
+      name: TendrilMedium_A
       rect:
         serializedVersion: 2
         x: 0
@@ -380,7 +380,7 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Environment_Flesh_A_4
+      name: TendrilMedium_B
       rect:
         serializedVersion: 2
         x: 0
@@ -400,6 +400,258 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: FleshTeethMedium_A
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 255
+        width: 64
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 85b977d0b92c1af40b73a8a4b68b4dd7
+      internalID: -122081262
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshTeethSmall_C
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 255
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 18d1b748f1ed82f43ad386ed5386db43
+      internalID: 1031240666
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tendrilarm_A
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1b85282b37708b14b96be33945864bd6
+      internalID: 931739808
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tendrilarm_B
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8bfed63063a6be6459cad13e101b1683
+      internalID: -465129040
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Tendrilarm_C
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 416
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa5675c69f4b80e4c854bf6a4d7e945b
+      internalID: -1698230654
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TendrilClump_A
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 02fd91af8779e764784f55cce03d6753
+      internalID: -2001053901
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TendrilClump_B
+      rect:
+        serializedVersion: 2
+        x: 320
+        y: 448
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4cba542fd94670a4fab6b5e2c136d27d
+      internalID: -1271486724
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshTeethSmall_A
+      rect:
+        serializedVersion: 2
+        x: 256
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fbefbb3c3dde17f4aa84522c6a103048
+      internalID: -405291826
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshTeethSmall_B
+      rect:
+        serializedVersion: 2
+        x: 288
+        y: 384
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 689bbf2ab96ace24eb96dad571ab2471
+      internalID: 850925401
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshGround_C
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 480
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1e8e3d3501d33144d97e86cf7c96d80c
+      internalID: -962407449
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TendrilLarge_A
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 352
+        width: 224
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 03d81bf306722ab438d11daa91e03ed3
+      internalID: 1166926846
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: TendrilLarge_B
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 287
+        width: 224
+        height: 65
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4bdfcaea46eb9344aa56eb457cf30fb9
+      internalID: -901444315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -411,49 +663,49 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Environment_Flesh_A_2: 441800051
-      Environment_Flesh_A_14: -801564781
-      Environment_Flesh_A_8: 78754295
-      Environment_Flesh_A_17: -1271486724
       Environment_Flesh_A_41: 1643649911
-      Environment_Flesh_A_20: -962407449
-      Environment_Flesh_A_6: 1031240666
-      Environment_Flesh_A_11: 1495491077
+      FleshClump_A: -1216607436
+      FleshTeethMedium_A: -122081262
+      TendrilSmall_C: -1666318174
       Environment_Flesh_A_39: -2098273370
-      Environment_Flesh_A_0: -1216607436
+      FleshMound_A: -801564781
       Environment_Flesh_A_28: 1699866772
-      Environment_Flesh_A_19: 850925401
+      TendrilSmall_A: -299771581
+      FleshTeethSmall_C: 1031240666
       Environment_Flesh_A_24: -1568254434
       Environment_Flesh_A_37: 1597092910
-      Environment_Flesh_A_7: 931739808
+      FleshClump_C: 1495491077
       Environment_Flesh_A_36: 60919315
-      Environment_Flesh_A_12: -465129040
       Environment_Flesh_A_31: 1179884473
-      Environment_Flesh_A_10: 1783590220
       Environment_Flesh_A_30: -1518666521
-      Environment_Flesh_A_16: 1530755601
+      FleshTeethSmall_A: -405291826
       Environment_Flesh_A_29: 622176429
-      Environment_Flesh_A_25: -299771581
+      FleshGround_B: 1783590220
+      FleshMound_B: 1530755601
+      TendrilClump_B: -1271486724
+      FleshBall_B: 78754295
+      TendrilMedium_A: 256671738
       Environment_Flesh_A_35: 1039033021
       Environment_Flesh_A_40: -210928130
       Environment_Flesh_A_42: 1011513851
-      Environment_Flesh_A_3: -1815815981
-      Environment_Flesh_A_22: -901444315
+      FleshBall_A: 441800051
       Environment_Flesh_A_38: -1824539026
+      FleshClump_B: -1815815981
       Environment_Flesh_A_23: -2128055537
-      Environment_Flesh_A_13: -1698230654
-      Environment_Flesh_A_4: -479520368
-      Environment_Flesh_A_27: -1666318174
-      Environment_Flesh_A_21: 1166926846
+      TendrilClump_A: -2001053901
+      Tendrilarm_A: 931739808
+      FleshGround_A: 1716685526
+      TendrilSmall_B: -620501712
       Environment_Flesh_A_33: 548637177
       Environment_Flesh_A_32: -1979526660
-      Environment_Flesh_A_9: 1716685526
-      Environment_Flesh_A_1: 256671738
-      Environment_Flesh_A_26: -620501712
-      Environment_Flesh_A_18: -405291826
-      Environment_Flesh_A_5: -122081262
-      Environment_Flesh_A_15: -2001053901
+      TendrilLarge_A: 1166926846
+      TendrilLarge_B: -901444315
+      FleshTeethSmall_B: 850925401
+      TendrilMedium_B: -479520368
       Environment_Flesh_A_34: -1492432352
+      FleshGround_C: -962407449
+      Tendrilarm_C: -1698230654
+      Tendrilarm_B: -465129040
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
