@@ -232,11 +232,12 @@ namespace Game2D
 
                 case State.FreeMovement:
                 case State.Chase:
-                    playerPosition = _player.position;
+                    Vector3 playerPosition = _player.position;
                     
                     Vector3 npcPosition = this.transform.position;
-                    topCorner = npcPosition + _detectionRange;
-                    bottomCorner = npcPosition - _detectionRange;
+                    Vector3 topCorner = npcPosition + _detectionRange;
+                    Vector3 bottomCorner = npcPosition - _detectionRange;
+                    
                     _chasingPlayer = (
                         playerPosition.x <= topCorner.x
                         && playerPosition.y <= topCorner.y
@@ -247,9 +248,6 @@ namespace Game2D
             }
         }
 
-        public Vector3 playerPosition;
-        public Vector3 topCorner;
-        public Vector3 bottomCorner;
         public void AddToInventory(IInventoryItem inventoryItem)
         {
             
@@ -315,7 +313,9 @@ namespace Game2D
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.25f);
+            Gizmos.color = (!_chasingPlayer)
+                ? new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.5f)
+                : new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
             Gizmos.DrawCube(transform.position, _detectionRange * 2);
         }
     }

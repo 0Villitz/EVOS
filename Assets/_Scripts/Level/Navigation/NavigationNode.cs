@@ -16,10 +16,16 @@ namespace Game2D
         public int id;
 
         public List<NavigationConnectionData> connections;
-        
-        // public UnitMovement GetPossibleMovements()
-        // {
-        //     
-        // }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = new Color(Color.red.r, Color.red.g, Color.red.b, 0.25f);
+            Gizmos.DrawSphere(transform.position, 0.5f);
+
+            foreach (NavigationConnectionData connectionData in connections)
+            {
+                Gizmos.DrawLine(transform.position, connectionData.node.transform.position);
+            }
+        }
     }
 }
