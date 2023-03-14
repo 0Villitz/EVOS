@@ -14,5 +14,11 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/_Scenes/EVOS-MAIN.unity
     guid: 4f255280cdbdce44a935f0ad9def7b1b
+  - enabled: 1
+    path: Assets/_Scenes/EvosTilesetsTestRoom1.unity
+    guid: 8bc1648e1a391e44bae904eaba8f28f2
+  - enabled: 1
+    path: Assets/_Scenes/EvosTilesetsTestRoom2.unity
+    guid: cde7481905850a4439f59a4cdc45ce12
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 1bb0399d4c08e8243a60ddfaca9c0ce3, type: 2}

@@ -47,4 +47,9 @@ public class GameManager : MonoBehaviour
             return;
         GM.fader.RestartLevel();
     }
+
+    public static void ManagerQuitGame()
+    {
+        Application.Quit();
+    }
 }
