@@ -17,7 +17,6 @@ public class PauseMenuActions : MonoBehaviour
         if (gI == null)
             Debug.Log("No Player Found");
         
-
         PauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
         isPaused = false;
@@ -26,39 +25,18 @@ public class PauseMenuActions : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        // TODO: Change this to use the new input system.
-        if (gI.pause)
+        // Toggle pause Menu
+        if (gI.pause & !isPaused)
         {
-            //Pause();
-            TogglePause();
-        }
-    }
-
-    private void Pause()
-    {
-        PauseMenu.SetActive(true);
-        Time.timeScale = 0.0f;
-        isPaused = true;
-    }
-
-    public void TogglePause()
-    {
-        // Refrence to pause menu?
-        if (isPaused)
-        {
-            PauseMenu.SetActive(false);
-            Time.timeScale = 1.0f;
-            //AudioListener.pause = false;
-            isPaused = false;
-
-        }
-        if (!isPaused)
-        {
-
+            isPaused = true;
             PauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
-            //AudioListener.pause = true;
-            isPaused = true;
+        }
+        if (!gI.pause & isPaused)
+        {
+            isPaused = false;
+            PauseMenu.SetActive(false);
+            Time.timeScale = 1.0f;
         }
 
     }
