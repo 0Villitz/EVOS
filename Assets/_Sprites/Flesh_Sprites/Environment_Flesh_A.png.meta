@@ -384,9 +384,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 287
+        y: 288
         width: 160
-        height: 65
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -407,7 +407,7 @@ TextureImporter:
         x: 0
         y: 255
         width: 64
-        height: 32
+        height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -428,7 +428,7 @@ TextureImporter:
         x: 64
         y: 255
         width: 32
-        height: 32
+        height: 33
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -636,9 +636,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 160
-        y: 287
+        y: 288
         width: 224
-        height: 65
+        height: 64
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -648,6 +648,69 @@ TextureImporter:
       bones: []
       spriteID: 4bdfcaea46eb9344aa56eb457cf30fb9
       internalID: -901444315
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshFloor_A
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 223
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2e51c5662a2efba4caaf472b58557d2c
+      internalID: 886931137
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshFloor_B
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 223
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 37e26e2df6d709d4f829eea56a639f72
+      internalID: -1068211891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshFloor_C
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 223
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5c9cca081a2d2fa4989c976ddef0c569
+      internalID: 1882891384
       vertices: []
       indices: 
       edges: []
@@ -664,6 +727,7 @@ TextureImporter:
     secondaryTextures: []
     nameFileIdTable:
       Environment_Flesh_A_41: 1643649911
+      FleshFloor_C: 1882891384
       FleshClump_A: -1216607436
       FleshTeethMedium_A: -122081262
       TendrilSmall_C: -1666318174
@@ -683,6 +747,7 @@ TextureImporter:
       FleshGround_B: 1783590220
       FleshMound_B: 1530755601
       TendrilClump_B: -1271486724
+      FleshFloor_A: 886931137
       FleshBall_B: 78754295
       TendrilMedium_A: 256671738
       Environment_Flesh_A_35: 1039033021
@@ -699,12 +764,13 @@ TextureImporter:
       Environment_Flesh_A_33: 548637177
       Environment_Flesh_A_32: -1979526660
       TendrilLarge_A: 1166926846
+      FleshFloor_B: -1068211891
       TendrilLarge_B: -901444315
       FleshTeethSmall_B: 850925401
       TendrilMedium_B: -479520368
       Environment_Flesh_A_34: -1492432352
-      FleshGround_C: -962407449
       Tendrilarm_C: -1698230654
+      FleshGround_C: -962407449
       Tendrilarm_B: -465129040
   spritePackingTag: 
   pSDRemoveMatte: 0
