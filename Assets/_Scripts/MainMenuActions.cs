@@ -21,7 +21,7 @@ public class MainMenuActions: MonoBehaviour
         // 0 = Main Menu
         // 1 = Main Scene
         // 3+ = Test Scenes
-        GameManager.ManagerLoadLevel(3);
+        GameManager.ManagerLoadLevel(1);
         //SceneManager.LoadScene(mainSceneBuildIndex);
     }
 

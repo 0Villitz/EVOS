@@ -50,6 +50,12 @@ public class GameManager : MonoBehaviour
 
     public static void ManagerQuitGame()
     {
-        Application.Quit();
+        // Use conditional compilation so we can quit from editor and build
+        #if UNITY_STANDALONE
+                Application.Quit();
+        #endif
+        #if UNITY_EDITOR
+                UnityEditor.EditorApplication.isPlaying = false;
+        #endif
     }
 }

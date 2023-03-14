@@ -31,7 +31,7 @@ public class PauseMenuActions : MonoBehaviour
         // Toggle pause Menu
         if (gI.pause & !isPaused)
         {
-            //Toggle on
+            // Pause Game
             DarkenPanel.SetActive(true);
             PauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
@@ -40,13 +40,21 @@ public class PauseMenuActions : MonoBehaviour
 
         if (!gI.pause & isPaused)
         {
-            //Toggle off
+            // Resume / Unpause Game
             DarkenPanel.SetActive(false);
             PauseMenu.SetActive(false);
             Time.timeScale = 1.0f;
             isPaused = false;
         }
 
+    }
+
+    public void Resume()
+    {
+        DarkenPanel.SetActive(false);
+        PauseMenu.SetActive(false);
+        Time.timeScale = 1.0f;
+        isPaused = false;
     }
 
     public void QuitToMainMenu()

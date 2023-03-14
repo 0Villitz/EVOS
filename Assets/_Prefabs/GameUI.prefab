@@ -257,9 +257,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5171195048641173155}
+      - m_Target: {fileID: 407009994}
         m_TargetAssemblyTypeName: PauseMenuActions, Assembly-CSharp
-        m_MethodName: 
+        m_MethodName: QuitToMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -304,7 +304,7 @@ RectTransform:
   - {fileID: 3156719104384977925}
   - {fileID: 8504086684238719785}
   m_Father: {fileID: 0}
-  m_RootOrder: 27
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -323,7 +323,7 @@ Canvas:
   m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
   m_OverridePixelPerfect: 0
@@ -331,7 +331,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 3
   m_TargetDisplay: 0
 --- !u!114 &5171195048641173181
 MonoBehaviour:
@@ -385,7 +385,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7db32ee366b1f0945bbccbbd7b379859, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  FaderObject: {fileID: 0}
   PauseMenu: {fileID: 6695888603288227437}
   DarkenPanel: {fileID: 8366431202848275527}
 --- !u!1 &5171195048767192029
@@ -645,9 +644,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 407009994}
         m_TargetAssemblyTypeName: PauseMenuActions, Assembly-CSharp
-        m_MethodName: TogglePause
+        m_MethodName: Resume
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -820,8 +819,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 5171195049861079557}
   - {fileID: 5171195050081430036}
+  - {fileID: 5171195049861079557}
   - {fileID: 1566113984}
   m_Father: {fileID: 5171195048641173183}
   m_RootOrder: -1
@@ -891,7 +890,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
   m_Color: {r: 0, g: 0, b: 0, a: 0.5019608}
-  m_RaycastTarget: 1
+  m_RaycastTarget: 0
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
   m_OnCullStateChanged:
