@@ -10,6 +10,7 @@ public class MainMenuActions: MonoBehaviour
 
     private void Start()
     {
+        Time.timeScale = 1.0f;
         // Make sure we start from the main menu
         OpenMainMenu();
     }

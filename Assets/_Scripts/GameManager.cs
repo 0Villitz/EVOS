@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
     public static void ManagerLoadLevel(int index)
     {
+        Debug.Log("ManagerLoadLevel" + index);
         if (GM == null)
         {
             return;
@@ -50,7 +51,6 @@ public class GameManager : MonoBehaviour
 
     public static void ManagerQuitGame()
     {
-        // Use conditional compilation so we can quit from editor and build
         #if UNITY_STANDALONE
                 Application.Quit();
         #endif

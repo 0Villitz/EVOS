@@ -35,10 +35,6 @@ public class Fader : MonoBehaviour
         Invoke( "Restart" , 1.5f );
     }
 
-    public void SetAlpha(float alphaValue)
-    {
-        gameObject.GetComponent<CanvasGroup>().alpha = alphaValue;
-    }
 }
 
 

@@ -56,8 +56,9 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Jump.performed += JumpStart;
         myControls.Player.Jump.canceled  += JumpStop;
 
-        myControls.UI.Pause.performed += Pause;
+        //myControls.UI.Pause.performed += Pause;
         myControls.Player.Pause.performed += Pause;
+        //myControls.Player.Pause.canceled += UnPause;
 
         CurrentControlType = ControlType.Player;
         
@@ -73,8 +74,9 @@ public class GatherInput : MonoBehaviour
         myControls.Player.Jump.performed -= JumpStart;
         myControls.Player.Jump.canceled  -= JumpStop;
 
-        myControls.UI.Pause.performed -= Pause;
+        //myControls.UI.Pause.performed -= Pause;
         myControls.Player.Pause.performed -= Pause;
+        //myControls.Player.Pause.canceled -= UnPause;
 
         _GameEventDispatcher.RemoveListener(GameEventType.ShowPuzzleWindow, OnShowPuzzleWindow);
         _GameEventDispatcher.RemoveListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
@@ -184,6 +186,10 @@ public class GatherInput : MonoBehaviour
     private void Pause(InputAction.CallbackContext ctx)
     {
         pause = !pause;
+    }
+    private void UnPause(InputAction.CallbackContext ctx)
+    {
+        pause = false;
     }
 
 }

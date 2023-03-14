@@ -7,6 +7,7 @@ public class PauseMenuActions : MonoBehaviour
 {
     private GatherInput gI;
     private bool isPaused;
+    private bool shouldResume;
     public GameObject PauseMenu;
     public GameObject DarkenPanel;
    
@@ -21,45 +22,68 @@ public class PauseMenuActions : MonoBehaviour
 
         DarkenPanel.SetActive(false);
         PauseMenu.SetActive(false);
-        Time.timeScale = 1.0f;
+        
         isPaused = false;
+        Time.timeScale = 1.0f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        // Toggle pause Menu
-        if (gI.pause & !isPaused)
+        // Toggle pause Menu using inputs
+        if (gI.pause && !isPaused)
         {
-            // Pause Game
-            DarkenPanel.SetActive(true);
-            PauseMenu.SetActive(true);
-            Time.timeScale = 0.0f;
+            PauseGame();
             isPaused = true;
+            
         }
-
-        if (!gI.pause & isPaused)
+        
+        if (!gI.pause && isPaused)
         {
-            // Resume / Unpause Game
-            DarkenPanel.SetActive(false);
-            PauseMenu.SetActive(false);
-            Time.timeScale = 1.0f;
+            ResumeGame();
             isPaused = false;
+            
+        }
+        
+        if (shouldResume && isPaused)
+        {
+            ResumeGame();
+            isPaused = false;
+            shouldResume = false;
         }
 
     }
 
-    public void Resume()
+    public void PauseGame()
     {
-        DarkenPanel.SetActive(false);
+
+        Debug.Log("Pause Game");
+        
+        isPaused = true;
+        DarkenPanel.SetActive(true);
+        PauseMenu.SetActive(true);
+        Time.timeScale = 0.0f;
+    }
+        
+
+    public void ResumeGame()
+    {
+        shouldResume = true;
+        
+        Debug.Log("Resume Game");
         PauseMenu.SetActive(false);
-        Time.timeScale = 1.0f;
+        
         isPaused = false;
+        DarkenPanel.SetActive(false);
+        Time.timeScale = 1.0f;
+
     }
 
     public void QuitToMainMenu()
     {
+        Debug.Log("Quit Button Pressed");
         // TODO: Ask for confirmation
+        ResumeGame();
         GameManager.ManagerLoadLevel(0);
 
     }
