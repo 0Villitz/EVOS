@@ -7,16 +7,19 @@ public class PauseMenuActions : MonoBehaviour
 {
     private GatherInput gI;
     private bool isPaused;
-    public GameObject Fader;
     public GameObject PauseMenu;
+    public GameObject DarkenPanel;
+   
     // Start is called before the first frame update
     void Start()
     {
 
+        
         gI = GameObject.Find("_Player").GetComponent<GatherInput>();
         if (gI == null)
             Debug.Log("No Player Found");
-        
+
+        DarkenPanel.SetActive(false);
         PauseMenu.SetActive(false);
         Time.timeScale = 1.0f;
         isPaused = false;
@@ -28,15 +31,20 @@ public class PauseMenuActions : MonoBehaviour
         // Toggle pause Menu
         if (gI.pause & !isPaused)
         {
-            isPaused = true;
+            //Toggle on
+            DarkenPanel.SetActive(true);
             PauseMenu.SetActive(true);
             Time.timeScale = 0.0f;
+            isPaused = true;
         }
+
         if (!gI.pause & isPaused)
         {
-            isPaused = false;
+            //Toggle off
+            DarkenPanel.SetActive(false);
             PauseMenu.SetActive(false);
             Time.timeScale = 1.0f;
+            isPaused = false;
         }
 
     }
