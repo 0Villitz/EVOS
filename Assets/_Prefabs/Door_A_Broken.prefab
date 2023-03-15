@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1365413088723420510}
   - component: {fileID: 1365413088723420509}
+  - component: {fileID: 6352828794658151949}
   m_Layer: 0
   m_Name: Door_A_Broken
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   m_Children:
   - {fileID: 6394061818761361378}
   m_Father: {fileID: 0}
-  m_RootOrder: 38
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &1365413088723420509
 SpriteRenderer:
@@ -74,7 +75,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 68d94d146a657b641be89525f48c6b72, type: 3}
+  m_Sprite: {fileID: -1285164154, guid: 8f135863e6d5fdf4d9e6d48f643cb957, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -85,6 +86,26 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &6352828794658151949
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1365413088723420508}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: a8978f8cb76fccb47ae65da1b24317e7, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1716865482026494594
 GameObject:
   m_ObjectHideFlags: 0
@@ -110,7 +131,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1716865482026494594}
   m_LocalRotation: {x: -0, y: -0, z: 0.016953865, w: 0.9998563}
-  m_LocalPosition: {x: -0.026, y: 1.325, z: 0}
+  m_LocalPosition: {x: -0.024, y: 1.261, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -132,9 +153,9 @@ MonoBehaviour:
   m_ComponentVersion: 1
   m_LightType: 3
   m_BlendStyleIndex: 0
-  m_FalloffIntensity: 0.964
+  m_FalloffIntensity: 1
   m_Color: {r: 1, g: 0.0698705, b: 0, a: 1}
-  m_Intensity: 4.28
+  m_Intensity: 1.55
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
   m_ApplyToSortingLayers: 7ba884a39dd653eb000000008dcfc9548b828fefcf4c4160bfd973ad
@@ -185,7 +206,7 @@ MonoBehaviour:
   m_PointLightInnerAngle: 360
   m_PointLightOuterAngle: 360
   m_PointLightInnerRadius: 0
-  m_PointLightOuterRadius: 0.84332395
+  m_PointLightOuterRadius: 1.39
   m_ShapeLightParametricSides: 5
   m_ShapeLightParametricAngleOffset: 0
   m_ShapeLightParametricRadius: 1
