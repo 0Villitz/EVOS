@@ -1072,6 +1072,384 @@ TextureImporter:
       indices: 
       edges: []
       weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_46
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 59f4cbe24ffaced41ac4900245510eb0
+      internalID: -1234347052
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_47
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4a764e0715cdb8649b275c733c28c3d2
+      internalID: 48778971
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_48
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ffc0553a12b1c5a44acaca3f5da7ce00
+      internalID: 1841245667
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_49
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: fd9a7b167c6b62242bc32f2d68f7ce65
+      internalID: 1274853048
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_50
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 72f4b012ab0f1f140ad2bf9878c04d97
+      internalID: 264280590
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_51
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3928abb52b89538449f3b3db874a7f3c
+      internalID: 527096425
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_52
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c0902a42f67d07b4481a23d1f5d0007f
+      internalID: 1381800168
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_53
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e63db5984235551449017584fb06bc67
+      internalID: 1310641081
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_54
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: f6ce7e6e3b7d203468d2c89527617362
+      internalID: -946624340
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_55
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a9204ec45a63bf94380dad60ad4d07c9
+      internalID: -2116151630
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_56
+      rect:
+        serializedVersion: 2
+        x: 128
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 08890065903ce7e4295778729b13cfd6
+      internalID: -56021118
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_57
+      rect:
+        serializedVersion: 2
+        x: 160
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 609c4d958efa1af4cbc0e986a6b0766c
+      internalID: 972055744
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_58
+      rect:
+        serializedVersion: 2
+        x: 192
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4eb6a03409d440b4e81c5f8844283906
+      internalID: 1710408758
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_59
+      rect:
+        serializedVersion: 2
+        x: 224
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2ca1556be277aff4e8c2c30f8e9f6791
+      internalID: 1157015562
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_60
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 7f09a59df43acb44e885271e84c797b6
+      internalID: -1238310662
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_61
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: dd00c5db2d18a644f9962e928f2743d9
+      internalID: 1073684552
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_62
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 65bc2cc3a37463545a864ed16da12307
+      internalID: 486104747
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: MallTileSet_A_63
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 0
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0df99708a55395f48a7e2472de1e030c
+      internalID: 224866575
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
@@ -1088,8 +1466,11 @@ TextureImporter:
       MallTileSet_A_2: 1495672583
       MallTileSet_A_23: 1049072805
       MallTileSet_A_9: 553724267
+      MallTileSet_A_46: -1234347052
       MallTileSet_A_4: -829182680
       MallTileSet_A_35: 1234493228
+      MallTileSet_A_62: 486104747
+      MallTileSet_A_57: 972055744
       MallTileSet_A_19: -887633060
       MallTileSet_A_22: 1639937876
       MallTileSet_A_27: 1027215221
@@ -1097,10 +1478,20 @@ TextureImporter:
       MallTileSet_A_14: -747462886
       MallTileSet_A_25: 271114744
       MallTileSet_A_5: 293728656
+      MallTileSet_A_49: 1274853048
       MallTileSet_A_42: 641358688
+      MallTileSet_A_59: 1157015562
+      MallTileSet_A_50: 264280590
+      MallTileSet_A_54: -946624340
       MallTileSet_A_18: -1878534635
+      MallTileSet_A_53: 1310641081
+      MallTileSet_A_58: 1710408758
       MallTileSet_A_37: -129482614
+      MallTileSet_A_63: 224866575
+      MallTileSet_A_55: -2116151630
       MallTileSet_A_13: -1875882631
+      MallTileSet_A_52: 1381800168
+      MallTileSet_A_47: 48778971
       MallTileSet_A_24: 46016555
       MallTileSet_A_16: -613314111
       MallTileSet_A_0: 1268293359
@@ -1109,8 +1500,10 @@ TextureImporter:
       MallTileSet_A_41: 1473555713
       MallTileSet_A_31: -656361382
       MallTileSet_A_34: -1756624125
+      MallTileSet_A_60: -1238310662
       MallTileSet_A_30: -1885409841
       MallTileSet_A_26: 42206619
+      MallTileSet_A_56: -56021118
       MallTileSet_A_20: 1795621735
       MallTileSet_A_33: 1669577714
       MallTileSet_A_6: 1585032219
@@ -1122,6 +1515,7 @@ TextureImporter:
       MallTileSet_A_11: 61539786
       MallTileSet_A_44: -1247802595
       MallTileSet_A_21: 2136531784
+      MallTileSet_A_48: 1841245667
       MallTileSet_A_39: -161902222
       MallTileSet_A_45: -853828746
       MallTileSet_A_8: -728327737
@@ -1129,6 +1523,8 @@ TextureImporter:
       MallTileSet_A_1: -1341723249
       MallTileSet_A_28: 1231749181
       MallTileSet_A_12: -1328406212
+      MallTileSet_A_51: 527096425
+      MallTileSet_A_61: 1073684552
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
