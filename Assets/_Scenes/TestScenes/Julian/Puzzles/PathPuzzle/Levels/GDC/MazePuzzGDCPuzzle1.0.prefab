@@ -197,7 +197,7 @@ GameObject:
   - component: {fileID: 4367308247768346668}
   - component: {fileID: 852967454531116800}
   m_Layer: 0
-  m_Name: MazePuzzGDCPuzzle3
+  m_Name: MazePuzzGDCPuzzle1.0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
