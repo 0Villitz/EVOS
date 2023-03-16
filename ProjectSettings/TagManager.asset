@@ -43,6 +43,9 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Player
+    uniqueID: 1614892239
+    locked: 0
   - name: Background
     uniqueID: 2743380091
     locked: 0
@@ -58,9 +61,21 @@ TagManager:
   - name: Enemy
     uniqueID: 4019159691
     locked: 0
-  - name: Player
-    uniqueID: 1614892239
+  - name: BackgroundB
+    uniqueID: 139223775
+    locked: 0
+  - name: Enemy2
+    uniqueID: 3244102821
+    locked: 0
+  - name: BackgroundA
+    uniqueID: 230932015
     locked: 0
   - name: ForeGround
     uniqueID: 2910050751
+    locked: 0
+  - name: Wall
+    uniqueID: 3561729067
+    locked: 0
+  - name: Player2
+    uniqueID: 2811700533
     locked: 0
