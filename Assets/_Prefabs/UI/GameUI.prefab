@@ -234,7 +234,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!1 &1668532094648082787
 GameObject:
@@ -296,10 +296,10 @@ Canvas:
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
   m_OverrideSorting: 1
-  m_OverridePixelPerfect: 0
+  m_OverridePixelPerfect: 1
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
@@ -576,6 +576,80 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!1 &3126574035011074539
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 812439984950978508}
+  - component: {fileID: 205002295560196034}
+  - component: {fileID: 8126270224228994865}
+  m_Layer: 5
+  m_Name: ConfirmationWindows
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &812439984950978508
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126574035011074539}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 5871667116598901635}
+  - {fileID: 1003314897369583309}
+  m_Father: {fileID: 5171195048641173183}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 200, y: 200}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!225 &205002295560196034
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126574035011074539}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
+--- !u!223 &8126270224228994865
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3126574035011074539}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 0
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 12
+  m_TargetDisplay: 0
 --- !u!1 &4719027182896070464
 GameObject:
   m_ObjectHideFlags: 0
@@ -826,6 +900,7 @@ GameObject:
   - component: {fileID: 5171195048641173183}
   - component: {fileID: 407009994}
   - component: {fileID: 5171195048641173182}
+  - component: {fileID: 4523796474275361614}
   - component: {fileID: 5171195048641173181}
   - component: {fileID: 5171195048641173180}
   - component: {fileID: 4561717006292028714}
@@ -851,8 +926,7 @@ RectTransform:
   m_Children:
   - {fileID: 885710617042971180}
   - {fileID: 8504086684238719785}
-  - {fileID: 5871667116598901635}
-  - {fileID: 1003314897369583309}
+  - {fileID: 812439984950978508}
   m_Father: {fileID: 0}
   m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -890,7 +964,7 @@ Canvas:
   m_GameObject: {fileID: 5171195048641173155}
   m_Enabled: 1
   serializedVersion: 3
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
   m_PixelPerfect: 1
@@ -903,6 +977,18 @@ Canvas:
   m_SortingLayerID: -447059551
   m_SortingOrder: 15
   m_TargetDisplay: 0
+--- !u!225 &4523796474275361614
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171195048641173155}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!114 &5171195048641173181
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -998,6 +1084,7 @@ GameObject:
   - component: {fileID: 5171195050081430036}
   - component: {fileID: 5171195050081430038}
   - component: {fileID: 5171195050081430037}
+  - component: {fileID: 8261251331841133565}
   m_Layer: 5
   m_Name: Title
   m_TagString: Untagged
@@ -1122,6 +1209,28 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!223 &8261251331841133565
+Canvas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5171195050081430043}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_RenderMode: 2
+  m_Camera: {fileID: 0}
+  m_PlaneDistance: 100
+  m_PixelPerfect: 0
+  m_ReceivesEvents: 1
+  m_OverrideSorting: 1
+  m_OverridePixelPerfect: 0
+  m_SortingBucketNormalizedSize: 0
+  m_AdditionalShaderChannelsFlag: 25
+  m_UpdateRectTransformForStandalone: 0
+  m_SortingLayerID: 0
+  m_SortingOrder: 5
+  m_TargetDisplay: 0
 --- !u!1 &5708721111208096287
 GameObject:
   m_ObjectHideFlags: 0
@@ -1282,7 +1391,7 @@ Canvas:
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
-  m_SortingOrder: 10
+  m_SortingOrder: 4
   m_TargetDisplay: 0
 --- !u!1 &6695888603288227437
 GameObject:
@@ -1302,7 +1411,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &8504086684238719785
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1338,9 +1447,9 @@ Canvas:
   m_RenderMode: 2
   m_Camera: {fileID: 0}
   m_PlaneDistance: 100
-  m_PixelPerfect: 0
+  m_PixelPerfect: 1
   m_ReceivesEvents: 1
-  m_OverrideSorting: 1
+  m_OverrideSorting: 0
   m_OverridePixelPerfect: 1
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 25
@@ -1500,7 +1609,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 5171195048641173183}
+    m_TransformParent: {fileID: 812439984950978508}
     m_Modifications:
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_Pivot.x
@@ -1556,15 +1665,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1602,6 +1711,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: GameUIController, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 4108894753714700596, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108894753714700596, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 11
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108894753714700596, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108894753714700596, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_OverridePixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 6570826465185943659, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
@@ -1620,7 +1745,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8907560473819210109, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9108300533913424822, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -1635,6 +1764,18 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8907560473819210109, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
   m_PrefabInstance: {fileID: 1082593552799969265}
   m_PrefabAsset: {fileID: 0}
+--- !u!225 &3099830698948967169
+CanvasGroup:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8401506986017476236}
+  m_Enabled: 1
+  m_Alpha: 1
+  m_Interactable: 1
+  m_BlocksRaycasts: 1
+  m_IgnoreParentGroups: 0
 --- !u!1001 &2125883327343923681
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1881,7 +2022,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 2
-    m_TransformParent: {fileID: 5171195048641173183}
+    m_TransformParent: {fileID: 812439984950978508}
     m_Modifications:
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_Pivot.x
@@ -1937,15 +2078,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 210077694725415228, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_AnchoredPosition.x
@@ -1995,6 +2136,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4108894753714700596, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_PixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108894753714700596, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4108894753714700596, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_OverridePixelPerfect
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4309172113698376484, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_OverrideSorting
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4332413585433254914, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5003573117180278668, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_text
       value: 'EXIT TO MAIN MENU?
@@ -2019,7 +2180,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8907560473819210109, guid: 655a7ff11cc3dcd478be9db62ffa933d, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
