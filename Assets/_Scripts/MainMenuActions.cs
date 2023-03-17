@@ -5,10 +5,12 @@ using UnityEngine.SceneManagement;
 
 public class MainMenuActions: MonoBehaviour
 {
-    public GameObject OptionsMenu;
-    public GameObject CreditsMenu;
-    public GameObject MainMenu;
-    public GameObject ConfirmQuitWindow;
+    public GameObject optionsMenu;
+    public GameObject creditsMenu;
+    public GameObject mainMenu;
+    public GameObject confirmQuitWindow;
+    public GameObject mainMenuButtons;
+    public GameObject evosLogo;
 
     private void Start()
     {
@@ -30,33 +32,46 @@ public class MainMenuActions: MonoBehaviour
 
     public void OpenMainMenu()
     {
-        OptionsMenu.SetActive(false);
-        OptionsMenu.SetActive(false);
-        MainMenu.SetActive(true);
-        ConfirmQuitWindow.SetActive(false);
+        mainMenu.SetActive(true);
+        mainMenuButtons.SetActive(true);
+        evosLogo.SetActive(true);
+
+        optionsMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+        confirmQuitWindow.SetActive(false);
 
     }
 
     public void OpenOptionsMenu()
     {
-        MainMenu.SetActive(false);
-        MainMenu.SetActive(false);
-        OptionsMenu.SetActive(true);
-        ConfirmQuitWindow.SetActive(false);
+        optionsMenu.SetActive(true);
+
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(false);
+        confirmQuitWindow.SetActive(false);
 
     }
     public void OpenCreditsMenu()
     {
-        MainMenu.SetActive(false);
-        CreditsMenu.SetActive(true);
-        OptionsMenu.SetActive(false);
-        ConfirmQuitWindow.SetActive(false);
+        creditsMenu.SetActive(true);
+
+        evosLogo.SetActive(false);
+        mainMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+        confirmQuitWindow.SetActive(false);
 
     }
 
     public void ConfirmQuit()
     {
-        ConfirmQuitWindow.SetActive(true);
+        confirmQuitWindow.SetActive(true);
+        evosLogo.SetActive(false);
+
+        mainMenuButtons.SetActive(false);
+        creditsMenu.SetActive(false);
+        mainMenu.SetActive(false);
+        optionsMenu.SetActive(false);
+
     }
 
     public void QuitGame()

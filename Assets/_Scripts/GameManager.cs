@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     public static void ManagerLoadLevel(int index)
     {
-        Debug.Log("ManagerLoadLevel" + index);
+        Debug.Log("ManagerLoadLevel: Index number " + index);
         if (GM == null)
         {
             return;
