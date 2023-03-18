@@ -12,9 +12,9 @@ GameObject:
   - component: {fileID: 2854635397422262187}
   - component: {fileID: 7805011728143187768}
   - component: {fileID: 6909330894814257293}
-  - component: {fileID: 6640480202354813203}
+  - component: {fileID: 1849513195328669346}
   m_Layer: 14
-  m_Name: BytestreamMORPH
+  m_Name: Frogger Stretch
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -54,7 +54,7 @@ MonoBehaviour:
     m_Bits: 12288
   _MoveSpeed: 3
   _MoveDirection: 2
-  _Size: {x: 1, y: 3}
+  _Size: {x: 1, y: 1}
 --- !u!70 &7805011728143187768
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -69,7 +69,7 @@ CapsuleCollider2D:
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1, y: 3}
+  m_Size: {x: 1, y: 1}
   m_Direction: 0
 --- !u!212 &6909330894814257293
 SpriteRenderer:
@@ -117,13 +117,13 @@ SpriteRenderer:
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 1
-  m_Size: {x: 1, y: 3}
+  m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &6640480202354813203
+--- !u!95 &1849513195328669346
 Animator:
   serializedVersion: 4
   m_ObjectHideFlags: 0
@@ -133,7 +133,7 @@ Animator:
   m_GameObject: {fileID: 8563802780868391526}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 4e5f546a00fdbfc4f9dc9e2c4a921da2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 19d4909f49e4e144984469330f6b334c, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
