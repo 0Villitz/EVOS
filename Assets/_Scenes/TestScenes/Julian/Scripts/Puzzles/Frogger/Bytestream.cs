@@ -82,7 +82,7 @@ namespace Puzzles
 
                 RaycastHit2D hit = Physics2D.CapsuleCast(
                     currentPosition,
-                    _Collider.size,
+                    _Collider.size * transform.localScale,
                     _Collider.direction,
                     0,
                     directionVector,
