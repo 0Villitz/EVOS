@@ -112,7 +112,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 384
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -131,9 +131,9 @@ TextureImporter:
       name: Pursuer_Sheet_1
       rect:
         serializedVersion: 2
-        x: 192
+        x: 256
         y: 384
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -152,9 +152,9 @@ TextureImporter:
       name: Pursuer_Sheet_2
       rect:
         serializedVersion: 2
-        x: 384
+        x: 512
         y: 384
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -173,9 +173,9 @@ TextureImporter:
       name: Pursuer_Sheet_3
       rect:
         serializedVersion: 2
-        x: 576
+        x: 768
         y: 384
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -196,7 +196,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 192
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -215,9 +215,9 @@ TextureImporter:
       name: Pursuer_Sheet_5
       rect:
         serializedVersion: 2
-        x: 192
+        x: 256
         y: 192
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -236,9 +236,9 @@ TextureImporter:
       name: Pursuer_Sheet_6
       rect:
         serializedVersion: 2
-        x: 384
+        x: 512
         y: 192
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -257,9 +257,9 @@ TextureImporter:
       name: Pursuer_Sheet_7
       rect:
         serializedVersion: 2
-        x: 576
+        x: 768
         y: 192
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -280,7 +280,7 @@ TextureImporter:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -299,9 +299,9 @@ TextureImporter:
       name: Pursuer_Sheet_9
       rect:
         serializedVersion: 2
-        x: 192
+        x: 256
         y: 0
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -320,9 +320,9 @@ TextureImporter:
       name: Pursuer_Sheet_10
       rect:
         serializedVersion: 2
-        x: 384
+        x: 512
         y: 0
-        width: 192
+        width: 256
         height: 192
       alignment: 0
       pivot: {x: 0, y: 0}
@@ -333,27 +333,6 @@ TextureImporter:
       bones: []
       spriteID: 894ba061825284e43a2577ca4e775e9b
       internalID: -603695053
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Pursuer_Sheet_11
-      rect:
-        serializedVersion: 2
-        x: 576
-        y: 0
-        width: 192
-        height: 192
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: ce741684cfdb38246910d7978f8df2bf
-      internalID: 1181515878
       vertices: []
       indices: 
       edges: []
@@ -375,7 +354,6 @@ TextureImporter:
       Pursuer_Sheet_5: -1026800612
       Pursuer_Sheet_0: 1826060959
       Pursuer_Sheet_10: -603695053
-      Pursuer_Sheet_11: 1181515878
       Pursuer_Sheet_2: 257324990
       Pursuer_Sheet_7: -2081839156
       Pursuer_Sheet_3: 1592227968
