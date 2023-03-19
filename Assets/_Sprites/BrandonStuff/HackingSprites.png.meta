@@ -111,7 +111,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 224
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -132,7 +132,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 32
-        y: 224
+        y: 128
         width: 32
         height: 32
       alignment: 0
@@ -152,8 +152,8 @@ TextureImporter:
       name: HackingSprites_2
       rect:
         serializedVersion: 2
-        x: 64
-        y: 224
+        x: 0
+        y: 96
         width: 32
         height: 32
       alignment: 0
@@ -174,7 +174,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 128
+        y: 0
         width: 64
         height: 96
       alignment: 0
@@ -186,6 +186,27 @@ TextureImporter:
       bones: []
       spriteID: b00678813e3e66d4180e1d13ffc746c3
       internalID: 845672486
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: HackingSprites_3
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 96
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b3e9e229b1636534ba05989c921189a2
+      internalID: -427719840
       vertices: []
       indices: 
       edges: []
@@ -211,7 +232,6 @@ TextureImporter:
       HackingSprites_2: 671882517
       HackingSprites_0: 818935171
       HackingSprites_5: -1594802239
-      HackingSprites_10: -1708095329
   spritePackingTag: 
   pSDRemoveMatte: 0
   userData: 
