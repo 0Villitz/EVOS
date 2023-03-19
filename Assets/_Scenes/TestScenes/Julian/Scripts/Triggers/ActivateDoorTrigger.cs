@@ -3,12 +3,13 @@ using System.Collections.Generic;
     
 public class ActivateDoorTrigger : TriggerBase
 {
-    public List<Door> _TargetList;
+    
+    //public List<Door> _TargetList;
     public Action     _ActiveState;   
     
     protected override void OnGameTrigger()
     {
-        foreach (var targetDoor in _TargetList)
+       /* foreach (var targetDoor in _TargetList)
         {
             if (_ActiveState == Action.Open)
             {
@@ -18,7 +19,7 @@ public class ActivateDoorTrigger : TriggerBase
             {
                 //targetDoor.Close();
             }
-        }
+        }*/
     }
 
     [Serializable]
