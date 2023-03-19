@@ -9,6 +9,7 @@ TagManager:
   - Border
   - Ground
   - Platform
+  - Terminal
   layers:
   - Default
   - TransparentFX
@@ -78,4 +79,7 @@ TagManager:
     locked: 0
   - name: Player
     uniqueID: 1614892239
+    locked: 0
+  - name: UI
+    uniqueID: 850509181
     locked: 0
