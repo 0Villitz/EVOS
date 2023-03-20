@@ -661,7 +661,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -682,7 +682,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -703,7 +703,7 @@ TextureImporter:
         width: 32
         height: 32
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -711,6 +711,27 @@ TextureImporter:
       bones: []
       spriteID: 5c9cca081a2d2fa4989c976ddef0c569
       internalID: 1882891384
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: FleshTeethSmall_D
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 256
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b56bd9429597c664a8f5fd4b10ada16a
+      internalID: 548225333
       vertices: []
       indices: 
       edges: []
@@ -769,6 +790,7 @@ TextureImporter:
       FleshTeethSmall_B: 850925401
       TendrilMedium_B: -479520368
       Environment_Flesh_A_34: -1492432352
+      FleshTeethSmall_D: 548225333
       Tendrilarm_C: -1698230654
       FleshGround_C: -962407449
       Tendrilarm_B: -465129040
