@@ -3,23 +3,22 @@ using System.Collections.Generic;
     
 public class ActivateDoorTrigger : TriggerBase
 {
-    
-    //public List<Door> _TargetList;
+    public List<DoorController> _TargetList;
     public Action     _ActiveState;   
     
     protected override void OnGameTrigger()
     {
-       /* foreach (var targetDoor in _TargetList)
+        foreach (var targetDoor in _TargetList)
         {
             if (_ActiveState == Action.Open)
             {
-                //targetDoor.Open();
+                targetDoor.UnlockDoors();
             }
             else if(_ActiveState == Action.Close)
             {
-                //targetDoor.Close();
+                targetDoor.LockDoors();
             }
-        }*/
+        }
     }
 
     [Serializable]
