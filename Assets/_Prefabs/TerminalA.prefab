@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5722818111008765090}
   - component: {fileID: 1046854639633077547}
+  - component: {fileID: 8427541475943161726}
   m_Layer: 7
   m_Name: Light 2D
   m_TagString: Untagged
@@ -53,11 +54,11 @@ MonoBehaviour:
   m_LightType: 1
   m_BlendStyleIndex: 0
   m_FalloffIntensity: 0.736
-  m_Color: {r: 0.9960785, g: 0.654902, b: 0.18823531, a: 1}
+  m_Color: {r: 0.9339623, g: 0.12591985, b: 0, a: 1}
   m_Intensity: 0.6
   m_LightVolumeIntensity: 1
   m_LightVolumeIntensityEnabled: 0
-  m_ApplyToSortingLayers: 7ba884a38dcfc954
+  m_ApplyToSortingLayers: 7ba884a39dd653eb000000008dcfc9548b828fefdf624c08a5145dc12fbec30dbfd973ad2bac4bd4352597a7cf4c41607dbdb132
   m_LightCookieSprite: {fileID: 21300000, guid: 7722f5bd2f438004bb58a57fec0b422f, type: 3}
   m_DeprecatedPointLightCookieSprite: {fileID: 0}
   m_LightOrder: 0
@@ -254,6 +255,26 @@ MonoBehaviour:
   - {x: 0.17609869, y: -0.09061071, z: 0}
   - {x: 0.17490448, y: 0.21186423, z: 0}
   - {x: -0.1699599, y: 0.22714838, z: 0}
+--- !u!95 &8427541475943161726
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6208395709445753655}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &8843582642170931387
 GameObject:
   m_ObjectHideFlags: 0
@@ -268,6 +289,7 @@ GameObject:
   - component: {fileID: 5294908798208991611}
   - component: {fileID: 9062099686306300875}
   - component: {fileID: 4855885964007495985}
+  - component: {fileID: 2256029320647896975}
   m_Layer: 7
   m_Name: TerminalA
   m_TagString: Untagged
@@ -289,7 +311,7 @@ Transform:
   m_Children:
   - {fileID: 5722818111008765090}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7896412890603053526
 SpriteRenderer:
@@ -371,7 +393,7 @@ MonoBehaviour:
   - {x: 0.17263746, y: -0.36640978, z: 0}
   m_ShapePathHash: 460911013
   m_Mesh: {fileID: 0}
-  m_InstanceId: 55532
+  m_InstanceId: 170696
 --- !u!61 &5294908798208991611
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -417,7 +439,7 @@ MonoBehaviour:
   _PuzzleType: 2
   _RandomLevelCount: 1
   _SpecificLevelList: []
-  _LockoutTimeInSec: 0
+  _unlockTime: 3.4028235e+38
 --- !u!114 &4855885964007495985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -433,4 +455,25 @@ MonoBehaviour:
   _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
   type: 2
   _Key: terminal-a
+  _LockoutTimeInSeconds: 3
   _Terminal: {fileID: 9062099686306300875}
+--- !u!95 &2256029320647896975
+Animator:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8843582642170931387}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 59d196453c78d3d45ae668918eecdd94, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0

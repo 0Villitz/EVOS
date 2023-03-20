@@ -6710,6 +6710,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 4367308247768346668}
     m_Modifications:
+    - target: {fileID: 1280169933539591128, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_Color.b
+      value: 0.16981131
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280169933539591128, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_Color.g
+      value: 0.16981131
+      objectReference: {fileID: 0}
+    - target: {fileID: 1280169933539591128, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_Color.r
+      value: 0.16981131
+      objectReference: {fileID: 0}
     - target: {fileID: 2269566959864380230, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
       propertyPath: m_Pivot.x
       value: 0
@@ -6797,6 +6809,18 @@ PrefabInstance:
     - target: {fileID: 2269566959864380231, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
       propertyPath: m_Name
       value: HackStatic
+      objectReference: {fileID: 0}
+    - target: {fileID: 6206640727800078525, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_Color.b
+      value: 0.41313633
+      objectReference: {fileID: 0}
+    - target: {fileID: 6206640727800078525, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_Color.g
+      value: 0.41313633
+      objectReference: {fileID: 0}
+    - target: {fileID: 6206640727800078525, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_Color.r
+      value: 0.41509432
       objectReference: {fileID: 0}
     - target: {fileID: 6468613490655278652, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
       propertyPath: m_Color.a

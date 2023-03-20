@@ -16,7 +16,8 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     public int       _RandomLevelCount;
     public List<PuzzleBase> _SpecificLevelList;
 
-    private float _unlockTime;
+   [SerializeField] private float _unlockTime = float.MaxValue;
+    
     
     public float InteractCutoffDistance => _InteractableCutoffDistance;
 
@@ -69,4 +70,9 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     {
         _unlockTime = Time.time + lockoutTimeInSeconds;
     } 
+
+    public void Unlock()
+    {
+        _unlockTime = 0;
+    }
 }
