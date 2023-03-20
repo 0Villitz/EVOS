@@ -1,5 +1,4 @@
 
-using System;
 using System.Collections.Generic;
 using Game2D.Inventory;
 using UnityEngine;
@@ -37,7 +36,7 @@ namespace Game2D
         
         [SerializeField] private Vector3 _detectionRange = new Vector3(10f, 5f, 0f);
         [SerializeField] private bool _chasingPlayer = false;
-
+        
         public void Initialize(List<NavigationNode> path, Transform player)
         {
             _player = player;
@@ -154,14 +153,6 @@ namespace Game2D
                         Debug.LogError("State " + _currentState + " not implemented");
                         break;
                 }
-
-                if (frameUnitMovement != _lastUnitMovement)
-                {
-                    // TODO: Trigger animation here.  We can make animation triggers
-                    // names the same as the values in UnitMovement
-                }
-
-                _lastUnitMovement = frameUnitMovement;
             }
         }
 

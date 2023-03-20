@@ -17,8 +17,6 @@ namespace Game2D
 
         [SerializeField] private State _currentState = State.FreeMovement;
 
-        private UnitMovement _lastUnitMovement = UnitMovement.Idle;
-
         private Dictionary<State, UnitMovement[]> _actionsToStateMap;
         private IUnitState _activeState;
 
@@ -26,7 +24,7 @@ namespace Game2D
 
         private InputData _inputData = new InputData();
         private CharacterController _characterController;
-
+        
         #region Monobehavior
 
         void Awake()
@@ -122,14 +120,6 @@ namespace Game2D
                         Debug.LogError("State " + _currentState + " not implemented");
                         break;
                 }
-
-                if (frameUnitMovement != _lastUnitMovement)
-                {
-                    // TODO: Trigger animation here.  We can make animation triggers
-                    // names the same as the values in UnitMovement
-                }
-
-                _lastUnitMovement = frameUnitMovement;
             }
         }
 
