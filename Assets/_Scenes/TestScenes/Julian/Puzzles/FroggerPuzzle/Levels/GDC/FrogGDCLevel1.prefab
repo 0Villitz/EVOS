@@ -7065,13 +7065,25 @@ PrefabInstance:
       propertyPath: m_Name
       value: HackFade
       objectReference: {fileID: 0}
-    - target: {fileID: 2232370073233144133, guid: 828880fd89efed94486e6025dc790805, type: 3}
-      propertyPath: m_IsActive
+    - target: {fileID: 2545093984712579525, guid: 828880fd89efed94486e6025dc790805, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545093984712579525, guid: 828880fd89efed94486e6025dc790805, type: 3}
+      propertyPath: m_Color.a
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7519418210015011999, guid: 828880fd89efed94486e6025dc790805, type: 3}
-      propertyPath: m_Enabled
-      value: 1
+    - target: {fileID: 2545093984712579525, guid: 828880fd89efed94486e6025dc790805, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545093984712579525, guid: 828880fd89efed94486e6025dc790805, type: 3}
+      propertyPath: m_Color.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2545093984712579525, guid: 828880fd89efed94486e6025dc790805, type: 3}
+      propertyPath: m_Color.r
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_AddedGameObjects: []
@@ -8422,3 +8434,13 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2897536736706608429, guid: 72558f1a20b5dd54ebcd18931481b3b9, type: 3}
   m_PrefabInstance: {fileID: 9109110063372442322}
   m_PrefabAsset: {fileID: 0}
+--- !u!1029 &102900000
+DefaultAsset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_Message: This default asset was generated because the worker process has crashed
+    during last import.
+  m_IsWarning: 1
