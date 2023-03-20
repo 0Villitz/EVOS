@@ -69,10 +69,12 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     public void Lockout(float lockoutTimeInSeconds)
     {
         _unlockTime = Time.time + lockoutTimeInSeconds;
+        GetComponent<Animator>()?.SetInteger("UnlockState", 2);
     } 
 
     public void Unlock()
     {
         _unlockTime = 0;
+        GetComponent<Animator>()?.SetInteger("UnlockState", 1);
     }
 }
