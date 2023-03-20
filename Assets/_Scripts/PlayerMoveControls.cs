@@ -73,6 +73,8 @@ public class PlayerMoveControls : MonoBehaviour
     
     private void JumpPlayer()
     {
+        return;
+        /*
         if(gI.jumpInput)
         {
             if (isGrounded)
@@ -83,6 +85,7 @@ public class PlayerMoveControls : MonoBehaviour
 
         }
         gI.jumpInput = false;
+        */
     }
 
     private void CheckGroundStatus()
