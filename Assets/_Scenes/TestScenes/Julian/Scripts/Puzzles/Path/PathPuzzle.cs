@@ -119,6 +119,8 @@ namespace Puzzles
         private void PuzzleComplete(bool wasSuccessful)
         {
             _movableObstacleList.ForEach(x => x.IsPaused = true);
+            _audioPlayerList.ForEach(x => x.Reset());
+            
             _Player.IsAlive = false;
             
             _ButtonGroup.gameObject.SetActive(true);

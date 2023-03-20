@@ -18,6 +18,7 @@ namespace Puzzles
         public void Reset()
         {
             _hasPlayedAudio = false;
+            _AudioSource.Stop();
         }
         
         private void HandlePlayAudio()
