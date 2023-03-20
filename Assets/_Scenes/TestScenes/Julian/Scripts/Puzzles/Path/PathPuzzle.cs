@@ -19,8 +19,9 @@ namespace Puzzles
 #endregion
 
 #region Private vars
-        private Vector2 _startOffset;
-        private List<MovablePlatform> _movableObstacleList;
+        private Vector2                 _startOffset;
+        private List<MovablePlatform>   _movableObstacleList;
+        private List<PuzzleAudioPlayer> _audioPlayerList;
 #endregion
 
 #region Public API
@@ -30,6 +31,7 @@ namespace Puzzles
             _Player.Init(OnObstacleHit);
 
             _movableObstacleList = GetComponentsInChildren<MovablePlatform>().ToList();
+            _audioPlayerList     = GetComponentsInChildren<PuzzleAudioPlayer>().ToList();
         }
 #endregion
 
@@ -66,7 +68,8 @@ namespace Puzzles
         private void StartPuzzle()
         {
             _movableObstacleList.ForEach(x => x.Reset(false));
-
+            _audioPlayerList.ForEach(x => x.Reset());
+            
             _Player.Reset();
 
             Vector3 playerPos = _Player.transform.position;
@@ -97,22 +100,31 @@ namespace Puzzles
 
         private void OnObstacleHit(IPuzzleInteractable interactable)
         {
-            if (interactable is PuzzleAudioPlayer)
-            {
-                (interactable as PuzzleAudioPlayer).PlayerCollision(_Player._Collider);
-            }
-            else
-            {
-                _movableObstacleList.ForEach(x => x.IsPaused = true);
 
-                _ButtonGroup.gameObject.SetActive(true);
-                Cursor.visible   = true;
-                Cursor.lockState = CursorLockMode.None;
-                
-                bool wasPuzzleSuccess = interactable is PuzzleGoal;
-
-                TriggerPuzzleComplete(wasPuzzleSuccess);
+            switch (interactable)
+            {
+                case PuzzleAudioPlayer:
+                    break;
+                case PuzzleGoal:
+                    PuzzleComplete(true);
+                    break;
+                 case MovablePlatform:
+                 case ImpassableWall:
+                 default:
+                        PuzzleComplete(false);
+                        break;
             }
+        }
+
+        private void PuzzleComplete(bool wasSuccessful)
+        {
+            _movableObstacleList.ForEach(x => x.IsPaused = true);
+            _Player.IsAlive = false;
+            
+            _ButtonGroup.gameObject.SetActive(true);
+            Cursor.visible   = true;
+            
+            TriggerPuzzleComplete(wasSuccessful);
         }
 #endregion
     }

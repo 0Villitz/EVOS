@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 1494111142756857440}
   - component: {fileID: 1494111142756857374}
   - component: {fileID: 1365287855171497141}
+  - component: {fileID: 3989851013726442300}
   m_Layer: 12
   m_Name: StaticWall
   m_TagString: Untagged
@@ -111,3 +112,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &3989851013726442300
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1494111142756857441}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 892ef3ea936e4634dbc34cce13528c00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
