@@ -3411,7 +3411,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: waitTime
-      value: 3.25
+      value: 3.12
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: easeAmount
@@ -4435,7 +4435,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: waitTime
-      value: 3.25
+      value: 3.12
       objectReference: {fileID: 0}
     - target: {fileID: 5582896792403178434, guid: d4f00bb236de95945ae2bbaf82dea6d9, type: 3}
       propertyPath: easeAmount
