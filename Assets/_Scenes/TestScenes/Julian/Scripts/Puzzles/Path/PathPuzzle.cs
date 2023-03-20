@@ -97,14 +97,22 @@ namespace Puzzles
 
         private void OnObstacleHit(IPuzzleInteractable interactable)
         {
-            _movableObstacleList.ForEach(x => x.IsPaused = true);
+            if (interactable is PuzzleAudioPlayer)
+            {
+                (interactable as PuzzleAudioPlayer).PlayerCollision(_Player._Collider);
+            }
+            else
+            {
+                _movableObstacleList.ForEach(x => x.IsPaused = true);
 
-            _ButtonGroup.gameObject.SetActive(true);
-            Cursor.visible = true;
+                _ButtonGroup.gameObject.SetActive(true);
+                Cursor.visible   = true;
+                Cursor.lockState = CursorLockMode.None;
+                
+                bool wasPuzzleSuccess = interactable is PuzzleGoal;
 
-            bool wasPuzzleSuccess = interactable is PuzzleGoal;
-
-            TriggerPuzzleComplete(wasPuzzleSuccess);
+                TriggerPuzzleComplete(wasPuzzleSuccess);
+            }
         }
 #endregion
     }
