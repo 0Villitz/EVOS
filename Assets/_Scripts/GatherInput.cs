@@ -12,6 +12,7 @@ public class GatherInput : MonoBehaviour
         None,
         Player,
         UI,
+        Locker
     }
 
     public ControlType CurrentControlType
@@ -31,6 +32,9 @@ public class GatherInput : MonoBehaviour
                 case ControlType.UI: 
                     EnableUIControls();
                     break;
+                case ControlType.Locker:
+                    EnableLockerControls();
+                    break;
             }
         }
     }
@@ -40,6 +44,7 @@ public class GatherInput : MonoBehaviour
     private ControlType currentControlType;
 
     public bool ShouldInteract => myControls.Player.Interact.WasPressedThisFrame();
+    public bool ShouldInteractLocker => myControls.Locker.Interact.WasPressedThisFrame();
     
     public float                     valueX;
     public bool                      jumpInput;
@@ -142,12 +147,14 @@ public class GatherInput : MonoBehaviour
     {
         myControls.Player.Enable();
         myControls.UI.Disable();
+        myControls.Locker.Disable();
     }
     
     private void EnableUIControls()
     {
         myControls.UI.Enable();
         myControls.Player.Disable();
+        myControls.Locker.Disable();
         // Prevent player from moonwalking without user input!
         valueX = 0;
     }
@@ -156,6 +163,15 @@ public class GatherInput : MonoBehaviour
     {
         myControls.Player.Disable();
         myControls.UI.Disable();
+        myControls.Locker.Disable();
+        valueX = 0;
+    }
+
+    private void EnableLockerControls()
+    {
+        myControls.Player.Disable();
+        myControls.UI.Disable();
+        myControls.Locker.Enable();
         valueX = 0;
     }
 

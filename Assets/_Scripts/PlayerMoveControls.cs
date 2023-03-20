@@ -62,7 +62,7 @@ public class PlayerMoveControls : MonoBehaviour
             return;
         }
         
-        if (!gI.ShouldInteract)
+        if (!gI.ShouldInteract && !gI.ShouldInteractLocker)
         {
             return;
         }

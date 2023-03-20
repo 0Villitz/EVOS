@@ -442,6 +442,54 @@
                     "isPartOfComposite": true
                 }
             ]
+        },
+        {
+            "name": "Locker",
+            "id": "79b7ae36-04e7-45fe-b331-bf1f22de828c",
+            "actions": [
+                {
+                    "name": "ExitLocker",
+                    "type": "Button",
+                    "id": "85ffe37a-fb0a-474a-8833-cb7628c49aef",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                },
+                {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "1b1fdfd1-83a4-4a2b-a85d-9ce90ed22e59",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "c538df04-f774-49f0-8c21-f08c17d2d313",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KB and mouse;Controller",
+                    "action": "ExitLocker",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "387eac3b-e9b3-4598-bf7b-942cf59f4b7d",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "KB and mouse;Controller",
+                    "action": "Interact",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
         }
     ],
     "controlSchemes": [

@@ -464,6 +464,54 @@ public partial class @Controls : IInputActionCollection2, IDisposable
                     ""isPartOfComposite"": true
                 }
             ]
+        },
+        {
+            ""name"": ""Locker"",
+            ""id"": ""79b7ae36-04e7-45fe-b331-bf1f22de828c"",
+            ""actions"": [
+                {
+                    ""name"": ""ExitLocker"",
+                    ""type"": ""Button"",
+                    ""id"": ""85ffe37a-fb0a-474a-8833-cb7628c49aef"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""1b1fdfd1-83a4-4a2b-a85d-9ce90ed22e59"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                }
+            ],
+            ""bindings"": [
+                {
+                    ""name"": """",
+                    ""id"": ""c538df04-f774-49f0-8c21-f08c17d2d313"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB and mouse;Controller"",
+                    ""action"": ""ExitLocker"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""387eac3b-e9b3-4598-bf7b-942cf59f4b7d"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""KB and mouse;Controller"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                }
+            ]
         }
     ],
     ""controlSchemes"": [
@@ -507,6 +555,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         m_UI_Point = m_UI.FindAction("Point", throwIfNotFound: true);
         m_UI_FroggerMoveHorizontal = m_UI.FindAction("FroggerMoveHorizontal", throwIfNotFound: true);
         m_UI_FroggerMoveVertical = m_UI.FindAction("FroggerMoveVertical", throwIfNotFound: true);
+        // Locker
+        m_Locker = asset.FindActionMap("Locker", throwIfNotFound: true);
+        m_Locker_ExitLocker = m_Locker.FindAction("ExitLocker", throwIfNotFound: true);
+        m_Locker_Interact = m_Locker.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -668,6 +720,47 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         }
     }
     public UIActions @UI => new UIActions(this);
+
+    // Locker
+    private readonly InputActionMap m_Locker;
+    private ILockerActions m_LockerActionsCallbackInterface;
+    private readonly InputAction m_Locker_ExitLocker;
+    private readonly InputAction m_Locker_Interact;
+    public struct LockerActions
+    {
+        private @Controls m_Wrapper;
+        public LockerActions(@Controls wrapper) { m_Wrapper = wrapper; }
+        public InputAction @ExitLocker => m_Wrapper.m_Locker_ExitLocker;
+        public InputAction @Interact => m_Wrapper.m_Locker_Interact;
+        public InputActionMap Get() { return m_Wrapper.m_Locker; }
+        public void Enable() { Get().Enable(); }
+        public void Disable() { Get().Disable(); }
+        public bool enabled => Get().enabled;
+        public static implicit operator InputActionMap(LockerActions set) { return set.Get(); }
+        public void SetCallbacks(ILockerActions instance)
+        {
+            if (m_Wrapper.m_LockerActionsCallbackInterface != null)
+            {
+                @ExitLocker.started -= m_Wrapper.m_LockerActionsCallbackInterface.OnExitLocker;
+                @ExitLocker.performed -= m_Wrapper.m_LockerActionsCallbackInterface.OnExitLocker;
+                @ExitLocker.canceled -= m_Wrapper.m_LockerActionsCallbackInterface.OnExitLocker;
+                @Interact.started -= m_Wrapper.m_LockerActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_LockerActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_LockerActionsCallbackInterface.OnInteract;
+            }
+            m_Wrapper.m_LockerActionsCallbackInterface = instance;
+            if (instance != null)
+            {
+                @ExitLocker.started += instance.OnExitLocker;
+                @ExitLocker.performed += instance.OnExitLocker;
+                @ExitLocker.canceled += instance.OnExitLocker;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
+            }
+        }
+    }
+    public LockerActions @Locker => new LockerActions(this);
     private int m_KBandmouseSchemeIndex = -1;
     public InputControlScheme KBandmouseScheme
     {
@@ -698,5 +791,10 @@ public partial class @Controls : IInputActionCollection2, IDisposable
         void OnPoint(InputAction.CallbackContext context);
         void OnFroggerMoveHorizontal(InputAction.CallbackContext context);
         void OnFroggerMoveVertical(InputAction.CallbackContext context);
+    }
+    public interface ILockerActions
+    {
+        void OnExitLocker(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }
