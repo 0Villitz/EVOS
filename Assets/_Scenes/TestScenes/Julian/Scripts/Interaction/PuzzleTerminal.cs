@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Puzzles;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
 {
@@ -21,6 +22,9 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
    [SerializeField] private bool _startUnlock = false;
    
     public float InteractCutoffDistance => _InteractableCutoffDistance;
+
+    public string _nextScene = null;
+
 
 
     public void Interact()
@@ -77,6 +81,7 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     {
         _unlockTime = 0;
         GetComponent<Animator>()?.SetInteger("UnlockState", 1);
+        LoadNextScene();
     }
 
     public void Setup()
@@ -84,6 +89,20 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         if (_startUnlock)
         {
             Unlock();
+        }
+    }
+
+    private void Start()
+    {
+        Setup();
+    }
+    private void LoadNextScene()
+    {
+        if (!string.IsNullOrEmpty(_nextScene))
+        {
+            int y = SceneManager.GetActiveScene().buildIndex;
+            SceneManager.UnloadSceneAsync(y);
+            SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Additive);
         }
     }
 }
