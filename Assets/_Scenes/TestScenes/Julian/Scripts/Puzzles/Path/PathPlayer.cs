@@ -17,13 +17,13 @@ namespace Puzzles
 #region Private vars
 
         private Vector3                     _startPos;
-        private bool                        _isAlive;
         private Action<IPuzzleInteractable> _onPlayerCollision;
 
 #endregion
 
 #region Public API
-
+        public bool IsAlive;
+        
         public void Init(Action<IPuzzleInteractable> onPlayerCollision)
         {
             _startPos          = transform.position;
@@ -33,12 +33,12 @@ namespace Puzzles
         public void Reset()
         {
             transform.position = _startPos;
-            _isAlive           = true;
+            IsAlive           = true;
         }
 
         public void Move(Vector2 newPosition)
         {
-            if (!_isAlive)
+            if (!IsAlive)
             {
                 return;
             }
@@ -89,13 +89,18 @@ namespace Puzzles
             bool hasCollision = hit.collider != null;
             if (hasCollision)
             {
-                _isAlive = false;
-
                 // Move the player to the position where it made contact with an obstacle/wall 
                 // and offset it by it's radius 
-                adjustedPosition = hit.point + (hit.normal * scaledRadius);
-
                 var interactable = hit.collider.GetComponent<IPuzzleInteractable>();
+                if (interactable is PuzzleAudioPlayer)
+                {
+                    hasCollision = false;
+                }
+                else
+                {
+                     adjustedPosition = hit.point + (hit.normal * scaledRadius);
+                }
+                
                 _onPlayerCollision?.Invoke(interactable);
             }
 

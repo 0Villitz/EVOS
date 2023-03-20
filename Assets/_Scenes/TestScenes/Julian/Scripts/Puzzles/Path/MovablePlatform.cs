@@ -107,6 +107,11 @@ namespace Puzzles
             Vector2 currentPosition2D = transform.position;
             Vector3 currentRotation   = transform.localRotation.eulerAngles;
 
+            if (Application.isPlaying && (_globalWayPoints == null || _globalWayPoints.Length != localWaypoints.Length))
+            {
+                return;
+            }
+            
             for (int i = 0; i < localWaypoints.Length; ++i)
             {
                 Gizmos.color = Color.red;
