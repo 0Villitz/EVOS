@@ -28,6 +28,10 @@ namespace Game2D
 
         private float _gravitySpeed;
 
+        [SerializeField] private CharacterAnimation _characterAnimation;
+        
+        private UnitMovement _lastUnitMovement = UnitMovement.Idle;
+        
         #region IUnitState
 
         public void Initialize()
@@ -85,6 +89,16 @@ namespace Game2D
 
             _inputData = null;
             
+            if (frameUnitMovement != _lastUnitMovement)
+            {
+                if (_characterAnimation != null)
+                {
+                    _characterAnimation.TriggerAnimation(frameUnitMovement);
+                }
+
+                _lastUnitMovement = frameUnitMovement;
+            }
+            
             return frameUnitMovement;
         }
 
@@ -135,5 +149,6 @@ namespace Game2D
         }
 
         #endregion
+
     }
 }
