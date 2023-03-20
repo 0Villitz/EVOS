@@ -82,6 +82,10 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         _unlockTime = 0;
         GetComponent<Animator>()?.SetInteger("UnlockState", 1);
         LoadNextScene();
+        if (_PuzzleType == PuzzleType.Frogger && this.gameObject.name == "DoorTerminal")
+        {
+            _nextScene = "EVOS_EndCutscene";
+        }
     }
 
     public void Setup()
