@@ -22,9 +22,10 @@ public class DoorController : MonoBehaviour
             return isDoorLocked;
         }
     }
-    
 
+    public bool startLocked = false;
     private bool canUseDoor = true;
+
     [SerializeField] public string interactionPrompt = "";
     private TextMeshProUGUI promptTextDisplay;
     private GameObject UIObject;
@@ -46,6 +47,8 @@ public class DoorController : MonoBehaviour
         {
             player = GameObject.FindGameObjectWithTag("Player");
         }
+
+        isDoorLocked = startLocked;
     }
 
     // Update is called once per frame
@@ -93,6 +96,11 @@ public class DoorController : MonoBehaviour
     public void UnlockDoors()
     {
         isDoorLocked = false;
+    }
+
+    public void LockDoors()
+    {
+        isDoorLocked = true;
     }
 
     public void CloseDoorsAfterFade()
