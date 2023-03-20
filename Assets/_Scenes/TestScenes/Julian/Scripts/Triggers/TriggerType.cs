@@ -6,6 +6,7 @@ public enum TriggerType
     None,
     PuzzleSolved,
     TerminalLockout,
+    TerminalUnlock,
 }
 
 
