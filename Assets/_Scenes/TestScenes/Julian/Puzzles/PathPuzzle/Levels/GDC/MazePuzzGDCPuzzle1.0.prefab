@@ -6826,6 +6826,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: HackStatic
       objectReference: {fileID: 0}
+    - target: {fileID: 2447311744334152565, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.73484
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447311744334152565, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.73484
+      objectReference: {fileID: 0}
+    - target: {fileID: 2447311744334152565, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.73484
+      objectReference: {fileID: 0}
     - target: {fileID: 6206640727800078525, guid: b0d2ef97ca43c214faf910776b76ac02, type: 3}
       propertyPath: m_Color.a
       value: 0.34901962
