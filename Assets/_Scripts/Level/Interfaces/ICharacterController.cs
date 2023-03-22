@@ -1,8 +1,5 @@
 
-using System.Collections.Generic;
-using Game2D.GamePhysics;
 using Game2D.Inventory;
-using UnityEngine;
 
 namespace Game2D
 {

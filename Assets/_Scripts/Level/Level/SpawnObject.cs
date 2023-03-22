@@ -15,7 +15,7 @@ public class SpawnObject : MonoBehaviour
 
         NPCController npc = GameObject.Instantiate(_npcPrefabs[npcIdx], _npcSection);
         npc.transform.position = transform.position;
-        npc.Initialize(_path, player);
+        npc.Initialize(_path, player.GetComponent<IPlayerCharacter>());
         return npc;
     }
 }

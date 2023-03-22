@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class NPCController : MonoBehaviour, ICharacterController
+    public class NPCController : MonoBehaviour, ICharacterController, IAttackerObject
     {
         private enum State
         {
@@ -16,6 +16,7 @@ namespace Game2D
             Attack
         }
 
+        [SerializeField] private int _attackDamage = 100;
         [SerializeField] private State _currentState = State.FreeMovement;
         [SerializeField] private UnitMovement _lastUnitMovement = UnitMovement.Idle;
         [SerializeField] private UnitMovement _currentUnitMovement = UnitMovement.Idle;
@@ -31,13 +32,15 @@ namespace Game2D
         private NavigationNode _fromNode;
         private NavigationNode _toNode;
         private List<NavigationNode> _path;
-        private Transform _player;
+        private Game2D.IPlayerCharacter _player;
         private int _targetNodeIndex = -1;
         
         [SerializeField] private Vector3 _detectionRange = new Vector3(10f, 5f, 0f);
         [SerializeField] private bool _chasingPlayer = false;
+
+        [SerializeField] private AnimationEventHelper _animationEventHelper;
         
-        public void Initialize(List<NavigationNode> path, Transform player)
+        public void Initialize(List<NavigationNode> path, Game2D.IPlayerCharacter player)
         {
             _player = player;
             _path = path;
@@ -57,18 +60,47 @@ namespace Game2D
                 {
                     UnitMovement.MoveHorizontal,
                 },
+                [State.Attack] = new []
+                {
+                    UnitMovement.AttackHorizontal
+                }
             };
 
             _activeState = GetComponent<ActionController>();
             _activeState.Initialize();
+            
+            _animationEventHelper.AddEvent(OnAnimationEvent);
 
             _lastUnitMovement = UnitMovement.Idle;
             _currentUnitMovement = UnitMovement.Idle;
         }
+
+        private void OnAnimationEvent(AnimationEvent animationEvent)
+        {
+            switch (_currentState)
+            {
+                case State.Attack:
+                    if (animationEvent.stringParameter == AnimationEventKey.Attack)
+                    {
+                        _player.TakeDamage(_attackDamage, this);
+                    }
+                    else if (animationEvent.stringParameter == AnimationEventKey.End)
+                    {
+                        _inputData.RemoveInteractableEntity(_player);
+                        _chasingPlayer = false;
+                    }
+                    break;
+            }    
+        }
         
         #region Monobehavior
-        
-        void Update()
+
+        private void OnDestroy()
+        {
+            _animationEventHelper.RemoveEvent(OnAnimationEvent);
+        }
+
+        private void Update()
         {
             _inputData.ResetInputs();
 
@@ -84,8 +116,9 @@ namespace Game2D
                         _currentUnitMovement = MoveToNextNodeInPath();
                         _currentState = State.FreeMovement;
                     }
+
                     break;
-                    
+
                 case State.FreeMovement:
                     if (_chasingPlayer)
                     {
@@ -116,18 +149,54 @@ namespace Game2D
                             _currentUnitMovement = MoveToNextNodeInPath();
                         }
                     }
+
                     break;
-                
+
                 case State.Chase:
-                    if (!_chasingPlayer)
+                    if (_player != null && _player.GetHealth() > 0)
                     {
-                        _currentUnitMovement = MoveToNextNodeInPath();
-                        _currentState = State.FreeMovement;
+                        if (_chasingPlayer && _inputData.interactWithEntities)
+                        {
+                            _currentUnitMovement = GetMovementToPlayer();
+                            _currentState = State.Attack;
+                        }
+                        else if (!_chasingPlayer)
+                        {
+                            _currentUnitMovement = MoveToNextNodeInPath();
+                            _currentState = State.FreeMovement;
+                        }
+                        else
+                        {
+                            _currentUnitMovement = GetMovementToPlayer();
+                        }
                     }
                     else
                     {
-                        _currentUnitMovement = GetMovementToPlayer();
+                        _chasingPlayer = false;
+                        _currentUnitMovement = MoveToNextNodeInPath();
+                        _currentState = State.FreeMovement;
+                        _inputData.RemoveInteractableEntity(_player);
                     }
+
+                    break;
+
+                case State.Attack:
+                    if (_player != null && _player.GetHealth() > 0)
+                    {
+                        if (!_chasingPlayer)
+                        {
+                            _currentUnitMovement = MoveToNextNodeInPath();
+                            _currentState = State.FreeMovement;
+                        }
+                    }
+                    else
+                    {
+                        _chasingPlayer = false;
+                        _currentUnitMovement = MoveToNextNodeInPath();
+                        _currentState = State.FreeMovement;
+                        _inputData.RemoveInteractableEntity(_player);
+                    }
+
                     break;
             }
 
@@ -145,10 +214,11 @@ namespace Game2D
                     case State.FreeMovement:
                     case State.Spawn:
                     case State.Chase:
+                    case State.Attack:
                         frameUnitMovement =
                             _activeState.ProcessInput(actionTypes, _inputData, _characterController);
-
                         break;
+                    
                     default:
                         Debug.LogError("State " + _currentState + " not implemented");
                         break;
@@ -190,6 +260,7 @@ namespace Game2D
                 
                 case State.FreeMovement:
                 case State.Chase:
+                case State.Attack:
                     int horizontalInput = (_currentUnitMovement & UnitMovement.MoveRight) == UnitMovement.MoveRight
                         ? 1
                         : (_currentUnitMovement & UnitMovement.MoveLeft) == UnitMovement.MoveLeft
@@ -222,21 +293,50 @@ namespace Game2D
                     break;
 
                 case State.FreeMovement:
+                    if (_player != null && _player.GetHealth() > 0)
+                    {
+                        _chasingPlayer = IsDetectingPlayer();
+                    }
+
+                    break;
+                    
                 case State.Chase:
-                    Vector3 playerPosition = _player.position;
-                    
-                    Vector3 npcPosition = this.transform.position;
-                    Vector3 topCorner = npcPosition + _detectionRange;
-                    Vector3 bottomCorner = npcPosition - _detectionRange;
-                    
-                    _chasingPlayer = (
-                        playerPosition.x <= topCorner.x
-                        && playerPosition.y <= topCorner.y
-                        && playerPosition.x >= bottomCorner.x
-                        && playerPosition.y >= bottomCorner.y
-                    );
+                    if (PlayerWithInAttackRange())
+                    {
+                        _inputData.EnableInteractionWithEntities();
+                        _inputData.AddInteractableEntity(_player);
+                    }
+                    else
+                    {
+                        _chasingPlayer = IsDetectingPlayer();
+                    }
                     break;
             }
+        }
+
+        [SerializeField] private float _sqrAttackRange;
+        private bool PlayerWithInAttackRange()
+        {
+            Vector3 playerPosition = _player.GetTransform().position;
+            Vector3 npcPosition = this.transform.position;
+            float sqrDistance = (playerPosition - npcPosition).sqrMagnitude;
+            return sqrDistance <= _sqrAttackRange;
+        }
+
+        private bool IsDetectingPlayer()
+        {
+            Vector3 playerPosition = _player.GetTransform().position;
+                    
+            Vector3 npcPosition = this.transform.position;
+            Vector3 topCorner = npcPosition + _detectionRange;
+            Vector3 bottomCorner = npcPosition - _detectionRange;
+
+            return (
+                playerPosition.x <= topCorner.x
+                && playerPosition.y <= topCorner.y
+                && playerPosition.x >= bottomCorner.x
+                && playerPosition.y >= bottomCorner.y
+            );
         }
 
         public void AddToInventory(IInventoryItem inventoryItem)
@@ -249,7 +349,6 @@ namespace Game2D
             
         }
 
-        
         private UnitMovement MoveToNextNodeInPath()
         {   
             if (_targetNodeIndex >= 0)
@@ -295,7 +394,7 @@ namespace Game2D
 
         private UnitMovement GetMovementToPlayer()
         {
-            Vector3 directionToPlayer = _player.transform.position - this.transform.position;
+            Vector3 directionToPlayer = _player.GetTransform().position - this.transform.position;
             float dotProduct = Vector3.Dot(directionToPlayer.normalized, this.transform.forward);
             return dotProduct > 0
                 ? UnitMovement.MoveRight
@@ -304,10 +403,32 @@ namespace Game2D
 
         private void OnDrawGizmos()
         {
-            Gizmos.color = (!_chasingPlayer)
-                ? new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.5f)
-                : new Color(Color.red.r, Color.red.g, Color.red.b, 0.5f);
+            Gizmos.color = (_currentState != State.Chase && _currentState != State.Attack)
+                ? new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.25f)
+                : new Color(Color.red.r, Color.red.g, Color.red.b, 0.25f);
             Gizmos.DrawCube(transform.position, _detectionRange * 2);
+
+            Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.5f);
+            float radius = Mathf.Sqrt(_sqrAttackRange);
+            Gizmos.DrawSphere(transform.position, radius);
         }
+
+        #region IAttackerObject
+        
+        public Transform GetTransform()
+        {
+            return this.transform;
+        }
+
+        public void ProcessAttack()
+        {
+            if (_player.GetHealth() <= 0)
+            {
+                _inputData.RemoveInteractableEntity(_player);
+                _player = null;
+            }
+        }
+        
+        #endregion
     }
 }

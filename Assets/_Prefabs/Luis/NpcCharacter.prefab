@@ -234,6 +234,7 @@ MonoBehaviour:
   _jumpSpeed: 3
   _gravityMultiplier: 0.05
   _movementSpeed: 1.5
+  _attackDamage: 100
   _characterAnimation: {fileID: 1473728656831786064}
 --- !u!114 &4734440963573693141
 MonoBehaviour:
@@ -247,11 +248,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f2535e2a138cb40dba6ab1c9d5f92f02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _attackDamage: 100
   _currentState: 1
   _lastUnitMovement: 0
   _currentUnitMovement: 0
   _detectionRange: {x: 10, y: 5, z: 0}
   _chasingPlayer: 0
+  _animationEventHelper: {fileID: 5756447835986783977}
+  _sqrAttackRange: 3
 --- !u!114 &1473728656831786064
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -279,6 +283,7 @@ GameObject:
   - component: {fileID: 5687398579752185382}
   - component: {fileID: 330496896364916181}
   - component: {fileID: 3297737690266639537}
+  - component: {fileID: 5756447835986783977}
   m_Layer: 0
   m_Name: 2D_Geo
   m_TagString: Untagged
@@ -373,3 +378,15 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &5756447835986783977
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8331578925478579780}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd411e5d37798409ca5b1e679e80937f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
