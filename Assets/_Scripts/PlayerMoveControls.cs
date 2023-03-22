@@ -1,9 +1,9 @@
+
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerMoveControls : MonoBehaviour
+public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
 {
     public float speed;
     public float jumpForce;
@@ -15,6 +15,8 @@ public class PlayerMoveControls : MonoBehaviour
     private int direction = 1;
 
     public PlayerInteractableSystem _PlayerInteractableSystem;
+    
+    [SerializeField] private int _health = 100;
     
     public float rayLength;
     public LayerMask groundLayer;
@@ -149,5 +151,35 @@ public class PlayerMoveControls : MonoBehaviour
         yield return new WaitForSeconds(duration);
         knockBack = false;
         rb.velocity = Vector2.zero;
-    }    
+    }
+
+    #region Game2D.IInteractableObject
+
+    void Game2D.IInteractableObject.Interact(Game2D.ICharacterController characterController)
+    {
+        
+    }
+    
+    #endregion
+    
+    #region Game2D.IPlayerCharacter
+
+    Transform Game2D.IPlayerCharacter.GetTransform()
+    {
+        return this.transform;
+    }
+    
+    void Game2D.IPlayerCharacter.TakeDamage(int damage, Game2D.IAttackerObject attackingObject)
+    {
+        _health -= damage;
+        attackingObject.ProcessAttack();
+        GameObject.Destroy(this.gameObject);
+    }
+    
+    public int GetHealth()
+    {
+        return _health;
+    }
+
+    #endregion
 }

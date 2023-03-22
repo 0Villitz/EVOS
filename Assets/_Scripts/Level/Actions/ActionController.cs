@@ -14,6 +14,8 @@ namespace Game2D
         private float _gravity = -9.81f;
 
         [SerializeField] private float _movementSpeed = 5;
+        [SerializeField] private int _attackDamage = 100;
+        
         private int _groundDirection = 0;
         private float _groundSpeed = 0f;
 
@@ -44,6 +46,7 @@ namespace Game2D
                 [UnitMovement.Jump] = new JumpAction(this, _jumpSpeed),
                 [UnitMovement.Falling] = new FallAction(this, _gravitySpeed),
                 [UnitMovement.Climb] = new ClimbAction(_movementSpeed),
+                [UnitMovement.AttackHorizontal] = new AttackHorizontalAction(_attackDamage)
             };
         }
 

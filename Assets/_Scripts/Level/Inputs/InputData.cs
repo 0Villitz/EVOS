@@ -39,12 +39,18 @@ namespace Game2D
 
         public void AddInteractableEntity(IInteractableObject entity)
         {
-            _interactableEntities.Add(entity);
+            if (entity != null)
+            {
+                _interactableEntities.Add(entity);
+            }
         }
 
         public void RemoveInteractableEntity(IInteractableObject entity)
         {
-            _interactableEntities.Remove(entity);
+            if (entity != null)
+            {
+                _interactableEntities.Remove(entity);
+            }
         }
 
         private HashSet<IInteractableObject> _interactableEntities = new HashSet<IInteractableObject>();
