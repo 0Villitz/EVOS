@@ -16,6 +16,12 @@ namespace Game2D
             _gravitySpeed = gravitySpeed;
         }
 
+        public FallAction(ActionController controller)
+        {
+            _gameUnit = controller;
+            _gravitySpeed = controller.GravitySpeed;
+        }
+
         public UnitMovement Execute(
             ref Vector2 direction2d,
             ref Vector2 movement,

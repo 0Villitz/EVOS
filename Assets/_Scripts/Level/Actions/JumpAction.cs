@@ -15,6 +15,12 @@ namespace Game2D
             _jumpSpeed = jumpSpeed;
         }
 
+        public JumpAction(ActionController controller)
+        {
+            _gameUnit = controller;
+            _jumpSpeed = controller.JumpSpeed;
+        }
+
         public UnitMovement Execute(
             ref Vector2 direction2d, 
             ref Vector2 movement,

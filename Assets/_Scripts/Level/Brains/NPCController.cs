@@ -1,33 +1,30 @@
 
+using System;
 using System.Collections.Generic;
-using Game2D.Inventory;
 using UnityEngine;
 
 namespace Game2D
 {
-    public class NPCController : MonoBehaviour, ICharacterController, IAttackerObject
+    [Serializable]
+    public class CharacterStateConfig
     {
-        private enum State
-        {
-            None,
-            Spawn,
-            FreeMovement,
-            Chase,
-            Attack
-        }
+        public CharacterActionState state;
+        public CharacterActionState nextState;
+        public UnitMovement[] actions;
+    }
 
+    public interface ICharacterState
+    {
+        CharacterActionState NextState { get; }
+        UnitMovement [] Actions { get; }
+        void EnterState();
+        bool ExitState();
+    }
+    
+    public class NPCController : BaseController, IAttackerObject
+    {
         [SerializeField] private int _attackDamage = 100;
-        [SerializeField] private State _currentState = State.FreeMovement;
-        [SerializeField] private UnitMovement _lastUnitMovement = UnitMovement.Idle;
         [SerializeField] private UnitMovement _currentUnitMovement = UnitMovement.Idle;
-
-        private Dictionary<State, UnitMovement[]> _actionsToStateMap;
-        private IUnitState _activeState;
-
-        private Dictionary<int, IInteractableObject> _interactableObjects = new Dictionary<int, IInteractableObject>();
-
-        private InputData _inputData = new InputData();
-        private CharacterController _characterController;
         
         private NavigationNode _fromNode;
         private NavigationNode _toNode;
@@ -44,42 +41,43 @@ namespace Game2D
         {
             _player = player;
             _path = path;
-            _characterController = GetComponent<CharacterController>();
+            
+            Initialize();
+        }
 
-            _actionsToStateMap = new Dictionary<State, UnitMovement[]>()
+        protected override void Initialize()
+        {
+            _animationEventHelper.AddEvent(OnAnimationEvent);
+            _currentUnitMovement = UnitMovement.Idle;
+            
+            _actionsToStateMap = new Dictionary<Game2D.CharacterActionState, UnitMovement[]>()
             {
-                [State.Spawn] = new[]
+                [Game2D.CharacterActionState.Spawn] = new[]
                 {
                     UnitMovement.Falling
                 },
-                [State.FreeMovement] = new[]
+                [Game2D.CharacterActionState.FreeMovement] = new[]
                 {
                     UnitMovement.MoveHorizontal,
                 },
-                [State.Chase] = new[]
+                [Game2D.CharacterActionState.Chase] = new[]
                 {
                     UnitMovement.MoveHorizontal,
                 },
-                [State.Attack] = new []
+                [Game2D.CharacterActionState.Attack] = new []
                 {
                     UnitMovement.AttackHorizontal
                 }
             };
-
-            _activeState = GetComponent<ActionController>();
-            _activeState.Initialize();
             
-            _animationEventHelper.AddEvent(OnAnimationEvent);
-
-            _lastUnitMovement = UnitMovement.Idle;
-            _currentUnitMovement = UnitMovement.Idle;
+            base.Initialize();
         }
 
         private void OnAnimationEvent(AnimationEvent animationEvent)
         {
             switch (_currentState)
             {
-                case State.Attack:
+                case CharacterActionState.Attack:
                     if (animationEvent.stringParameter == AnimationEventKey.Attack)
                     {
                         _player.TakeDamage(_attackDamage, this);
@@ -110,20 +108,20 @@ namespace Game2D
 
             switch (_currentState)
             {
-                case State.Spawn:
+                case CharacterActionState.Spawn:
                     if (_characterController.isGrounded)
                     {
                         _currentUnitMovement = MoveToNextNodeInPath();
-                        _currentState = State.FreeMovement;
+                        _currentState = CharacterActionState.FreeMovement;
                     }
 
                     break;
 
-                case State.FreeMovement:
+                case CharacterActionState.FreeMovement:
                     if (_chasingPlayer)
                     {
                         _targetNodeIndex = -1;
-                        _currentState = State.Chase;
+                        _currentState = CharacterActionState.Chase;
                     }
                     else
                     {
@@ -152,18 +150,18 @@ namespace Game2D
 
                     break;
 
-                case State.Chase:
+                case CharacterActionState.Chase:
                     if (_player != null && _player.GetHealth() > 0)
                     {
                         if (_chasingPlayer && _inputData.interactWithEntities)
                         {
                             _currentUnitMovement = GetMovementToPlayer();
-                            _currentState = State.Attack;
+                            _currentState = CharacterActionState.Attack;
                         }
                         else if (!_chasingPlayer)
                         {
                             _currentUnitMovement = MoveToNextNodeInPath();
-                            _currentState = State.FreeMovement;
+                            _currentState = CharacterActionState.FreeMovement;
                         }
                         else
                         {
@@ -174,56 +172,33 @@ namespace Game2D
                     {
                         _chasingPlayer = false;
                         _currentUnitMovement = MoveToNextNodeInPath();
-                        _currentState = State.FreeMovement;
+                        _currentState = CharacterActionState.FreeMovement;
                         _inputData.RemoveInteractableEntity(_player);
                     }
 
                     break;
 
-                case State.Attack:
+                case CharacterActionState.Attack:
                     if (_player != null && _player.GetHealth() > 0)
                     {
                         if (!_chasingPlayer)
                         {
                             _currentUnitMovement = MoveToNextNodeInPath();
-                            _currentState = State.FreeMovement;
+                            _currentState = CharacterActionState.FreeMovement;
                         }
                     }
                     else
                     {
                         _chasingPlayer = false;
                         _currentUnitMovement = MoveToNextNodeInPath();
-                        _currentState = State.FreeMovement;
+                        _currentState = CharacterActionState.FreeMovement;
                         _inputData.RemoveInteractableEntity(_player);
                     }
 
                     break;
             }
 
-            if (!_actionsToStateMap.TryGetValue(_currentState, out UnitMovement[] actionTypes)
-                || actionTypes == null
-               )
-            {
-                Debug.LogError("Missing list of " + nameof(UnitMovement) + " for state " + _currentState);
-            }
-            else
-            {
-                UnitMovement frameUnitMovement = UnitMovement.Idle;
-                switch (_currentState)
-                {
-                    case State.FreeMovement:
-                    case State.Spawn:
-                    case State.Chase:
-                    case State.Attack:
-                        frameUnitMovement =
-                            _activeState.ProcessInput(actionTypes, _inputData, _characterController);
-                        break;
-                    
-                    default:
-                        Debug.LogError("State " + _currentState + " not implemented");
-                        break;
-                }
-            }
+            ProcessState();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -237,7 +212,7 @@ namespace Game2D
             }
         }
 
-        private void OnTriggerExit(Collider other)
+        protected void OnTriggerExit(Collider other)
         {
             IInteractableObject interactableObject =
                 other.gameObject.GetComponent<IInteractableObject>();
@@ -250,17 +225,17 @@ namespace Game2D
 
         #endregion
 
-        private void ProcessHorizontalInput()
+        protected override void ProcessHorizontalInput()
         {
             switch (_currentState)
             {
-                case State.Spawn:
+                case CharacterActionState.Spawn:
                     _inputData.SetHorizontal(0);
                     break;
                 
-                case State.FreeMovement:
-                case State.Chase:
-                case State.Attack:
+                case CharacterActionState.FreeMovement:
+                case CharacterActionState.Chase:
+                case CharacterActionState.Attack:
                     int horizontalInput = (_currentUnitMovement & UnitMovement.MoveRight) == UnitMovement.MoveRight
                         ? 1
                         : (_currentUnitMovement & UnitMovement.MoveLeft) == UnitMovement.MoveLeft
@@ -271,28 +246,28 @@ namespace Game2D
             }
         }
 
-        private void ProcessVerticalInput()
+        protected override void ProcessVerticalInput()
         {
             switch (_currentState)
             {
-                case State.Spawn:
+                case CharacterActionState.Spawn:
                     _inputData.SetVertical(0);
                     break;
                 
-                case State.FreeMovement:
+                case CharacterActionState.FreeMovement:
                     break;
             }
         }
         
-        private void ProcessObjectInteraction()
+        protected override void ProcessObjectInteraction()
         {
             switch (_currentState)
             {
-                case State.Spawn:
+                case CharacterActionState.Spawn:
                     _chasingPlayer = false;
                     break;
 
-                case State.FreeMovement:
+                case CharacterActionState.FreeMovement:
                     if (_player != null && _player.GetHealth() > 0)
                     {
                         _chasingPlayer = IsDetectingPlayer();
@@ -300,7 +275,7 @@ namespace Game2D
 
                     break;
                     
-                case State.Chase:
+                case CharacterActionState.Chase:
                     if (PlayerWithInAttackRange())
                     {
                         _inputData.EnableInteractionWithEntities();
@@ -338,17 +313,7 @@ namespace Game2D
                 && playerPosition.y >= bottomCorner.y
             );
         }
-
-        public void AddToInventory(IInventoryItem inventoryItem)
-        {
-            
-        }
-
-        public void GrabClimbObject(IClimbObject climbObject)
-        {
-            
-        }
-
+        
         private UnitMovement MoveToNextNodeInPath()
         {   
             if (_targetNodeIndex >= 0)
@@ -401,18 +366,6 @@ namespace Game2D
                 : UnitMovement.MoveLeft;
         }
 
-        private void OnDrawGizmos()
-        {
-            Gizmos.color = (_currentState != State.Chase && _currentState != State.Attack)
-                ? new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.25f)
-                : new Color(Color.red.r, Color.red.g, Color.red.b, 0.25f);
-            Gizmos.DrawCube(transform.position, _detectionRange * 2);
-
-            Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.5f);
-            float radius = Mathf.Sqrt(_sqrAttackRange);
-            Gizmos.DrawSphere(transform.position, radius);
-        }
-
         #region IAttackerObject
         
         public Transform GetTransform()
@@ -427,6 +380,22 @@ namespace Game2D
                 _inputData.RemoveInteractableEntity(_player);
                 _player = null;
             }
+        }
+        
+        #endregion
+        
+        #region Gizmos
+        
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = (_currentState != CharacterActionState.Chase && _currentState != CharacterActionState.Attack)
+                ? new Color(Color.blue.r, Color.blue.g, Color.blue.b, 0.25f)
+                : new Color(Color.red.r, Color.red.g, Color.red.b, 0.25f);
+            Gizmos.DrawCube(transform.position, _detectionRange * 2);
+
+            Gizmos.color = new Color(Gizmos.color.r, Gizmos.color.g, Gizmos.color.b, 0.5f);
+            float radius = Mathf.Sqrt(_sqrAttackRange);
+            Gizmos.DrawSphere(transform.position, radius);
         }
         
         #endregion
