@@ -309,10 +309,8 @@ MonoBehaviour:
 
     GRAYSON ZIEGLER
 
-    NICK
-    WILLIS
-
-    ERIC MCFARLAND
+    ERIC
+    MCFARLAND
 
     JASON LE
 
@@ -320,10 +318,19 @@ MonoBehaviour:
 
     MOTH SITZMAN
 
-    MICHAEL
-    MORA
+    MICHAEL MORA
 
-    BRANDON MUNOZ'
+    NICK
+    WILLIS
+
+    LUIS SAENZ
+
+    JULIAN WILLIAMS
+
+    ANTHONY RAMIREZ
+
+    BRANDON
+    MUNOZ'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e5515b0df261f0e4790521f678c5fe40, type: 2}
   m_sharedMaterial: {fileID: 6071334479079771352, guid: e5515b0df261f0e4790521f678c5fe40, type: 2}
@@ -435,7 +442,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -199, y: 203}
+  m_AnchoredPosition: {x: -199, y: 264.54}
   m_SizeDelta: {x: 2094.4204, y: 48}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &90251661
@@ -2190,21 +2197,28 @@ MonoBehaviour:
 
     ITEM CONCEPT ARTIST
 
-    TECHNICAL ARTIST / ENGINEER
+    PROP ARTIST
 
-    PROP
+    ENVIRONMENT
     ARTIST
-
-    ENVIRONMENT ARTIST
 
     ENVIRONMENT ARTIST
 
     CREATURE ANIMATOR
 
-    VFX
-    ARTIST
+    VFX ARTIST
 
-    DIRECTOR / PRODUCER / ENVIRONMENT ARTIST
+    TECHNICAL
+    ARTIST / ENGINEER
+
+    ENGINEER
+
+    ENGINEER
+
+    ENGINEER
+
+    DIRECTOR / PRODUCER
+    / ENVIRONMENT ARTIST
 
 '
   m_isRightToLeft: 0
