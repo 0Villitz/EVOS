@@ -5,22 +5,6 @@ using UnityEngine;
 
 namespace Game2D
 {
-    [Serializable]
-    public class CharacterStateConfig
-    {
-        public CharacterActionState state;
-        public CharacterActionState nextState;
-        public UnitMovement[] actions;
-    }
-
-    public interface ICharacterState
-    {
-        CharacterActionState NextState { get; }
-        UnitMovement [] Actions { get; }
-        void EnterState();
-        bool ExitState();
-    }
-    
     public class NPCController : BaseController, IAttackerObject
     {
         [SerializeField] private int _attackDamage = 100;
@@ -36,41 +20,13 @@ namespace Game2D
         [SerializeField] private bool _chasingPlayer = false;
 
         [SerializeField] private AnimationEventHelper _animationEventHelper;
-        
+
         public void Initialize(List<NavigationNode> path, Game2D.IPlayerCharacter player)
         {
             _player = player;
             _path = path;
             
             Initialize();
-        }
-
-        protected override void Initialize()
-        {
-            _animationEventHelper.AddEvent(OnAnimationEvent);
-            _currentUnitMovement = UnitMovement.Idle;
-            
-            _actionsToStateMap = new Dictionary<Game2D.CharacterActionState, UnitMovement[]>()
-            {
-                [Game2D.CharacterActionState.Spawn] = new[]
-                {
-                    UnitMovement.Falling
-                },
-                [Game2D.CharacterActionState.FreeMovement] = new[]
-                {
-                    UnitMovement.MoveHorizontal,
-                },
-                [Game2D.CharacterActionState.Chase] = new[]
-                {
-                    UnitMovement.MoveHorizontal,
-                },
-                [Game2D.CharacterActionState.Attack] = new []
-                {
-                    UnitMovement.AttackHorizontal
-                }
-            };
-            
-            base.Initialize();
         }
 
         private void OnAnimationEvent(AnimationEvent animationEvent)

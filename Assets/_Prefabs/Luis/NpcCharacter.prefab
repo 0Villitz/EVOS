@@ -100,6 +100,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _currentState: 3
   _frameUnitMovement: 0
+  _stateConfigs:
+  - state: 3
+    nextState: 01000000
+    actions: 08000000
+  - state: 1
+    nextState: 04000000
+    actions: 03000000
+  - state: 4
+    nextState: 0100000005000000
+    actions: 03000000
+  - state: 5
+    nextState: 04000000
+    actions: 43000000
   _attackDamage: 100
   _currentUnitMovement: 0
   _detectionRange: {x: 10, y: 5, z: 0}

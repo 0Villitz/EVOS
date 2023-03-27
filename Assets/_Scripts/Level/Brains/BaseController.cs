@@ -10,6 +10,8 @@ namespace Game2D
         [SerializeField] protected CharacterActionState _currentState = CharacterActionState.FreeMovement;
         [SerializeField] private UnitMovement _frameUnitMovement = UnitMovement.Idle;
         
+        [SerializeField] private CharacterStateConfig[] _stateConfigs;
+        
         protected Dictionary<CharacterActionState, UnitMovement[]> _actionsToStateMap;
         protected IUnitState _activeState;
 
@@ -22,6 +24,15 @@ namespace Game2D
         
         protected virtual void Initialize()
         {
+            if (_stateConfigs != null && _stateConfigs.Length > 0)
+            {
+                _actionsToStateMap = new Dictionary<CharacterActionState, UnitMovement[]>();
+                foreach (CharacterStateConfig stateConfig in _stateConfigs)
+                {
+                    _actionsToStateMap.Add(stateConfig.state, stateConfig.actions);
+                }
+            }
+            
             _activeState = GetComponent<ActionController>();
             _activeState.Initialize(_actionsToStateMap);
             

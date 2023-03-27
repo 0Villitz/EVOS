@@ -6,26 +6,7 @@ using UnityEngine;
 namespace Game2D
 {
     public class PlayerController : BaseController
-    {
-        protected override void Initialize()
-        {
-            _actionsToStateMap = new Dictionary<CharacterActionState, UnitMovement[]>()
-            {
-                [CharacterActionState.FreeMovement] = new[]
-                {
-                    UnitMovement.MoveHorizontal,
-                    UnitMovement.Jump,
-                    UnitMovement.Falling
-                },
-                [CharacterActionState.Climbing] = new[]
-                {
-                    UnitMovement.MoveHorizontal,
-                    UnitMovement.Climb,
-                }
-            };
-            
-            base.Initialize();
-        }
+    {   
         
         #region Monobehavior
 
