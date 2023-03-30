@@ -9,7 +9,7 @@ namespace Game2D
 
         public CharacterActionState[] NextState => new[]
         {
-            CharacterActionState.FreeMovement
+            CharacterActionState.Spawn
         };
 
         private UnitMovement _unitMovement = UnitMovement.Idle;
@@ -38,7 +38,7 @@ namespace Game2D
 
         public bool TryExitState(NPCController controller)
         {
-            return !_attackingPlayer && !controller.PlayerWithInAttackRange();
+            return !_attackingPlayer;
         }
 
         private UnitMovement MoveToPlayer(NPCController controller)
