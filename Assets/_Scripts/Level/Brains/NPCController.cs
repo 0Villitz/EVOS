@@ -77,14 +77,13 @@ namespace Game2D
                            )
                         {
                             _currentState = nextState;
+                            _brainStateMap.TryGetValue(_currentState, out brainState);
                             break;
                         }
                     }
                 }
-                else
-                {
-                    brainState.ProcessInput(this, ref _inputData);
-                }
+
+                brainState?.ProcessInput(this, ref _inputData);
             }
 
             ProcessState();
