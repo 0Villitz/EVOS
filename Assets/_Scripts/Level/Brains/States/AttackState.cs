@@ -28,7 +28,6 @@ namespace Game2D
 
         public void ProcessInput(NPCController controller, ref InputData inputData)
         {
-            // _unitMovement = MoveToPlayer(controller);
             int horizontalInput = (_unitMovement & UnitMovement.MoveRight) == UnitMovement.MoveRight
                 ? 1
                 : (_unitMovement & UnitMovement.MoveLeft) == UnitMovement.MoveLeft
