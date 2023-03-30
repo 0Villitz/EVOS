@@ -19,10 +19,6 @@ namespace Game2D
         protected CharacterController _characterController;
         public CharacterController CharacterController => _characterController;
 
-        protected abstract void ProcessHorizontalInput();
-        protected abstract void ProcessVerticalInput();
-        protected abstract void ProcessObjectInteraction();
-        
         protected virtual void Initialize()
         {
             if (_stateConfigs != null && _stateConfigs.Length > 0)
@@ -85,13 +81,5 @@ namespace Game2D
 
         #endregion
 
-        protected void ProcessInputs()
-        {
-            _inputData.ResetInputs();
-
-            ProcessHorizontalInput();
-            ProcessVerticalInput();
-            ProcessObjectInteraction();
-        }
     }
 }

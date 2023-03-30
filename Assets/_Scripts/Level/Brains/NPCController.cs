@@ -30,11 +30,13 @@ namespace Game2D
             new Dictionary<CharacterActionState, IBrainState>();
         public void Initialize(List<NavigationNode> path, Game2D.IPlayerCharacter player)
         {
+            Initialize();
+            
             _player = player;
             _playerTransform = _player.GetTransform();
             _path = path;
             
-            Initialize();
+            _animationEventHelper.AddEvent(OnAnimationEvent);
             
             _brainStateMap.Add(CharacterActionState.Spawn, new SpawnState());
             _brainStateMap.Add(CharacterActionState.FreeMovement, new HorizontalMovementState());
@@ -139,70 +141,6 @@ namespace Game2D
         }
 
         #endregion
-
-        protected override void ProcessHorizontalInput()
-        {
-            switch (_currentState)
-            {
-                case CharacterActionState.Spawn:
-                    _inputData.SetHorizontal(0);
-                    break;
-                
-                case CharacterActionState.FreeMovement:
-                case CharacterActionState.Chase:
-                case CharacterActionState.Attack:
-                    int horizontalInput = (_currentUnitMovement & UnitMovement.MoveRight) == UnitMovement.MoveRight
-                        ? 1
-                        : (_currentUnitMovement & UnitMovement.MoveLeft) == UnitMovement.MoveLeft
-                            ? -1
-                            : 0;
-                    _inputData.SetHorizontal(horizontalInput);
-                    break;
-            }
-        }
-
-        protected override void ProcessVerticalInput()
-        {
-            switch (_currentState)
-            {
-                case CharacterActionState.Spawn:
-                    _inputData.SetVertical(0);
-                    break;
-                
-                case CharacterActionState.FreeMovement:
-                    break;
-            }
-        }
-        
-        protected override void ProcessObjectInteraction()
-        {
-            switch (_currentState)
-            {
-                case CharacterActionState.Spawn:
-                    _chasingPlayer = false;
-                    break;
-
-                case CharacterActionState.FreeMovement:
-                    if (_player != null && _player.GetHealth() > 0)
-                    {
-                        _chasingPlayer = IsDetectingPlayer();
-                    }
-
-                    break;
-                    
-                case CharacterActionState.Chase:
-                    if (PlayerWithInAttackRange())
-                    {
-                        _inputData.EnableInteractionWithEntities();
-                        _inputData.AddInteractableEntity(_player);
-                    }
-                    else
-                    {
-                        _chasingPlayer = IsDetectingPlayer();
-                    }
-                    break;
-            }
-        }
 
         [SerializeField] private float _sqrAttackRange;
         public bool PlayerWithInAttackRange()

@@ -17,7 +17,11 @@ namespace Game2D
 
         void Update()
         {
-            ProcessInputs();
+            _inputData.ResetInputs();
+
+            ProcessHorizontalInput();
+            ProcessVerticalInput();
+            ProcessObjectInteraction();
 
             switch (_currentState)
             {
@@ -82,7 +86,7 @@ namespace Game2D
 
         #endregion
 
-        protected override void ProcessHorizontalInput()
+        protected void ProcessHorizontalInput()
         {
             switch (_currentState)
             {
@@ -105,7 +109,7 @@ namespace Game2D
             }
         }
 
-        protected override void ProcessVerticalInput()
+        protected void ProcessVerticalInput()
         {
             switch (_currentState)
             {
@@ -139,7 +143,7 @@ namespace Game2D
             }
         }
 
-        protected override void ProcessObjectInteraction()
+        protected void ProcessObjectInteraction()
         {
             switch (_currentState)
             {
