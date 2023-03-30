@@ -182,4 +182,28 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
     }
 
     #endregion
+
+    #region Locker
+
+    private bool _isHiding = false;
+    public bool IsHiding => _isHiding;
+
+    public void ExitLocker()
+    {
+        GetComponent<SpriteRenderer>().enabled = true;
+        GetComponent<CapsuleCollider2D>().enabled = true;
+        GetComponent<Rigidbody2D>().simulated = true;
+        _isHiding = false;
+    }
+    
+    public void EnterLocker(Vector3 lockerPosition)
+    {
+        transform.position = lockerPosition;
+        GetComponent<SpriteRenderer>().enabled = false;
+        GetComponent<CapsuleCollider2D>().enabled = false;
+        GetComponent<Rigidbody2D>().simulated = false;
+        _isHiding = true;
+    }
+
+    #endregion
 }

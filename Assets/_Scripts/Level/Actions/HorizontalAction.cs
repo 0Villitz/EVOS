@@ -12,6 +12,11 @@ namespace Game2D
         {
             _movementSpeed = movementSpeed;
         }
+
+        public HorizontalAction(ActionController controller)
+        {
+            _movementSpeed = controller.MovementSpeed;
+        }
         
         public UnitMovement Execute(
             ref Vector2 direction2d, 

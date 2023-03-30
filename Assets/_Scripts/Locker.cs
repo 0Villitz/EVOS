@@ -15,9 +15,14 @@ public class Locker : MonoBehaviour, IPlayerInteractable
 
     public void Interact()
     {
+        if (_playerMoveControls == null)
+        {
+            _playerMoveControls = player.GetComponent<PlayerMoveControls>();
+        }
         StartCoroutine(LockerInteractCo());
     }
 
+    private PlayerMoveControls _playerMoveControls = null;
     private IEnumerator LockerInteractCo()
     {
         if(isPlayerInLocker && !isBusy)
@@ -25,12 +30,14 @@ public class Locker : MonoBehaviour, IPlayerInteractable
             isBusy = true;
             GetComponent<Animator>().Play("Locker_Open");
             yield return new WaitForSeconds(1f);
-            player.GetComponent<SpriteRenderer>().enabled = true;
-            player.GetComponent<CapsuleCollider2D>().enabled = true;
-            player.GetComponent<Rigidbody2D>().simulated = true;
+            // player.GetComponent<SpriteRenderer>().enabled = true;
+            // player.GetComponent<CapsuleCollider2D>().enabled = true;
+            // player.GetComponent<Rigidbody2D>().simulated = true;
+            _playerMoveControls.ExitLocker();
             inputController.CurrentControlType = GatherInput.ControlType.Player;
-            isBusy = false;
-            isPlayerInLocker = false;
+            // isBusy = false;
+            isPlayerInLocker = _playerMoveControls.IsHiding;
+            isBusy = !isPlayerInLocker;
             GetComponent<Animator>().Play("Locker_Closed");
         }
         else if (!isBusy)
@@ -39,13 +46,14 @@ public class Locker : MonoBehaviour, IPlayerInteractable
             inputController.CurrentControlType = GatherInput.ControlType.Locker;
             GetComponent<Animator>().Play("Locker_Open");
             yield return new WaitForSeconds(1f);
-            player.transform.position = this.transform.position;
-            player.GetComponent<SpriteRenderer>().enabled = false;
-            player.GetComponent<CapsuleCollider2D>().enabled = false;
-            player.GetComponent<Rigidbody2D>().simulated = false;
+            // player.transform.position = this.transform.position;
+            // player.GetComponent<SpriteRenderer>().enabled = false;
+            // player.GetComponent<CapsuleCollider2D>().enabled = false;
+            // player.GetComponent<Rigidbody2D>().simulated = false;
+            _playerMoveControls.EnterLocker(this.transform.position);
             GetComponent<Animator>().Play("Locker_Closed");
-            isPlayerInLocker = true;
-            isBusy = false;
+            isPlayerInLocker = _playerMoveControls.IsHiding;
+            isBusy = !isPlayerInLocker;
         }  
     }
 

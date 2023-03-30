@@ -137,6 +137,7 @@ MonoBehaviour:
   _jumpSpeed: 40
   _gravityMultiplier: 0.05
   _movementSpeed: 5
+  _attackDamage: 100
   _characterAnimation: {fileID: 5425764405966387841}
 --- !u!114 &8456154869492762424
 MonoBehaviour:
@@ -151,6 +152,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _currentState: 1
+  _frameUnitMovement: 0
+  _stateConfigs:
+  - state: 1
+    nextState: 02000000
+    actions: 030000002800000004000000
+  - state: 2
+    nextState: 01000000
+    actions: 0300000020000000
 --- !u!95 &5620458454723984888
 Animator:
   serializedVersion: 4

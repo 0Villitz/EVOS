@@ -10,11 +10,16 @@ namespace Game2D
         private CharacterController _characterController;
 
         [SerializeField] private float _jumpSpeed = 5f;
+        public float JumpSpeed => _jumpSpeed;
+        
         [SerializeField] private float _gravityMultiplier = 0.03f;
         private float _gravity = -9.81f;
 
         [SerializeField] private float _movementSpeed = 5;
+        public float MovementSpeed => _movementSpeed;
+        
         [SerializeField] private int _attackDamage = 100;
+        public int AttackDamage => _attackDamage;
         
         private int _groundDirection = 0;
         private float _groundSpeed = 0f;
@@ -29,25 +34,34 @@ namespace Game2D
         private InputData _inputData = null;
 
         private float _gravitySpeed;
+        public float GravitySpeed => _gravitySpeed;
 
         [SerializeField] private CharacterAnimation _characterAnimation;
         
         private UnitMovement _lastUnitMovement = UnitMovement.Idle;
         
         #region IUnitState
-
-        public void Initialize()
+        
+        public void Initialize(Dictionary<CharacterActionState, UnitMovement[]> unitMovementMap)
         {
             _gravitySpeed = _gravity * _gravityMultiplier;
 
-            _actionsMap = new Dictionary<UnitMovement, IUnitAction>()
+            _actionsMap = new Dictionary<UnitMovement, IUnitAction>();
+            if (unitMovementMap != null)
             {
-                [UnitMovement.MoveHorizontal] = new HorizontalAction(_movementSpeed),
-                [UnitMovement.Jump] = new JumpAction(this, _jumpSpeed),
-                [UnitMovement.Falling] = new FallAction(this, _gravitySpeed),
-                [UnitMovement.Climb] = new ClimbAction(_movementSpeed),
-                [UnitMovement.AttackHorizontal] = new AttackHorizontalAction(_attackDamage)
-            };
+                foreach (UnitMovement [] unitMovements in unitMovementMap.Values)
+                {
+                    foreach (UnitMovement unitMovement in unitMovements)
+                    {
+                        if (!_actionsMap.TryGetValue(unitMovement, out IUnitAction action)
+                            || action == null
+                           )
+                        {
+                            _actionsMap[unitMovement] = ActionBuilder.Build(unitMovement, this);
+                        }
+                    }
+                }
+            }
         }
 
         public UnitMovement ProcessInput(UnitMovement [] actionTypes, InputData inputData, Component component)

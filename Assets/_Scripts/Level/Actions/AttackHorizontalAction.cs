@@ -13,6 +13,11 @@ namespace Game2D
             _attackDamage = damage;
         }
 
+        public AttackHorizontalAction(ActionController controller)
+        {
+            _attackDamage = controller.AttackDamage;
+        }
+
         public UnitMovement Execute(
             ref Vector2 direction2d,
             ref Vector2 movement,

@@ -1,53 +1,18 @@
 
 using System.Collections.Generic;
 using Game2D.GamePhysics;
-using Game2D.Inventory;
 using UnityEngine;
 
 namespace Game2D
 {
-    public class PlayerController : MonoBehaviour, ICharacterController
-    {
-        private enum State
-        {
-            None,
-            FreeMovement,
-            Climbing
-        }
-
-        [SerializeField] private State _currentState = State.FreeMovement;
-
-        private Dictionary<State, UnitMovement[]> _actionsToStateMap;
-        private IUnitState _activeState;
-
-        private Dictionary<int, IInteractableObject> _interactableObjects = new Dictionary<int, IInteractableObject>();
-
-        private InputData _inputData = new InputData();
-        private CharacterController _characterController;
+    public class PlayerController : BaseController
+    {   
         
         #region Monobehavior
 
         void Awake()
         {
-            _characterController = GetComponent<CharacterController>();
-
-            _actionsToStateMap = new Dictionary<State, UnitMovement[]>()
-            {
-                [State.FreeMovement] = new[]
-                {
-                    UnitMovement.MoveHorizontal,
-                    UnitMovement.Jump,
-                    UnitMovement.Falling
-                },
-                [State.Climbing] = new[]
-                {
-                    UnitMovement.MoveHorizontal,
-                    UnitMovement.Climb,
-                }
-            };
-
-            _activeState = GetComponent<ActionController>();
-            _activeState.Initialize();
+            Initialize();
         }
 
         void Update()
@@ -60,7 +25,7 @@ namespace Game2D
 
             switch (_currentState)
             {
-                case State.FreeMovement:
+                case CharacterActionState.FreeMovement:
                     if (_inputData.interactWithEntities)
                     {
                         bool interactingWithClimObject = _inputData.InteractableEntities?.Exists(
@@ -74,13 +39,13 @@ namespace Game2D
                                 GamePhysicsHelper.Layers.Platform,
                                 true
                             );
-                            _currentState = State.Climbing;
+                            _currentState = CharacterActionState.Climbing;
                         }
                     }
 
                     break;
 
-                case State.Climbing:
+                case CharacterActionState.Climbing:
                     if (!_inputData.interactWithEntities)
                     {
                         GamePhysicsHelper.IgnoreLayerCollision(
@@ -88,39 +53,13 @@ namespace Game2D
                             GamePhysicsHelper.Layers.Platform,
                             false
                         );
-                        _currentState = State.FreeMovement;
+                        _currentState = CharacterActionState.FreeMovement;
                     }
 
                     break;
             }
 
-            if (!_actionsToStateMap.TryGetValue(_currentState, out UnitMovement[] actionTypes)
-                || actionTypes == null
-               )
-            {
-                Debug.LogError("Missing list of " + nameof(UnitMovement) + " for state " + _currentState);
-            }
-            else
-            {
-                UnitMovement frameUnitMovement = UnitMovement.Idle;
-                switch (_currentState)
-                {
-                    case State.FreeMovement:
-                    case State.Climbing:
-                        frameUnitMovement =
-                            _activeState.ProcessInput(actionTypes, _inputData, _characterController);
-                        if ((frameUnitMovement & UnitMovement.Jump) == UnitMovement.Jump)
-                        {
-                            frameUnitMovement &= ~UnitMovement.Falling;
-                        }
-
-                        break;
-
-                    default:
-                        Debug.LogError("State " + _currentState + " not implemented");
-                        break;
-                }
-            }
+            ProcessState();
         }
 
         private void OnTriggerEnter(Collider other)
@@ -147,12 +86,12 @@ namespace Game2D
 
         #endregion
 
-        private void ProcessHorizontalInput()
+        protected void ProcessHorizontalInput()
         {
             switch (_currentState)
             {
-                case State.FreeMovement:
-                case State.Climbing:
+                case CharacterActionState.FreeMovement:
+                case CharacterActionState.Climbing:
                     if (Input.GetKeyUp(KeyCode.D) || Input.GetKeyUp(KeyCode.A))
                     {
                         _inputData.SetHorizontal(0);
@@ -170,11 +109,11 @@ namespace Game2D
             }
         }
 
-        private void ProcessVerticalInput()
+        protected void ProcessVerticalInput()
         {
             switch (_currentState)
             {
-                case State.FreeMovement:
+                case CharacterActionState.FreeMovement:
                     if (Input.GetKeyDown(KeyCode.W))
                     {
                         _inputData.SetVertical(1);
@@ -186,7 +125,7 @@ namespace Game2D
                     }
 
                     break;
-                case State.Climbing:
+                case CharacterActionState.Climbing:
                     if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S))
                     {
                         _inputData.SetVertical(0);
@@ -204,11 +143,11 @@ namespace Game2D
             }
         }
 
-        private void ProcessObjectInteraction()
+        protected void ProcessObjectInteraction()
         {
             switch (_currentState)
             {
-                case State.FreeMovement:
+                case CharacterActionState.FreeMovement:
                     if (Input.GetKeyDown(KeyCode.Space))
                     {
                         _inputData.EnableInteractionWithEntities();
@@ -226,12 +165,7 @@ namespace Game2D
             }
         }
 
-        public void AddToInventory(IInventoryItem inventoryItem)
-        {
-            
-        }
-
-        public void GrabClimbObject(IClimbObject climbObject)
+        public override void GrabClimbObject(IClimbObject climbObject)
         {
             float xDistance = climbObject.WorldPosition.x - transform.position.x;
             _characterController.Move(new Vector3(xDistance, 0, 0));
