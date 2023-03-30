@@ -65,6 +65,7 @@ namespace Puzzles
             _activePuzzle = null;
 
             _levelIndexStack?.Clear();
+            Cursor.visible   = true;
         }
 
         private void OnShowPuzzleWindow(GeneralEvent obj)
