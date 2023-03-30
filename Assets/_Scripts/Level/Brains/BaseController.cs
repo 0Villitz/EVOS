@@ -17,6 +17,7 @@ namespace Game2D
 
         protected InputData _inputData = new InputData();
         protected CharacterController _characterController;
+        public CharacterController CharacterController => _characterController;
 
         protected abstract void ProcessHorizontalInput();
         protected abstract void ProcessVerticalInput();

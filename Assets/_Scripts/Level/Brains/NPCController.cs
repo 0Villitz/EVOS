@@ -7,12 +7,18 @@ namespace Game2D
     public class NPCController : BaseController, IAttackerObject
     {
         [SerializeField] private int _attackDamage = 100;
+        public int AttackDamage => _attackDamage;
         [SerializeField] private UnitMovement _currentUnitMovement = UnitMovement.Idle;
         
         private NavigationNode _fromNode;
         private NavigationNode _toNode;
         private List<NavigationNode> _path;
+        public List<NavigationNode> Path => _path;
+
+        [SerializeField] private Transform _playerTransform = null;
         private Game2D.IPlayerCharacter _player;
+        public Game2D.IPlayerCharacter Player => _player;
+        
         private int _targetNodeIndex = -1;
         
         [SerializeField] private Vector3 _detectionRange = new Vector3(10f, 5f, 0f);
@@ -20,30 +26,30 @@ namespace Game2D
 
         [SerializeField] private AnimationEventHelper _animationEventHelper;
 
+        private Dictionary<CharacterActionState, IBrainState> _brainStateMap =
+            new Dictionary<CharacterActionState, IBrainState>();
         public void Initialize(List<NavigationNode> path, Game2D.IPlayerCharacter player)
         {
             _player = player;
+            _playerTransform = _player.GetTransform();
             _path = path;
             
             Initialize();
+            
+            _brainStateMap.Add(CharacterActionState.Spawn, new SpawnState());
+            _brainStateMap.Add(CharacterActionState.FreeMovement, new HorizontalMovementState());
+            _brainStateMap.Add(CharacterActionState.Chase, new ChaseState());
+            _brainStateMap.Add(CharacterActionState.Attack, new AttackState());
         }
 
         private void OnAnimationEvent(AnimationEvent animationEvent)
         {
-            switch (_currentState)
+            if (_brainStateMap.TryGetValue(CharacterActionState.Attack, out IBrainState brainState)
+                && brainState is AttackState attackState
+               )
             {
-                case CharacterActionState.Attack:
-                    if (animationEvent.stringParameter == AnimationEventKey.Attack)
-                    {
-                        _player.TakeDamage(_attackDamage, this);
-                    }
-                    else if (animationEvent.stringParameter == AnimationEventKey.End)
-                    {
-                        _inputData.RemoveInteractableEntity(_player);
-                        _chasingPlayer = false;
-                    }
-                    break;
-            }    
+                attackState.ProcessAttackAnimation(this, animationEvent);
+            }
         }
         
         #region Monobehavior
@@ -57,103 +63,58 @@ namespace Game2D
         {
             _inputData.ResetInputs();
 
-            ProcessHorizontalInput();
-            ProcessVerticalInput();
-            ProcessObjectInteraction();
-
-            switch (_currentState)
+            if (_brainStateMap.TryGetValue(_currentState, out IBrainState brainState)
+                && brainState != null
+               )
             {
-                case CharacterActionState.Spawn:
-                    if (_characterController.isGrounded)
+                if (brainState.TryExitState(this))
+                {
+                    foreach (CharacterActionState nextState in brainState.NextState)
                     {
-                        _currentUnitMovement = MoveToNextNodeInPath();
-                        _currentState = CharacterActionState.FreeMovement;
-                    }
-
-                    break;
-
-                case CharacterActionState.FreeMovement:
-                    if (_chasingPlayer)
-                    {
-                        _targetNodeIndex = -1;
-                        _currentState = CharacterActionState.Chase;
-                    }
-                    else
-                    {
-                        int movementDirection =
-                            (UnitMovement.MoveRight & _currentUnitMovement) == UnitMovement.MoveRight
-                                ? 1
-                                : (UnitMovement.MoveLeft & _currentUnitMovement) == UnitMovement.MoveLeft
-                                    ? -1
-                                    : 0;
-
-                        NavigationNode targetNode = _path[_targetNodeIndex];
-                        Vector3 targetDirection = targetNode.transform.position - this.transform.position;
-                        float dotProd = Vector3.Dot(targetDirection.normalized, this.transform.forward);
-                        if ((movementDirection == 1 && dotProd < 0)
-                            || (movementDirection == -1 && dotProd > 0)
+                        if (_brainStateMap.TryGetValue(nextState, out IBrainState nextBrainState)
+                            && nextBrainState != null
+                            && nextBrainState.TryEnterState(this)
                            )
                         {
-                            this.transform.position = new Vector3(
-                                targetNode.transform.position.x,
-                                this.transform.position.y,
-                                targetNode.transform.position.z
-                            );
-                            _currentUnitMovement = MoveToNextNodeInPath();
+                            _currentState = nextState;
+                            break;
                         }
                     }
-
-                    break;
-
-                case CharacterActionState.Chase:
-                    if (_player != null && _player.GetHealth() > 0)
-                    {
-                        if (_chasingPlayer && _inputData.interactWithEntities)
-                        {
-                            _currentUnitMovement = GetMovementToPlayer();
-                            _currentState = CharacterActionState.Attack;
-                        }
-                        else if (!_chasingPlayer)
-                        {
-                            _currentUnitMovement = MoveToNextNodeInPath();
-                            _currentState = CharacterActionState.FreeMovement;
-                        }
-                        else
-                        {
-                            _currentUnitMovement = GetMovementToPlayer();
-                        }
-                    }
-                    else
-                    {
-                        _chasingPlayer = false;
-                        _currentUnitMovement = MoveToNextNodeInPath();
-                        _currentState = CharacterActionState.FreeMovement;
-                        _inputData.RemoveInteractableEntity(_player);
-                    }
-
-                    break;
-
-                case CharacterActionState.Attack:
-                    if (_player != null && _player.GetHealth() > 0)
-                    {
-                        if (!_chasingPlayer)
-                        {
-                            _currentUnitMovement = MoveToNextNodeInPath();
-                            _currentState = CharacterActionState.FreeMovement;
-                        }
-                    }
-                    else
-                    {
-                        _chasingPlayer = false;
-                        _currentUnitMovement = MoveToNextNodeInPath();
-                        _currentState = CharacterActionState.FreeMovement;
-                        _inputData.RemoveInteractableEntity(_player);
-                    }
-
-                    break;
+                }
+                else
+                {
+                    brainState.ProcessInput(this, ref _inputData);
+                }
             }
 
             ProcessState();
+        }
+
+        public UnitMovement NavigateToNextNodePath(UnitMovement currentUnitMovement)
+        {
+            int movementDirection =
+                (UnitMovement.MoveRight & currentUnitMovement) == UnitMovement.MoveRight
+                    ? 1
+                    : (UnitMovement.MoveLeft & currentUnitMovement) == UnitMovement.MoveLeft
+                        ? -1
+                        : 0;
+
+            NavigationNode targetNode = _path[_targetNodeIndex];
+            Vector3 targetDirection = targetNode.transform.position - this.transform.position;
+            float dotProd = Vector3.Dot(targetDirection.normalized, this.transform.forward);
+            if ((movementDirection == 1 && dotProd < 0)
+                || (movementDirection == -1 && dotProd > 0)
+               )
+            {
+                this.transform.position = new Vector3(
+                    targetNode.transform.position.x,
+                    this.transform.position.y,
+                    targetNode.transform.position.z
+                );
+                return MoveToNextNodeInPath(currentUnitMovement);
+            }
+
+            return currentUnitMovement;
         }
 
         private void OnTriggerEnter(Collider other)
@@ -245,7 +206,7 @@ namespace Game2D
         }
 
         [SerializeField] private float _sqrAttackRange;
-        private bool PlayerWithInAttackRange()
+        public bool PlayerWithInAttackRange()
         {
             Vector3 playerPosition = _player.GetTransform().position;
             Vector3 npcPosition = this.transform.position;
@@ -253,8 +214,13 @@ namespace Game2D
             return sqrDistance <= _sqrAttackRange;
         }
 
-        private bool IsDetectingPlayer()
+        public bool IsDetectingPlayer()
         {
+            if (_player == null || _player.IsHiding || _player.GetHealth() <= 0)
+            {
+                return false;
+            }
+            
             Vector3 playerPosition = _player.GetTransform().position;
                     
             Vector3 npcPosition = this.transform.position;
@@ -269,9 +235,9 @@ namespace Game2D
             );
         }
         
-        private UnitMovement MoveToNextNodeInPath()
+        public UnitMovement MoveToNextNodeInPath(UnitMovement currentUnitMovement)
         {   
-            if (_targetNodeIndex >= 0)
+            if (_targetNodeIndex >= 0 && currentUnitMovement != UnitMovement.Idle)
             {
                 int nextNodeIndex = (_targetNodeIndex == _path.Count - 1)
                     ? 0
@@ -300,7 +266,7 @@ namespace Game2D
                     _targetNodeIndex = idx;
                     if (smallestSqrDistance <= float.Epsilon)
                     {
-                        return MoveToNextNodeInPath();
+                        return MoveToNextNodeInPath(currentUnitMovement);
                     }
                 }
             }

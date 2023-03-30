@@ -11,8 +11,10 @@ namespace Game2D
 
         public void SpawnNPC()
         {
-            int spawnIdx = Random.Range(0, _spawnObjects.Length - 1);
-            _spawnObjects[spawnIdx].SpawnNPC(_player);
+            foreach (SpawnObject spawn in _spawnObjects)
+            {
+                spawn.SpawnNPC(_player);
+            }
         }
 
         #region MonoBehaviour
