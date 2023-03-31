@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Vent : MonoBehaviour, IPlayerInteractable
+public class Vent : MonoBehaviour, IPlayerInteractable, IPlayerRespawn
 {
     private float interactCutoffDistance = 5f;
     public float InteractCutoffDistance => interactCutoffDistance;
@@ -15,6 +15,7 @@ public class Vent : MonoBehaviour, IPlayerInteractable
 
     }
 
+    public Transform GeTransform() => this.transform;
     public void Interact()
     {
         GetComponentInParent<VentController>().InteractWithVent();

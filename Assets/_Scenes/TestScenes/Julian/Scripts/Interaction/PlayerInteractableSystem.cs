@@ -10,10 +10,11 @@ public class PlayerInteractableSystem : ScriptableObject
     
     private Camera         _camera;
     private Collider2D[]   _colliderCache   = new Collider2D[MaxHitsColliderCacheCount];
-    
-    
-    public bool Interact(Vector3 playerPosition, Vector2 mousePosition)
+
+    public bool Interact(Vector3 playerPosition, Vector2 mousePosition, out IPlayerRespawn spawnPoint)
     {
+        spawnPoint = null;
+        
         Vector3 worldMousePos = CameraUtils.GetMouseWorldPoint(Camera, mousePosition, 1.0f);
         int colliderCount = Physics2D.OverlapPointNonAlloc(worldMousePos, _colliderCache, _InteractableLayer);
 
@@ -46,6 +47,10 @@ public class PlayerInteractableSystem : ScriptableObject
             if (canInteractWith)
             {
                 interactable.Interact();
+                if (interactable is IPlayerRespawn respawnObject)
+                {
+                    spawnPoint = respawnObject;
+                }
                 
                 didInteract = true;
                 Debug.Log($"Player Interacted with: {interactable}");

@@ -17,6 +17,7 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
     public PlayerInteractableSystem _PlayerInteractableSystem;
     
     [SerializeField] private int _health = 100;
+    private int _currentHealth;
     
     public float rayLength;
     public LayerMask groundLayer;
@@ -31,6 +32,8 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         gI = GetComponent<GatherInput>();
         rb = GetComponent<Rigidbody2D>();
         anim = GetComponent<Animator>();
+
+        _currentHealth = _health;   
     }
 
     private void Update()
@@ -70,8 +73,15 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         }
 
         Vector2 mousePosition = Mouse.current.position.ReadValue();
-        _PlayerInteractableSystem.Interact(transform.position, mousePosition);
+        if (_PlayerInteractableSystem.Interact(transform.position, mousePosition, out IPlayerRespawn spawnPoint)
+            && spawnPoint != null
+           )
+        {
+            _spawnPoint = spawnPoint;
+        }
     }
+
+    private IPlayerRespawn _spawnPoint = null;
     
     private void JumpPlayer()
     {
@@ -171,14 +181,20 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
     
     void Game2D.IPlayerCharacter.TakeDamage(int damage, Game2D.IAttackerObject attackingObject)
     {
-        _health -= damage;
+        _currentHealth -= damage;
         attackingObject.ProcessAttack();
-        GameObject.Destroy(this.gameObject);
+
+        if (_spawnPoint != null)
+        {
+            transform.position = _spawnPoint.GeTransform().position;
+            _health = _health;
+        }
+        // GameObject.Destroy(this.gameObject);
     }
     
     public int GetHealth()
     {
-        return _health;
+        return _currentHealth;
     }
 
     #endregion
