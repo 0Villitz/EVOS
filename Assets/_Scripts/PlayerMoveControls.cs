@@ -184,12 +184,11 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         _currentHealth -= damage;
         attackingObject.ProcessAttack();
 
-        if (_spawnPoint != null)
+        if (_currentHealth <= 0 && _spawnPoint != null)
         {
             transform.position = _spawnPoint.GeTransform().position;
-            _health = _health;
+            _currentHealth = _health;
         }
-        // GameObject.Destroy(this.gameObject);
     }
     
     public int GetHealth()
