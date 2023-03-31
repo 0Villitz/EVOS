@@ -19,7 +19,6 @@ namespace Puzzles
 #endregion
 
 #region Private vars
-
         private Vector2                 _cameraPrevPosition;
         private List<MovablePlatform>   _movableObstacleList;
         private List<PuzzleAudioPlayer> _audioPlayerList;
@@ -56,7 +55,7 @@ namespace Puzzles
             }
 
             Vector2 mouseDelta   = Mouse.current.delta.ReadValue();
-            Vector2 newPlayerPos = (Vector2)_Player.transform.position + mouseDelta * GetScaleFactor() * Time.deltaTime;
+            Vector2 newPlayerPos = (Vector2)_Player.transform.position + mouseDelta * GetScaleFactor() * _Player._MouseSensitivity;
             
             Vector2 camPosition = _Camera.transform.position;
             Vector2 camDelta    = camPosition - _cameraPrevPosition;
