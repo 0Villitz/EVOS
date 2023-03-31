@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game2D
-{
+{    
     public class NPCController : BaseController, IAttackerObject
     {
         [SerializeField] private int _attackDamage = 100;
@@ -38,10 +38,10 @@ namespace Game2D
             
             _animationEventHelper.AddEvent(OnAnimationEvent);
             
-            _brainStateMap.Add(CharacterActionState.Spawn, new SpawnState());
-            _brainStateMap.Add(CharacterActionState.FreeMovement, new HorizontalMovementState());
-            _brainStateMap.Add(CharacterActionState.Chase, new ChaseState());
-            _brainStateMap.Add(CharacterActionState.Attack, new AttackState());
+            foreach (CharacterStateConfig stateConfig in _stateConfigs)
+            {
+                _brainStateMap.Add(stateConfig.state, BrainStateBuilder.Build(stateConfig));
+            }
         }
 
         private void OnAnimationEvent(AnimationEvent animationEvent)

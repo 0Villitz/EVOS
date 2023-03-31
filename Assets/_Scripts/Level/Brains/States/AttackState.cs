@@ -3,19 +3,14 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class AttackState : IBrainState
+    public class AttackState : BaseBrainState
     {
-        public CharacterActionState State => CharacterActionState.Attack;
-
-        public CharacterActionState[] NextState => new[]
-        {
-            CharacterActionState.Spawn
-        };
+        public override CharacterActionState State => CharacterActionState.Attack;
 
         private UnitMovement _unitMovement = UnitMovement.Idle;
         private bool _attackingPlayer = false;
 
-        public bool TryEnterState(NPCController controller)
+        public override bool TryEnterState(NPCController controller)
         {
             _attackingPlayer = (controller.IsDetectingPlayer() && controller.PlayerWithInAttackRange());
             if (_attackingPlayer)
@@ -26,7 +21,7 @@ namespace Game2D
             return _attackingPlayer;
         }
 
-        public void ProcessInput(NPCController controller, ref InputData inputData)
+        public override void ProcessInput(NPCController controller, ref InputData inputData)
         {
             int horizontalInput = (_unitMovement & UnitMovement.MoveRight) == UnitMovement.MoveRight
                 ? 1
@@ -36,7 +31,7 @@ namespace Game2D
             inputData.SetHorizontal(horizontalInput);
         }
 
-        public bool TryExitState(NPCController controller)
+        public override bool TryExitState(NPCController controller)
         {
             return !_attackingPlayer;
         }

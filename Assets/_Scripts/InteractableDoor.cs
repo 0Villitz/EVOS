@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableDoor : MonoBehaviour, IPlayerInteractable
+public class InteractableDoor : MonoBehaviour, IPlayerInteractable, IPlayerRespawn
 {
     private float _InteractCutoffDistance = 2f;
     public float InteractCutoffDistance => _InteractCutoffDistance;
@@ -15,6 +15,7 @@ public class InteractableDoor : MonoBehaviour, IPlayerInteractable
         
     }
 
+    public Transform GeTransform() => this.transform;
     public void Interact()
     {
         GetComponentInParent<DoorController>().InteractWithDoor();

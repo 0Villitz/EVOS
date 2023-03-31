@@ -10,7 +10,7 @@ namespace Game2D
         [SerializeField] protected CharacterActionState _currentState = CharacterActionState.FreeMovement;
         [SerializeField] private UnitMovement _frameUnitMovement = UnitMovement.Idle;
         
-        [SerializeField] private CharacterStateConfig[] _stateConfigs;
+        [SerializeField] protected CharacterStateConfig[] _stateConfigs;
         
         protected Dictionary<CharacterActionState, UnitMovement[]> _actionsToStateMap;
         protected IUnitState _activeState;
