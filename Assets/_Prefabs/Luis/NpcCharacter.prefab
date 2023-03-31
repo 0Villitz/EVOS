@@ -108,13 +108,14 @@ MonoBehaviour:
     nextState: 04000000
     actions: 03000000
   - state: 4
-    nextState: 0100000005000000
+    nextState: 0500000001000000
     actions: 03000000
   - state: 5
-    nextState: 04000000
+    nextState: 0400000003000000
     actions: 43000000
   _attackDamage: 100
   _currentUnitMovement: 0
+  _playerTransform: {fileID: 0}
   _detectionRange: {x: 10, y: 5, z: 0}
   _chasingPlayer: 0
   _animationEventHelper: {fileID: 5756447835986783977}

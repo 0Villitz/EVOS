@@ -3,15 +3,14 @@ using UnityEngine;
 
 namespace Game2D
 {
-    public class HorizontalMovementState : IBrainState
+    public class HorizontalMovementState : BaseBrainState
     {
-        public CharacterActionState State => CharacterActionState.FreeMovement;
-        public CharacterActionState[] NextState => new[] { CharacterActionState.Chase };
+        public override CharacterActionState State => CharacterActionState.FreeMovement;
 
         private UnitMovement _unitMovement = UnitMovement.Idle;
         private int _nextNodeIndex = -1;
 
-        public bool TryEnterState(NPCController controller)
+        public override bool TryEnterState(NPCController controller)
         {
             if (controller.CharacterController.isGrounded)
             {
@@ -23,7 +22,7 @@ namespace Game2D
             return false;
         }
 
-        public void ProcessInput(NPCController controller, ref InputData inputData)
+        public override void ProcessInput(NPCController controller, ref InputData inputData)
         {
             _unitMovement = MoveToNextNode(controller);
             int horizontalInput = (_unitMovement & UnitMovement.MoveRight) == UnitMovement.MoveRight
@@ -34,7 +33,7 @@ namespace Game2D
             inputData.SetHorizontal(horizontalInput);
         }
 
-        public bool TryExitState(NPCController controller)
+        public override bool TryExitState(NPCController controller)
         {
             return controller.IsDetectingPlayer();
         }

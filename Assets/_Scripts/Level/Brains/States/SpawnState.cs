@@ -1,21 +1,20 @@
 
 namespace Game2D
 {
-    public class SpawnState : IBrainState
+    public class SpawnState : BaseBrainState
     {
-        public CharacterActionState State => CharacterActionState.Spawn;
-        public CharacterActionState[] NextState => new[] { CharacterActionState.FreeMovement };
+        public override CharacterActionState State => CharacterActionState.Spawn;
 
-        public bool TryEnterState(NPCController controller)
+        public override bool TryEnterState(NPCController controller)
         {
             return true;
         }
 
-        public void ProcessInput(NPCController controller, ref InputData inputData)
+        public override void ProcessInput(NPCController controller, ref InputData inputData)
         {
         }
 
-        public bool TryExitState(NPCController controller)
+        public override bool TryExitState(NPCController controller)
         {
             return controller.CharacterController.isGrounded;
         }
