@@ -16,7 +16,6 @@ MonoBehaviour:
   - Type: 1
     PuzzleList:
     - {fileID: 852967454531116800, guid: b5ac9c86283f89d4d8cb02f5648188b4, type: 3}
-    - {fileID: 852967454531116800, guid: 7ecd8accd35b479438c2767dde6bbd2d, type: 3}
     - {fileID: 852967454531116800, guid: b7058cd433ff5f941b7cecb294b01ab6, type: 3}
     - {fileID: 852967454531116800, guid: 58f1bf9cd249781498aad41316a07467, type: 3}
   - Type: 2
@@ -24,4 +23,3 @@ MonoBehaviour:
     - {fileID: 5828381453625115143, guid: c53dcde7811cf844583d1f5babed4744, type: 3}
     - {fileID: 5828381453625115143, guid: ca2a36edaf2fba04c8890f77d9b66827, type: 3}
     - {fileID: 5828381453625115143, guid: a5b0c30b3dd548a4483328e628af5f00, type: 3}
-    - {fileID: 5828381453625115143, guid: e3122aee0e24d3749ae22a452b1491d1, type: 3}
