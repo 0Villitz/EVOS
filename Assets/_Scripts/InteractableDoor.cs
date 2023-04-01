@@ -16,11 +16,7 @@ public class InteractableDoor : MonoBehaviour, IPlayerInteractable, IPlayerRespa
         
     }
 
-    public void Respawn(Action onComplete)
-    {
-        GetComponentInParent<DoorController>().InteractWithDoor();
-        onComplete?.Invoke();
-    }
+    public Transform GetTransform() => this.transform;
     
     public void Interact()
     {

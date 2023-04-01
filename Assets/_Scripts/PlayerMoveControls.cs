@@ -194,7 +194,8 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         {
             if (_spawnPoint != null)
             {
-                _spawnPoint.Respawn(() => _currentHealth = _health);
+                this.transform.position = _spawnPoint.GetTransform().position;
+                _currentHealth = _health;
             }
             else
             {
