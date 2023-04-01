@@ -13574,6 +13574,17 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!114 &1614915061 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 3171977001205032187, guid: 754bf56e45d26fb4dad7a9b312a5de1a, type: 3}
+  m_PrefabInstance: {fileID: 3496045057325524220}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9541d86e2fd84c1d9990edf0852d74ab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1630905820
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -13764,7 +13775,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7125800670050033758, guid: d9e840ea2b182ea4db10b6505748e8f4, type: 3}
       propertyPath: m_SortingLayer
-      value: 3
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 7125800670050033758, guid: d9e840ea2b182ea4db10b6505748e8f4, type: 3}
       propertyPath: m_SortingLayerID
@@ -16269,7 +16280,7 @@ PrefabInstance:
     - target: {fileID: 9062099686306300875, guid: 754bf56e45d26fb4dad7a9b312a5de1a, type: 3}
       propertyPath: _SpecificLevelList.Array.data[0]
       value: 
-      objectReference: {fileID: 852967454531116800, guid: b7058cd433ff5f941b7cecb294b01ab6, type: 3}
+      objectReference: {fileID: 852967454531116800, guid: 58f1bf9cd249781498aad41316a07467, type: 3}
     - target: {fileID: 9062099686306300875, guid: 754bf56e45d26fb4dad7a9b312a5de1a, type: 3}
       propertyPath: _SpecificLevelList.Array.data[1]
       value: 1
@@ -18025,6 +18036,10 @@ PrefabInstance:
       propertyPath: _startUnlock
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 9062099686306300875, guid: 754bf56e45d26fb4dad7a9b312a5de1a, type: 3}
+      propertyPath: _CountdownText
+      value: 
+      objectReference: {fileID: 1614915061}
     - target: {fileID: 9062099686306300875, guid: 754bf56e45d26fb4dad7a9b312a5de1a, type: 3}
       propertyPath: _RandomLevelCount
       value: 0
