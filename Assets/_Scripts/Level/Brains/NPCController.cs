@@ -236,7 +236,6 @@ namespace Game2D
             if (_player.GetHealth() <= 0)
             {
                 _inputData.RemoveInteractableEntity(_player);
-                _player = null;
             }
         }
         

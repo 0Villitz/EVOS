@@ -184,10 +184,20 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         _currentHealth -= damage;
         attackingObject.ProcessAttack();
 
-        if (_currentHealth <= 0 && _spawnPoint != null)
+        if (_currentHealth <= 0)
         {
-            transform.position = _spawnPoint.GeTransform().position;
-            _currentHealth = _health;
+            if (_spawnPoint != null)
+            {
+                _spawnPoint.Respawn(() => _currentHealth = _health);
+            }
+            else
+            {
+                Debug.LogError("Cannot respawn player, missing respawn object");
+            }
+        }
+        else
+        {
+            // TODO: Play hit animation?
         }
     }
     

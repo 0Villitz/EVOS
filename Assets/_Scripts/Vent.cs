@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,12 @@ public class Vent : MonoBehaviour, IPlayerInteractable, IPlayerRespawn
 
     }
 
-    public Transform GeTransform() => this.transform;
+    public void Respawn(Action onComplete)
+    {
+        GetComponentInParent<DoorController>().InteractWithDoor();
+        onComplete?.Invoke();
+    }
+    
     public void Interact()
     {
         GetComponentInParent<VentController>().InteractWithVent();
