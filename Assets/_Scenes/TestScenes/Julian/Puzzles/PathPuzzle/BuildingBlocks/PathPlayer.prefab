@@ -51,6 +51,8 @@ MonoBehaviour:
     m_Bits: 4096
   _Collider: {fileID: 6842131239747209481}
   _RotationSpeed: 10
+  _MouseSensitivity: 0.0075
+  IsAlive: 0
 --- !u!58 &6842131239747209481
 CircleCollider2D:
   m_ObjectHideFlags: 0

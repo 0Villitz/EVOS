@@ -37,7 +37,7 @@ public class Locker : MonoBehaviour, IPlayerInteractable
             inputController.CurrentControlType = GatherInput.ControlType.Player;
             // isBusy = false;
             isPlayerInLocker = _playerMoveControls.IsHiding;
-            isBusy = !isPlayerInLocker;
+            isBusy = false;
             GetComponent<Animator>().Play("Locker_Closed");
         }
         else if (!isBusy)
@@ -53,7 +53,7 @@ public class Locker : MonoBehaviour, IPlayerInteractable
             _playerMoveControls.EnterLocker(this.transform.position);
             GetComponent<Animator>().Play("Locker_Closed");
             isPlayerInLocker = _playerMoveControls.IsHiding;
-            isBusy = !isPlayerInLocker;
+            isBusy = false;
         }  
     }
 

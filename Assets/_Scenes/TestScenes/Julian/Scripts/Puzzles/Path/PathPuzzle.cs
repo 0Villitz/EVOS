@@ -19,7 +19,7 @@ namespace Puzzles
 #endregion
 
 #region Private vars
-        private Vector2                 _startOffset;
+        private Vector2                 _cameraPrevPosition;
         private List<MovablePlatform>   _movableObstacleList;
         private List<PuzzleAudioPlayer> _audioPlayerList;
 #endregion
@@ -54,13 +54,15 @@ namespace Puzzles
                 OnExitButton();
             }
 
-            Vector2 worldMousePos =  CameraUtils.GetMouseWorldPoint(_Camera, Mouse.current.position.ReadValue(), GetScaleFactor());
-            Vector2 worldMousePosWithOffset = worldMousePos - _startOffset;
+            Vector2 mouseDelta   = Mouse.current.delta.ReadValue();
+            Vector2 newPlayerPos = (Vector2)_Player.transform.position + mouseDelta * GetScaleFactor() * _Player._MouseSensitivity;
             
-            _Player.Move(worldMousePosWithOffset);
+            Vector2 camPosition = _Camera.transform.position;
+            Vector2 camDelta    = camPosition - _cameraPrevPosition;
+            
+            _Player.Move(newPlayerPos + camDelta);
 
-            // For Debugging
-            Debug.DrawLine(_Camera.transform.position, worldMousePos, Color.blue);
+            _cameraPrevPosition = camPosition;
         }
 #endregion
 
@@ -75,10 +77,10 @@ namespace Puzzles
             Vector3 playerPos = _Player.transform.position;
             playerPos.z = _Camera.transform.position.z;
 
-            Vector2 worldMousePos =  CameraUtils.GetMouseWorldPoint(_Camera, Mouse.current.position.ReadValue(), GetScaleFactor());
+            _cameraPrevPosition = _Camera.transform.position;
 
-            _startOffset   = worldMousePos - (Vector2)playerPos;
-            Cursor.visible = false;
+            Cursor.visible   = false;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         private float GetScaleFactor()
@@ -96,6 +98,8 @@ namespace Puzzles
         private void OnExitButton()
         {
             _GameEventDispatcher.DispatchEvent(GameEventType.HidePuzzleWindow);
+        
+            Cursor.lockState = CursorLockMode.None;
         }
 
         private void OnObstacleHit(IPuzzleInteractable interactable)
@@ -124,7 +128,9 @@ namespace Puzzles
             _Player.IsAlive = false;
             
             _ButtonGroup.gameObject.SetActive(true);
+            
             Cursor.visible   = true;
+            Cursor.lockState = CursorLockMode.None;
             
             TriggerPuzzleComplete(wasSuccessful);
         }

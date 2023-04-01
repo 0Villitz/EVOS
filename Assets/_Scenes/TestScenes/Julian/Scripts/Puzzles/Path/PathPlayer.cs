@@ -11,6 +11,7 @@ namespace Puzzles
         public CircleCollider2D _Collider;
 
         public float _RotationSpeed;
+        public float _MouseSensitivity = 0.016f;
 
 #endregion
 
