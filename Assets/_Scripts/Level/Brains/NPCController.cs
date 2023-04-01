@@ -118,28 +118,6 @@ namespace Game2D
             return currentUnitMovement;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            IInteractableObject interactableObject =
-                other.gameObject.GetComponent<IInteractableObject>();
-
-            if (interactableObject != null)
-            {
-                _inputData.AddInteractableEntity(interactableObject);
-            }
-        }
-
-        protected void OnTriggerExit(Collider other)
-        {
-            IInteractableObject interactableObject =
-                other.gameObject.GetComponent<IInteractableObject>();
-
-            if (interactableObject != null)
-            {
-                _inputData.RemoveInteractableEntity(interactableObject);
-            }
-        }
-
         #endregion
 
         [SerializeField] private float _sqrAttackRange;
@@ -225,20 +203,9 @@ namespace Game2D
         }
 
         #region IAttackerObject
-        
-        public Transform GetTransform()
-        {
-            return this.transform;
-        }
 
-        public void ProcessAttack()
-        {
-            if (_player.GetHealth() <= 0)
-            {
-                _inputData.RemoveInteractableEntity(_player);
-            }
-        }
-        
+        public int Damage => _attackDamage;
+
         #endregion
         
         #region Gizmos

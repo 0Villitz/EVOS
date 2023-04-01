@@ -60,7 +60,7 @@ namespace Game2D
                  && controller.PlayerWithInAttackRange()
                 )
             {
-                controller.Player.TakeDamage(controller.AttackDamage, controller);
+                controller.Player.TakeDamage(controller);
             }
         }
     }
