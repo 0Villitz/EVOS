@@ -4,8 +4,8 @@ using UnityEngine;
     
 public class GameObjectActiveTrigger : TriggerBase
 {
-    public List<GameObject> _TargetList;
     public Action           _ActiveState;   
+    public List<GameObject> _TargetList;
     
     protected override void OnGameTrigger()
     {
