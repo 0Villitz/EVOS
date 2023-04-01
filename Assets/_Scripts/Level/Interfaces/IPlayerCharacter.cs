@@ -8,6 +8,6 @@ namespace Game2D
         Transform GetTransform();
         void TakeDamage(int damage, IAttackerObject attackingObject);
         int GetHealth();
-        bool IsHiding { get; }
+        bool CanBeDetected();
     }
 }

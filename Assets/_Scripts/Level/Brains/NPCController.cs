@@ -153,7 +153,7 @@ namespace Game2D
 
         public bool IsDetectingPlayer()
         {
-            if (_player == null || _player.IsHiding || _player.GetHealth() <= 0)
+            if (_player == null || !_player.CanBeDetected())
             {
                 return false;
             }

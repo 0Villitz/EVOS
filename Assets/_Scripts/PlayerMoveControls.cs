@@ -178,6 +178,12 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
     {
         return this.transform;
     }
+
+    public bool CanBeDetected()
+    {
+        return !_isHiding
+               && _currentHealth > 0;
+    }
     
     void Game2D.IPlayerCharacter.TakeDamage(int damage, Game2D.IAttackerObject attackingObject)
     {
