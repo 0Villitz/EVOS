@@ -7,6 +7,13 @@ using UnityEngine.SceneManagement;
 
 public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
 {
+    public enum LockState
+    {
+        None,
+        Lock,
+        Unlock,
+    }
+    
     public ScriptableEventDispatcher _GameEventDispatcher;
     public Collider2D _Collider;
     
@@ -17,14 +24,18 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     public int       _RandomLevelCount;
     public List<PuzzleBase> _SpecificLevelList;
 
-   [SerializeField] private float _unlockTime = float.MaxValue;
+   [SerializeField] private float     _unlockTime = float.MaxValue;
 
    [SerializeField] private bool _startUnlock = false;
+   
+
+    public LockState CurrentLockState { get; private set; }
    
     public float InteractCutoffDistance => _InteractableCutoffDistance;
 
     public string _nextScene = null;
 
+    private Animator _animator;
 
 
     public void Interact()
@@ -32,6 +43,12 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         if (string.IsNullOrEmpty(_TriggerKey))
         {
             Debug.LogError($"Puzzle Terminal:{name} cannot have an empty Trigger key!");
+            return;
+        }
+
+        if (CurrentLockState == LockState.Lock)
+        {
+            Debug.LogWarning($"Puzzle Terminal:{name} is locked!");
             return;
         }
 
@@ -74,18 +91,27 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     public void Lockout(float lockoutTimeInSeconds)
     {
         _unlockTime = Time.time + lockoutTimeInSeconds;
-        GetComponent<Animator>()?.SetInteger("UnlockState", 2);
+        _animator.SetInteger("UnlockState", 2);
     } 
 
     public void Unlock()
     {
-        _unlockTime = 0;
-        GetComponent<Animator>()?.SetInteger("UnlockState", 1);
+        CurrentLockState = LockState.Unlock;
+        
+        _unlockTime      = 0;
+        _animator.SetInteger("UnlockState", 1);
+        
         LoadNextScene();
         if (_PuzzleType == PuzzleType.Frogger && this.gameObject.name == "DoorTerminal")
         {
             _nextScene = "EVOS_EndCutscene";
         }
+    }
+
+    public void Lock()
+    {
+        CurrentLockState = LockState.Lock;
+        _animator.SetInteger("UnlockState", 2);
     }
 
     public void Setup()
@@ -94,12 +120,22 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         {
             Unlock();
         }
+        else
+        {
+            Lock();
+        }
     }
 
+    private void Awake()
+    {
+        _animator = GetComponent<Animator>();
+    }
+    
     private void Start()
     {
         Setup();
     }
+    
     private void LoadNextScene()
     {
         if (!string.IsNullOrEmpty(_nextScene))
