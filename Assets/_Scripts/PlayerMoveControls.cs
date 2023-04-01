@@ -1,6 +1,7 @@
 
 using System;
 using System.Collections;
+using Game2D;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -29,7 +30,10 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
     private bool knockBack = false;
 
     private BlackoutController _blackoutController;
-    private GatherInput _inputController; 
+    private GatherInput _inputController;
+
+    [SerializeField]
+    private AnimationEventHelper _animationEventHelper;
     
     // Start is called before the first frame update
     private void Start()
@@ -41,9 +45,46 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         _blackoutController = FindObjectOfType<BlackoutController>();
         _inputController = FindObjectOfType<GatherInput>();
         
-        _currentHealth = _health;   
+        _currentHealth = _health;
+
+        if (_animationEventHelper != null)
+        {
+            _animationEventHelper.AddEvent(OnPlayerDeathEvent);
+            _animationEventHelper.AddEvent(OnPlayerRespawnEvent);
+        }
     }
 
+    private void OnDestroy()
+    {
+        if (_animationEventHelper != null)
+        {
+            _animationEventHelper.RemoveEvent(OnPlayerDeathEvent);
+            _animationEventHelper.RemoveEvent(OnPlayerRespawnEvent);
+        }
+    }
+
+    private void OnPlayerDeathEvent(AnimationEvent eventData)
+    {
+        string eventKey = eventData.stringParameter;
+        switch (eventKey)
+        {
+            case AnimationEventKey.PlayerDeathStart:
+                _inputController.CurrentControlType = GatherInput.ControlType.None;
+                break;
+            case AnimationEventKey.PlayerDeathEnd:
+                StartCoroutine(PlayerRespawn());
+                break;
+        }
+    }
+
+    private void OnPlayerRespawnEvent(AnimationEvent eventData)
+    {
+        if (eventData.stringParameter == AnimationEventKey.PlayerSpawnEnd)
+        {
+            _inputController.CurrentControlType = GatherInput.ControlType.Player;
+        }
+    }
+    
     private void Update()
     {
         SetAnimatorValues();
@@ -192,7 +233,8 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         return !_isHiding
                && _currentHealth > 0;
     }
-    
+
+    [SerializeField] private bool _animateRespawn = false;
     void Game2D.IPlayerCharacter.TakeDamage(Game2D.IAttackerObject attackingObject)
     {
         _currentHealth -= attackingObject.Damage;
@@ -202,7 +244,15 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         {
             if (_spawnPoint != null)
             {
-                StartCoroutine(PlayerRespawn());
+                if (_animateRespawn)
+                {
+                    anim.SetTrigger("Death");
+                    // code to trigger death animation
+                }
+                else
+                {
+                    StartCoroutine(PlayerRespawn());
+                }
             }
             else
             {
@@ -217,22 +267,41 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
 
     [SerializeField] private float _respawnDelay = 2f;
     [SerializeField] private float _respawnFaseSpeed = 0.2f;
+
     private IEnumerator PlayerRespawn()
     {
+        yield return PlayerRespawnStart();
+        yield return PlayerRespawnWait();
+        yield return PlayerRespawnEnd();
+    }
+
+    private IEnumerator PlayerRespawnStart()
+    {
         _inputController.CurrentControlType = GatherInput.ControlType.None;
-        
         yield return _blackoutController.BlackoutScreen(_respawnFaseSpeed);
-        
+    } 
+
+    private IEnumerator PlayerRespawnWait()
+    {
         _blackoutController.Label.SetText("Respawning...");
         yield return new WaitForSeconds(_respawnDelay);
-        
+    }
+    
+    private IEnumerator PlayerRespawnEnd() {
         this.transform.position = _spawnPoint.GetTransform().position;
         _currentHealth = _health;
 
         yield return _blackoutController.BlackoutScreen(-_respawnFaseSpeed);
         _blackoutController.Label.SetText(String.Empty);
         
-        _inputController.CurrentControlType = GatherInput.ControlType.Player;
+        if (_animateRespawn)
+        {
+            anim.SetTrigger("Respawn");
+        }
+        else
+        {
+            _inputController.CurrentControlType = GatherInput.ControlType.Player;
+        }
     }
     
     public int GetHealth()

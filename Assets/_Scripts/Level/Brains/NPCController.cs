@@ -36,7 +36,7 @@ namespace Game2D
             _playerTransform = _player.GetTransform();
             _path = path;
             
-            _animationEventHelper.AddEvent(OnAnimationEvent);
+            _animationEventHelper.AddEvent(OnNPCAttackAnimationEvent);
             
             foreach (CharacterStateConfig stateConfig in _stateConfigs)
             {
@@ -44,7 +44,7 @@ namespace Game2D
             }
         }
 
-        private void OnAnimationEvent(AnimationEvent animationEvent)
+        private void OnNPCAttackAnimationEvent(AnimationEvent animationEvent)
         {
             if (_brainStateMap.TryGetValue(CharacterActionState.Attack, out IBrainState brainState)
                 && brainState is AttackState attackState
@@ -58,7 +58,7 @@ namespace Game2D
 
         private void OnDestroy()
         {
-            _animationEventHelper.RemoveEvent(OnAnimationEvent);
+            _animationEventHelper.RemoveEvent(OnNPCAttackAnimationEvent);
         }
 
         private void Update()
