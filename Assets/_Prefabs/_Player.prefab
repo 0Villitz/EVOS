@@ -75,6 +75,7 @@ GameObject:
   - component: {fileID: 7125800670050033757}
   - component: {fileID: 7125800670050033730}
   - component: {fileID: 7125800670050033755}
+  - component: {fileID: 1557228780648761686}
   m_Layer: 6
   m_Name: _Player
   m_TagString: Player
@@ -114,6 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   jumpForce: 3
+  _PlayerInteractableSystem: {fileID: 0}
+  _health: 100
   rayLength: 0.05
   groundLayer:
     serializedVersion: 2
@@ -122,6 +125,10 @@ MonoBehaviour:
   rightPoint: {fileID: 7125800671440493653}
   isGrounded: 1
   hasControl: 1
+  _animationEventHelper: {fileID: 1557228780648761686}
+  _animateRespawn: 0
+  _respawnDelay: 2
+  _respawnFaseSpeed: 0.2
 --- !u!114 &7125800670050033729
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -136,6 +143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   valueX: 0
   jumpInput: 0
+  _GameEventDispatcher: {fileID: 0}
+  pause: 0
 --- !u!114 &7125800670050033759
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -205,7 +214,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1614892239
-  m_SortingLayer: 2
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: -1417322246, guid: c3b21dbf15b6c214fadae29d20845401, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -275,6 +284,18 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &1557228780648761686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7125800670050033754}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd411e5d37798409ca5b1e679e80937f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7125800671440493652
 GameObject:
   m_ObjectHideFlags: 0

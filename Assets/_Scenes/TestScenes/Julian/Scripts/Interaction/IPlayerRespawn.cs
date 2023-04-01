@@ -1,7 +1,8 @@
 
+using System;
 using UnityEngine;
 
 public interface IPlayerRespawn
 {
-    Transform GeTransform();
+    Transform GetTransform();
 }

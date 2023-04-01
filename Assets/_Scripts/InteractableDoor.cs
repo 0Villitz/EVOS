@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,8 @@ public class InteractableDoor : MonoBehaviour, IPlayerInteractable, IPlayerRespa
         
     }
 
-    public Transform GeTransform() => this.transform;
+    public Transform GetTransform() => this.transform;
+    
     public void Interact()
     {
         GetComponentInParent<DoorController>().InteractWithDoor();

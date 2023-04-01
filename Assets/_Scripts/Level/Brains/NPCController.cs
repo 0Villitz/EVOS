@@ -36,7 +36,7 @@ namespace Game2D
             _playerTransform = _player.GetTransform();
             _path = path;
             
-            _animationEventHelper.AddEvent(OnAnimationEvent);
+            _animationEventHelper.AddEvent(OnNPCAttackAnimationEvent);
             
             foreach (CharacterStateConfig stateConfig in _stateConfigs)
             {
@@ -44,7 +44,7 @@ namespace Game2D
             }
         }
 
-        private void OnAnimationEvent(AnimationEvent animationEvent)
+        private void OnNPCAttackAnimationEvent(AnimationEvent animationEvent)
         {
             if (_brainStateMap.TryGetValue(CharacterActionState.Attack, out IBrainState brainState)
                 && brainState is AttackState attackState
@@ -58,7 +58,7 @@ namespace Game2D
 
         private void OnDestroy()
         {
-            _animationEventHelper.RemoveEvent(OnAnimationEvent);
+            _animationEventHelper.RemoveEvent(OnNPCAttackAnimationEvent);
         }
 
         private void Update()
@@ -118,28 +118,6 @@ namespace Game2D
             return currentUnitMovement;
         }
 
-        private void OnTriggerEnter(Collider other)
-        {
-            IInteractableObject interactableObject =
-                other.gameObject.GetComponent<IInteractableObject>();
-
-            if (interactableObject != null)
-            {
-                _inputData.AddInteractableEntity(interactableObject);
-            }
-        }
-
-        protected void OnTriggerExit(Collider other)
-        {
-            IInteractableObject interactableObject =
-                other.gameObject.GetComponent<IInteractableObject>();
-
-            if (interactableObject != null)
-            {
-                _inputData.RemoveInteractableEntity(interactableObject);
-            }
-        }
-
         #endregion
 
         [SerializeField] private float _sqrAttackRange;
@@ -153,7 +131,7 @@ namespace Game2D
 
         public bool IsDetectingPlayer()
         {
-            if (_player == null || _player.IsHiding || _player.GetHealth() <= 0)
+            if (_player == null || !_player.CanBeDetected())
             {
                 return false;
             }
@@ -225,21 +203,9 @@ namespace Game2D
         }
 
         #region IAttackerObject
-        
-        public Transform GetTransform()
-        {
-            return this.transform;
-        }
 
-        public void ProcessAttack()
-        {
-            if (_player.GetHealth() <= 0)
-            {
-                _inputData.RemoveInteractableEntity(_player);
-                _player = null;
-            }
-        }
-        
+        public int Damage => _attackDamage;
+
         #endregion
         
         #region Gizmos

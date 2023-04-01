@@ -51,16 +51,16 @@ namespace Game2D
 
         public void ProcessAttackAnimation(NPCController controller, AnimationEvent animationEvent)
         {
-            if (animationEvent.stringParameter == AnimationEventKey.End)
+            if (animationEvent.stringParameter == AnimationEventKey.NpcAttackEnd)
             {
                 _attackingPlayer = false;
-            } else if (animationEvent.stringParameter == AnimationEventKey.Attack
+            } else if (animationEvent.stringParameter == AnimationEventKey.NpcAttackHit
                  && _unitMovement == MoveToPlayer(controller)
                  && controller.IsDetectingPlayer()
                  && controller.PlayerWithInAttackRange()
                 )
             {
-                controller.Player.TakeDamage(controller.AttackDamage, controller);
+                controller.Player.TakeDamage(controller);
             }
         }
     }

@@ -99,14 +99,14 @@ AnimationClip:
   m_Events:
   - time: 1.0666667
     functionName: OnAnimationEvent
-    data: Attack
+    data: NpcAttackHit
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
     messageOptions: 0
   - time: 1.5166667
     functionName: OnAnimationEvent
-    data: End
+    data: NpcAttackEnd
     objectReferenceParameter: {fileID: 0}
     floatParameter: 0
     intParameter: 0
