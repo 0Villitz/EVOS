@@ -1,7 +1,9 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using Puzzles;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -15,7 +17,9 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     }
     
     public ScriptableEventDispatcher _GameEventDispatcher;
-    public Collider2D _Collider;
+    public Collider2D  _Collider;
+    public Animator _Animator;
+    public TextMeshPro _CountdownText;
     
     public float      _InteractableCutoffDistance;
     public string     _TriggerKey;
@@ -35,8 +39,6 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
 
     public string _nextScene = null;
 
-    private Animator _animator;
-
 
     public void Interact()
     {
@@ -46,22 +48,21 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
             return;
         }
 
+        if (Time.time < _unlockTime)
+        {
+            PlayLockoutVfx();
+            return;
+        }
+        
         if (CurrentLockState == LockState.Lock)
         {
             Debug.LogWarning($"Puzzle Terminal:{name} is locked!");
             return;
         }
 
-        if (Time.time < _unlockTime)
-        {
-            PlayLockoutVfx();
-        }
-        else
-        {
-            ShowPuzzle();
-        }
-
-
+        ShowPuzzle();
+        
+        
         void PlayLockoutVfx()
         {
             Debug.Log($"Locked out of Terminal! Unlocks in: {_unlockTime - Time.time} seconds!");
@@ -91,7 +92,7 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
     public void Lockout(float lockoutTimeInSeconds)
     {
         _unlockTime = Time.time + lockoutTimeInSeconds;
-        _animator.SetInteger("UnlockState", 2);
+        StartCoroutine(LockoutDelay());
     } 
 
     public void Unlock()
@@ -99,23 +100,31 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         CurrentLockState = LockState.Unlock;
         
         _unlockTime      = 0;
-        _animator.SetInteger("UnlockState", 1);
-        
-        LoadNextScene();
-        if (_PuzzleType == PuzzleType.Frogger && this.gameObject.name == "DoorTerminal")
-        {
-            _nextScene = "EVOS_EndCutscene";
-        }
+        SetAnimationState(CurrentLockState);
+        //
+        // LoadNextScene();
+        // if (_PuzzleType == PuzzleType.Frogger && this.gameObject.name == "DoorTerminal")
+        // {
+        //     _nextScene = "EVOS_EndCutscene";
+        // }
     }
 
     public void Lock()
     {
         CurrentLockState = LockState.Lock;
-        _animator.SetInteger("UnlockState", 2);
+        SetAnimationState(CurrentLockState);
+    }
+
+    private void SetAnimationState(LockState lockState)
+    {
+        int animIntValue = lockState == LockState.Unlock ? 1 : 2;
+        _Animator.SetInteger("UnlockState", animIntValue);
     }
 
     public void Setup()
     {
+        _CountdownText.gameObject.SetActive(false)
+        ;
         if (_startUnlock)
         {
             Unlock();
@@ -125,24 +134,38 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
             Lock();
         }
     }
-
-    private void Awake()
-    {
-        _animator = GetComponent<Animator>();
-    }
     
     private void Start()
     {
         Setup();
     }
     
-    private void LoadNextScene()
+    // private void LoadNextScene()
+    // {
+    //     if (!string.IsNullOrEmpty(_nextScene))
+    //     {
+    //         int y = SceneManager.GetActiveScene().buildIndex;
+    //         SceneManager.UnloadSceneAsync(y);
+    //         SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Additive);
+    //     }
+    // }
+
+    private IEnumerator LockoutDelay()
     {
-        if (!string.IsNullOrEmpty(_nextScene))
+        Lock();
+        
+        _CountdownText.gameObject.SetActive(true);
+        
+        yield return new WaitUntil(() =>
         {
-            int y = SceneManager.GetActiveScene().buildIndex;
-            SceneManager.UnloadSceneAsync(y);
-            SceneManager.LoadSceneAsync(_nextScene, LoadSceneMode.Additive);
-        }
+            float lockoutTimeLeft = _unlockTime - Time.time;
+            
+            _CountdownText.text = $"{Mathf.CeilToInt(lockoutTimeLeft)}";
+            return lockoutTimeLeft <= 0.0f;
+        });
+        
+        _CountdownText.gameObject.SetActive(false);
+        
+        Unlock();
     }
 }
