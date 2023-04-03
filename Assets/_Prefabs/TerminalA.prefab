@@ -1,5 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &5618926224875948529
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4747475153168333637}
+  - component: {fileID: 7711376505955112215}
+  - component: {fileID: 3876093187423576499}
+  m_Layer: 7
+  m_Name: TerminalTriggerController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4747475153168333637
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618926224875948529}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1911251170710288561}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7711376505955112215
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618926224875948529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9047ca0dc747a50498fcc94ccd56643f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
+  type: 2
+  _Key: 
+  _LockoutTimeInSeconds: 3
+  _Terminal: {fileID: 9062099686306300875}
+--- !u!114 &3876093187423576499
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5618926224875948529}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47b36dfd606c4d75b49240eeb15567f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
+  type: 5
+  _Key: 
+  _Terminal: {fileID: 9062099686306300875}
 --- !u!1 &6208395709445753655
 GameObject:
   m_ObjectHideFlags: 0
@@ -473,7 +539,6 @@ GameObject:
   - component: {fileID: 762100083}
   - component: {fileID: 5294908798208991611}
   - component: {fileID: 9062099686306300875}
-  - component: {fileID: 4855885964007495985}
   - component: {fileID: 2256029320647896975}
   m_Layer: 7
   m_Name: TerminalA
@@ -496,8 +561,9 @@ Transform:
   m_Children:
   - {fileID: 5722818111008765090}
   - {fileID: 2979578801186246789}
+  - {fileID: 4747475153168333637}
   m_Father: {fileID: 0}
-  m_RootOrder: -1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &7896412890603053526
 SpriteRenderer:
@@ -579,7 +645,7 @@ MonoBehaviour:
   - {x: 0.17263746, y: -0.36640978, z: 0}
   m_ShapePathHash: 460911013
   m_Mesh: {fileID: 0}
-  m_InstanceId: 131192
+  m_InstanceId: 152200
 --- !u!61 &5294908798208991611
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -622,6 +688,8 @@ MonoBehaviour:
   _Collider: {fileID: 5294908798208991611}
   _Animator: {fileID: 2256029320647896975}
   _CountdownText: {fileID: 3171977001205032187}
+  _LockoutTrigger: {fileID: 7711376505955112215}
+  _PuzzleCheckpointTrigger: {fileID: 3876093187423576499}
   _InteractableCutoffDistance: 0.5
   _TriggerKey: terminal-a
   _PuzzleType: 2
@@ -630,23 +698,6 @@ MonoBehaviour:
   _unlockTime: 3.4028235e+38
   _startUnlock: 0
   _nextScene: 
---- !u!114 &4855885964007495985
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8843582642170931387}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9047ca0dc747a50498fcc94ccd56643f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
-  type: 2
-  _Key: terminal-a
-  _LockoutTimeInSeconds: 3
-  _Terminal: {fileID: 9062099686306300875}
 --- !u!95 &2256029320647896975
 Animator:
   serializedVersion: 4

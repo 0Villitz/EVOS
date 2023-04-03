@@ -36,6 +36,16 @@ public class PuzzleTester : MonoBehaviour
                });
         }
         
+        if(GUILayout.Button("Test Puzzle Level Completed"))
+        {
+            _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger,
+               new GameTriggerArgs
+               {
+                   TriggerType = TriggerType.PuzzleLevelCompleted,
+                   TriggerKey  = _TriggerKey,
+               });
+        }
+        
         if(GUILayout.Button("Test Puzzle Lockout"))
         {
             _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger, 

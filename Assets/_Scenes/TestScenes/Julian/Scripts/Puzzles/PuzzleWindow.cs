@@ -89,9 +89,15 @@ namespace Puzzles
             _levelIndexStack    = CreateLevelIndexStack(args);
             _startingLevelCount = _levelIndexStack.Count;
 
-            GotoNextLevel();
-
-            UpdateText();
+            if (_startingLevelCount == 0)
+            {
+                OnPuzzleCompleted(true);
+            }
+            else
+            {
+                GotoNextLevel();
+                UpdateText();
+            }
         }
 
         private Stack<int> CreateLevelIndexStack(ShowPuzzleArgs args)
@@ -158,6 +164,8 @@ namespace Puzzles
 
             void HandleSuccess()
             {
+                _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger, CreateTriggerArgs(TriggerType.PuzzleLevelCompleted));
+            
                 bool canGotoNextLevel = GotoNextLevel();
 
                 UpdateText();

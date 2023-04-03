@@ -15,12 +15,17 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         Lock,
         Unlock,
     }
-    
+    [Header("Asset References")]
     public ScriptableEventDispatcher _GameEventDispatcher;
     public Collider2D  _Collider;
     public Animator _Animator;
     public TextMeshPro _CountdownText;
+
+    [Header("Terminal Triggers")]
+    public TerminalLockoutTrigger _LockoutTrigger;
+    public PuzzleCheckpointTrigger _PuzzleCheckpointTrigger;
     
+    [Header("Terminal Controls")]
     public float      _InteractableCutoffDistance;
     public string     _TriggerKey;
     public PuzzleType _PuzzleType;
@@ -123,8 +128,12 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
 
     public void Setup()
     {
-        _CountdownText.gameObject.SetActive(false)
-        ;
+        _CountdownText.gameObject.SetActive(false);
+
+        // Makes setting this up for every terminal automatic & easier
+        _LockoutTrigger._Key          = _TriggerKey;
+        _PuzzleCheckpointTrigger._Key = _TriggerKey;
+        
         if (_startUnlock)
         {
             Unlock();
@@ -132,6 +141,18 @@ public class PuzzleTerminal : MonoBehaviour, IPlayerInteractable
         else
         {
             Lock();
+        }
+    }
+
+    public void PuzzleLevelCompleted()
+    {
+        if (_SpecificLevelList.Count > 0)
+        {
+            _SpecificLevelList.RemoveAt(0);
+        }    
+        else if (_RandomLevelCount > 0)
+        {
+            _RandomLevelCount--;
         }
     }
     
