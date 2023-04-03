@@ -15,7 +15,7 @@ public class VentController : MonoBehaviour
     private BlackoutController blackout;
     private GameObject player;
 
-    private bool isVentLocked = false;
+    public bool isVentLocked = false;
     public bool IsVentLocked
     {
         get
