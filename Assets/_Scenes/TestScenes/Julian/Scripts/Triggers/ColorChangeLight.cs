@@ -1,10 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.Universal;
 
-public class DoorTerminalStart : TriggerBase
+public class ColorChangeLight : TriggerBase
 {
-    public GameObject _TargetSound; 
+    public Light2D l1;
     public Action           _ActiveState;
     
     protected override void OnGameTrigger()
@@ -12,11 +13,11 @@ public class DoorTerminalStart : TriggerBase
        
          if(_ActiveState == Action.TurnOff)
             {
-                _TargetSound.SetActive(false);
+                 l1.color = Color.white;
             }
             else
             {
-                _TargetSound.SetActive(true);
+                 l1.color = Color.red;
             }
     }
 
