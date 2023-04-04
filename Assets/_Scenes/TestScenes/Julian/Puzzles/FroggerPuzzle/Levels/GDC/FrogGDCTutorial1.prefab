@@ -2163,6 +2163,7 @@ MonoBehaviour:
   _ButtonGroup: {fileID: 7349635654917498113}
   _StartButton: {fileID: 4945495447637948198}
   _ExitButton: {fileID: 6473419859438096525}
+  _TriggerKey: 
 --- !u!1 &4160391517707527536
 GameObject:
   m_ObjectHideFlags: 0
@@ -6621,6 +6622,18 @@ PrefabInstance:
     serializedVersion: 2
     m_TransformParent: {fileID: 3195024218111965935}
     m_Modifications:
+    - target: {fileID: 2719355377020675278, guid: f51a33d0f47bc5e438ffd4afe10f7c1f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719355377020675278, guid: f51a33d0f47bc5e438ffd4afe10f7c1f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2719355377020675278, guid: f51a33d0f47bc5e438ffd4afe10f7c1f, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3761551958759987387, guid: f51a33d0f47bc5e438ffd4afe10f7c1f, type: 3}
       propertyPath: m_Name
       value: UI-Canvas

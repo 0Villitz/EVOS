@@ -5,7 +5,7 @@ using UnityEngine;
 public class DoorTerminalStart : TriggerBase
 {
     public GameObject _TargetSound; 
-    public Action           _ActiveState;
+    public Action _ActiveState;
     
     protected override void OnGameTrigger()
     {
