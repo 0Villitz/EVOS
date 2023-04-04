@@ -2163,7 +2163,7 @@ MonoBehaviour:
   _ButtonGroup: {fileID: 7349635654917498113}
   _StartButton: {fileID: 4945495447637948198}
   _ExitButton: {fileID: 6473419859438096525}
-  _TriggerKey: 
+  _TriggerKey: doorterminal
 --- !u!1 &4160391517707527536
 GameObject:
   m_ObjectHideFlags: 0
