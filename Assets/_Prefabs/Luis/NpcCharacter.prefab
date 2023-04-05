@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpSpeed: 3
   _gravityMultiplier: 0.05
-  _movementSpeed: 1.5
+  _movementSpeed: 2
   _attackDamage: 100
   _characterAnimation: {fileID: 1473728656831786064}
 --- !u!114 &4734440963573693141
