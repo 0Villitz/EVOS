@@ -30,7 +30,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 21
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5562036789717180523
 MonoBehaviour:
@@ -46,5 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
   _PuzzleDictionary: {fileID: 11400000, guid: bc519dd8a9aaf0440a3a5bbfb743ed0a, type: 2}
-  _TriggerKey: terminal-a
-  _PuzzleLevel: {fileID: 852967454531116800, guid: 64204a479b99f76468ab0a11d01b238b, type: 3}
+  _TriggerKey: powerterminal
+  _PuzzleLevel: {fileID: 852967454531116800, guid: 58f1bf9cd249781498aad41316a07467, type: 3}
+  _KeyCode: 102
+  _Modifier: 306
