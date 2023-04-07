@@ -17,6 +17,7 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
 
     private int direction = 1;
 
+    public ScriptableEventDispatcher _GameEventDispatcher;
     public PlayerInteractableSystem _PlayerInteractableSystem;
     
     [SerializeField] private int _health = 100;
@@ -245,6 +246,8 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         {
             if (_spawnPoint != null)
             {
+                _GameEventDispatcher.DispatchEvent(GameEventType.HidePuzzleWindow);
+                
                 if (_animateRespawn)
                 {
                     anim.SetTrigger("Death");

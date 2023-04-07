@@ -83,40 +83,40 @@ public class GatherInput : MonoBehaviour
         _GameEventDispatcher.RemoveListener(GameEventType.HidePuzzleWindow, OnHidePuzzleWindow);
     }
 
-    private void Update()
-    {
-        // jwilliams - Example of how to start a puzzle sequence
-        // We create a `ShowPuzzleArgs` and set parameters for the 
-        // type of puzzle we would like to initiate
-        if (Keyboard.current.mKey.wasPressedThisFrame)
-        {
-            CurrentControlType = ControlType.UI;
-
-            var showPuzzleArgs = new ShowPuzzleArgs
-            {
-                PuzzleType  = Puzzles.PuzzleType.Path,
-                TriggerKey = "terminal-a",
-                RandomLevelCount = 3,
-            };
-
-            _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
-        }
-        
-        // Test frogger puzzle
-        if (Keyboard.current.nKey.wasPressedThisFrame)
-        {
-            CurrentControlType = ControlType.UI;
-
-            var showPuzzleArgs = new ShowPuzzleArgs
-            {
-                PuzzleType  = Puzzles.PuzzleType.Frogger,
-                TriggerKey = "terminal-a",
-                RandomLevelCount = 1,
-            };
-
-            _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
-        }
-    }
+    // private void Update()
+    // {
+    //     // jwilliams - Example of how to start a puzzle sequence
+    //     // We create a `ShowPuzzleArgs` and set parameters for the 
+    //     // type of puzzle we would like to initiate
+    //     if (Keyboard.current.mKey.wasPressedThisFrame)
+    //     {
+    //         CurrentControlType = ControlType.UI;
+    //
+    //         var showPuzzleArgs = new ShowPuzzleArgs
+    //         {
+    //             PuzzleType  = Puzzles.PuzzleType.Path,
+    //             TriggerKey = "terminal-a",
+    //             RandomLevelCount = 3,
+    //         };
+    //
+    //         _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
+    //     }
+    //     
+    //     // Test frogger puzzle
+    //     if (Keyboard.current.nKey.wasPressedThisFrame)
+    //     {
+    //         CurrentControlType = ControlType.UI;
+    //
+    //         var showPuzzleArgs = new ShowPuzzleArgs
+    //         {
+    //             PuzzleType  = Puzzles.PuzzleType.Frogger,
+    //             TriggerKey = "terminal-a",
+    //             RandomLevelCount = 1,
+    //         };
+    //
+    //         _GameEventDispatcher.DispatchEvent(GameEventType.ShowPuzzleWindow, showPuzzleArgs);
+    //     }
+    // }
     
     private void OnEnable()
     {

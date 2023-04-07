@@ -83,7 +83,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _jumpSpeed: 3
   _gravityMultiplier: 0.05
-  _movementSpeed: 1.5
+  _movementSpeed: 1
   _attackDamage: 100
   _characterAnimation: {fileID: 1473728656831786064}
 --- !u!114 &4734440963573693141
@@ -116,7 +116,7 @@ MonoBehaviour:
   _attackDamage: 100
   _currentUnitMovement: 0
   _playerTransform: {fileID: 0}
-  _detectionRange: {x: 10, y: 5, z: 0}
+  _detectionRange: {x: 4, y: 5, z: 0}
   _chasingPlayer: 0
   _animationEventHelper: {fileID: 5756447835986783977}
   _sqrAttackRange: 3

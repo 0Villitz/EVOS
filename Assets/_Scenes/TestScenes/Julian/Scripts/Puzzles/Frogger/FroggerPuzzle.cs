@@ -16,6 +16,7 @@ namespace Puzzles
         public GameObject _ButtonGroup;
         public Button     _StartButton;
         public Button     _ExitButton;
+        public string     _TriggerKey;
 #endregion
 
 #region Private vars
@@ -74,13 +75,23 @@ namespace Puzzles
 #region Private Methods
         private void StartPuzzle()
         {
+             _GameEventDispatcher.DispatchEvent(GameEventType.GameTrigger, 
+            new GameTriggerArgs
+               {
+                   TriggerType = TriggerType.DoorTerminalStart,
+                   TriggerKey  = _TriggerKey,
+               });
+        
             _Player.Reset();
             _bytestreamList.ForEach(x => x.Reset());
+
+          
         }
 
         private void OnStartButton()
         {
             _ButtonGroup.SetActive(false);
+
 
             StartPuzzle();
         }
@@ -122,6 +133,7 @@ namespace Puzzles
                 _lastCheckpoint = checkpoint;
             }
         }
+        
 #endregion
     }
 }

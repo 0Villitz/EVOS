@@ -7,6 +7,8 @@ public enum TriggerType
     PuzzleSolved,
     TerminalLockout,
     TerminalUnlock,
+    DoorTerminalStart,
+    PuzzleLevelCompleted,
 }
 
 
