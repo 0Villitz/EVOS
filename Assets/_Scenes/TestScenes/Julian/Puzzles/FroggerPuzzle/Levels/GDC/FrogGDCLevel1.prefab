@@ -1610,7 +1610,7 @@ MonoBehaviour:
   _ObstacleLayer:
     serializedVersion: 2
     m_Bits: 12288
-  _MoveSpeed: 3.5
+  _MoveSpeed: 4
   _MoveDirection: 1
   _Size: {x: 1, y: 8.33}
 --- !u!70 &4520667392517881678
@@ -2195,7 +2195,7 @@ MonoBehaviour:
   _ObstacleLayer:
     serializedVersion: 2
     m_Bits: 12288
-  _MoveSpeed: 3.5
+  _MoveSpeed: 4
   _MoveDirection: 1
   _Size: {x: 1, y: 2}
 --- !u!70 &3054387323052408245
@@ -2401,7 +2401,7 @@ MonoBehaviour:
   _ObstacleLayer:
     serializedVersion: 2
     m_Bits: 12288
-  _MoveSpeed: 3.5
+  _MoveSpeed: 4
   _MoveDirection: 1
   _Size: {x: 1, y: 1}
 --- !u!70 &1720416020538743020
@@ -3008,7 +3008,7 @@ MonoBehaviour:
   _ObstacleLayer:
     serializedVersion: 2
     m_Bits: 12288
-  _MoveSpeed: 3.5
+  _MoveSpeed: 4
   _MoveDirection: 1
   _Size: {x: 1, y: 5}
 --- !u!70 &2872855941864309611
@@ -3130,7 +3130,7 @@ MonoBehaviour:
   _ObstacleLayer:
     serializedVersion: 2
     m_Bits: 12288
-  _MoveSpeed: 3.5
+  _MoveSpeed: 4
   _MoveDirection: 1
   _Size: {x: 1, y: 2}
 --- !u!70 &5714290556217638805
@@ -6827,7 +6827,7 @@ MonoBehaviour:
   _ObstacleLayer:
     serializedVersion: 2
     m_Bits: 12288
-  _MoveSpeed: 3.5
+  _MoveSpeed: 4
   _MoveDirection: 1
   _Size: {x: 1, y: 3}
 --- !u!70 &236413562055272706
