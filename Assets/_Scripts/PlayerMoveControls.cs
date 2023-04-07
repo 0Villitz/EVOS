@@ -4,6 +4,7 @@ using System.Collections;
 using Game2D;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.Serialization;
 
 public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
 {
@@ -266,7 +267,7 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
     }
 
     [SerializeField] private float _respawnDelay = 2f;
-    [SerializeField] private float _respawnFaseSpeed = 0.2f;
+    [SerializeField] private float _respawnFadeSpeed = 0.2f;
 
     private IEnumerator PlayerRespawn()
     {
@@ -278,7 +279,7 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
     private IEnumerator PlayerRespawnStart()
     {
         _inputController.CurrentControlType = GatherInput.ControlType.None;
-        yield return _blackoutController.BlackoutScreen(_respawnFaseSpeed);
+        yield return _blackoutController.BlackoutScreen(_respawnFadeSpeed);
     } 
 
     private IEnumerator PlayerRespawnWait()
@@ -291,7 +292,7 @@ public class PlayerMoveControls : MonoBehaviour, Game2D.IPlayerCharacter
         this.transform.position = _spawnPoint.GetTransform().position;
         _currentHealth = _health;
 
-        yield return _blackoutController.BlackoutScreen(-_respawnFaseSpeed);
+        yield return _blackoutController.BlackoutScreen(-_respawnFadeSpeed);
         _blackoutController.Label.SetText(String.Empty);
         
         if (_animateRespawn)
