@@ -115,7 +115,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3.5
   jumpForce: 3
-  _PlayerInteractableSystem: {fileID: 0}
+  _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
+  _PlayerInteractableSystem: {fileID: 11400000, guid: cb9fab83284bd5d4b92df9a4498b8445, type: 2}
   _health: 100
   rayLength: 0.05
   groundLayer:
@@ -143,7 +144,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   valueX: 0
   jumpInput: 0
-  _GameEventDispatcher: {fileID: 0}
+  _GameEventDispatcher: {fileID: 11400000, guid: 2db1ab98fd921ae4fa6da5cb991c6934, type: 2}
   pause: 0
 --- !u!114 &7125800670050033759
 MonoBehaviour:
