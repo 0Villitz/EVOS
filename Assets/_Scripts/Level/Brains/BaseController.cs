@@ -34,6 +34,7 @@ namespace Game2D
             _activeState.Initialize(_actionsToStateMap);
             
             _characterController = GetComponent<CharacterController>();
+            _characterController.enabled = true;
         }
 
         protected void ProcessState()
