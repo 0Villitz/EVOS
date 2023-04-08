@@ -56,6 +56,15 @@ namespace Game2D
         
         #region Monobehavior
 
+        private void Start()
+        {
+            _brainStateMap.TryGetValue(_currentState, out IBrainState brainState);
+            if (brainState?.TryEnterState(this) ?? false)
+            {
+                Debug.LogError("Failed to enter state " + _currentState);
+            }
+        }
+
         private void OnDestroy()
         {
             _animationEventHelper.RemoveEvent(OnNPCAttackAnimationEvent);

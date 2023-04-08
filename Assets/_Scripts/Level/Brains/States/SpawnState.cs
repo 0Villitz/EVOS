@@ -16,17 +16,6 @@ namespace Game2D
 
         public override bool TryExitState(NPCController controller)
         {
-            
-        // SUUUUUPER Hack,
-        // enemy monster NPC's can fall through the floor for some reason sometimes
-        // just force them up, and return false, for can fall for now
-        // FIX THIS BETTER PLEASE SENIOR SAENZ, I HATE MYSELF FOR THIS
-            var position = controller.transform.position;
-            if (position.y < -70)
-            {
-                return true;
-            }
-            
             return controller.CharacterController.isGrounded;
         }
     }
