@@ -27,6 +27,7 @@ namespace Puzzles
         private Action<IPuzzleInteractable> _playerCollisionCallback;
         private Vector2                     _startingPosition;
         private float                       _delayStartTime;
+        private Vector2                     _prevSize;
         
         private Dictionary<Collider2D, IPuzzleInteractable> _obstacleCache = new Dictionary<Collider2D, IPuzzleInteractable>();
 
@@ -34,12 +35,14 @@ namespace Puzzles
 
 #region Unity API
 
-#if UNITY_EDITOR
         private void Update()
         {
-            _SpriteRenderer.size = _Collider.size = Vector2.Max(Vector2.one * 0.01f, _Size);
+            if (!EqualityComparer<Vector2>.Default.Equals(_prevSize, _Size))
+            {
+                _prevSize = _Size;
+                _SpriteRenderer.size = _Collider.size = Vector2.Max(Vector2.one * 0.01f, _Size);
+            }
         }
-#endif
 
 #endregion
 
