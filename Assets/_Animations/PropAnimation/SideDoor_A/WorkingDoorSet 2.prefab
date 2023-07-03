@@ -370,7 +370,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -712,7 +712,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -938,7 +938,7 @@ Transform:
   - {fileID: 4948783072072524370}
   - {fileID: 4948783071368304278}
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &5144656597481207045
 MonoBehaviour:
@@ -954,4 +954,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstDoor: {fileID: 5144656597301678721}
   secondDoor: {fileID: 5144656597000119877}
+  startLocked: 0
   interactionPrompt: Enter Door

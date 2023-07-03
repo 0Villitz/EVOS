@@ -48,6 +48,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   firstVent: {fileID: 7921085664764517614}
   secondVent: {fileID: 7921085665599826306}
+  isVentLocked: 0
   interactionPrompt: 
 --- !u!1001 &7921085664764517611
 PrefabInstance:
@@ -156,7 +157,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52e94fe403f50ba40912e7444451116d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -457,7 +458,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 52e94fe403f50ba40912e7444451116d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.2
   m_Pitch: 1
   Loop: 0
   Mute: 0
